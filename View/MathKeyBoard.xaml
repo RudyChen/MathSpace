@@ -24,16 +24,24 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Button Width="50" Height="50" Content="{Binding Path=Charactor}" Margin="10"></Button>
+                        <Button Width="50" Height="50" Content="{Binding Path=Charactor}" Margin="10" Focusable="False"></Button>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button>上一部分</Button>
+                <Button>下一部分</Button>
+                <Button>删除</Button>
                 
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button  Focusable="False" Margin="0,0,20,0">分数</Button>
+                <Button  Focusable="False" Margin="0,0,20,0">根式</Button>
+                <Button  Focusable="False" Margin="0,0,20,0">指数 </Button>
             </StackPanel>
             <TabControl Style="{StaticResource ResourceKey=BottomTabControlStyle}">
                 <TabItem x:Name="symbolTabItem" Header="符号">

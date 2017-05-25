@@ -2,24 +2,26 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="BottomTabControlStyle" TargetType="{x:Type TabControl}">
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">
                     <Grid x:Name="templateRoot" ClipToBounds="True" SnapsToDevicePixels="True" KeyboardNavigation.TabNavigation="Local">
-                        <Grid.RowDefinitions>
-                            <RowDefinition x:Name="RowDefinition0" Height="*"/>
-                            <RowDefinition x:Name="RowDefinition1" Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Border Grid.Row="0" x:Name="ContentPanel" BorderThickness="0,0,0,3" Background="{TemplateBinding Background}" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained"  KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                      
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition ></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="1" x:Name="ContentPanel" BorderThickness="0,0,0,3" Background="{TemplateBinding Background}" KeyboardNavigation.DirectionalNavigation="Contained"  KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
                             <Border.BorderBrush>
                                 <SolidColorBrush Color="Blue"/>
                             </Border.BorderBrush>
-                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentTemplate="{TemplateBinding SelectedContentTemplate}" Content="{TemplateBinding SelectedContent}" ContentStringFormat="{TemplateBinding SelectedContentStringFormat}" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <ScrollViewer MaxHeight="400" Height="400">
+                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentTemplate="{TemplateBinding SelectedContentTemplate}" Content="{TemplateBinding SelectedContent}" ContentStringFormat="{TemplateBinding SelectedContentStringFormat}" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
                         </Border>
-                        <WrapPanel Grid.Row="1" x:Name="HeaderPanel" Background="Transparent" Grid.Column="0" IsItemsHost="True" Margin="2,2,2,0"  KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+                        <StackPanel Grid.Column="0" x:Name="HeaderPanel" Background="Transparent"  IsItemsHost="True" Margin="2"  KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

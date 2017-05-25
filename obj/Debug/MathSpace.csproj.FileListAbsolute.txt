@@ -34,3 +34,39 @@ D:\WPF源码\MathSpace\MathSpace\obj\Debug\MathSpace.exe
 D:\WPF源码\MathSpace\MathSpace\obj\Debug\MathSpace.pdb
 D:\WPF源码\MathSpace\MathSpace\obj\Debug\View\MathEidtor.g.cs
 D:\WPF源码\MathSpace\MathSpace\obj\Debug\View\MathEidtor.baml
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\MathSpace.exe.config
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace.exe
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace.pdb
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\MathSpace.exe
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\MathSpace.pdb
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GalaSoft.MvvmLight.dll
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GongSolutions.Wpf.DragDrop.dll
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\System.Windows.Interactivity.dll
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GalaSoft.MvvmLight.pdb
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GalaSoft.MvvmLight.xml
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace.csprojResolveAssemblyReference.cache
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\MathKeyBoard.baml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\Resource\Control\TableControl.baml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MainWindow.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\MathEidtor.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\MathKeyBoard.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\App.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace_Content.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace_MarkupCompile.cache
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace_MarkupCompile.lref
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\App.baml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MainWindow.baml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\MathEidtor.baml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace.g.resources
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace.Properties.Resources.resources
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace.csproj.GenerateResource.Cache

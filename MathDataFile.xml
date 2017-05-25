@@ -8,30 +8,30 @@
       <Block Type="Charactor">+5</Block>
       
       <BlockComponent Type="Fraction">
-        <BlockComponent Type="Molecule">
+        <BlockComponent Role="Molecule">
 
         </BlockComponent>
-        <BlockComponent Type="Denominator">
+        <BlockComponent Role="Denominator">
 
         </BlockComponent>
     
     </BlockComponent>
 
       <BlockComponent Type="Radical">
-        <BlockComponent Type="RootIndex">
+        <BlockComponent Role="RootIndex">
           
         </BlockComponent>
-        <BlockComponent Type="Radicand">
+        <BlockComponent Role="Radicand">
           
         </BlockComponent>
       
     </BlockComponent>
 
       <BlockComponent Type="Exponential">
-        <BlockComponent Type="Base">
+        <BlockComponent Role="Base">
           
         </BlockComponent>
-        <BlockComponent Type="Index">
+        <BlockComponent Role="Index">
           
         </BlockComponent>
       </BlockComponent>

@@ -5,10 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MathSpace"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Canvas Name="editorCanvas" DockPanel.Dock="Top" Focusable="False" MouseLeftButtonDown="editorCanvas_MouseLeftButtonDown" Background="White" PreviewKeyDown="editorCanvas_PreviewKeyDown">
-            <TextBox Name="caretTextBox" Padding="0" Margin="0" Canvas.Left="0" Canvas.Top="10" VerticalContentAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" BorderThickness="0" PreviewTextInput="caretTextBox_PreviewTextInput" FontFamily="Times New Roman" Foreground="Black" FontSize="16" FontStyle="Italic"></TextBox>
-        </Canvas>
+             d:DesignHeight="800" d:DesignWidth="1280">
+    <Grid >
+        <DockPanel>
+            <ContentControl DockPanel.Dock="Bottom" MaxHeight="400">
+                <local:MathKeyBoard/>
+            </ContentControl>
+            <Canvas Name="editorCanvas" DockPanel.Dock="Top" Focusable="False" MouseLeftButtonDown="editorCanvas_MouseLeftButtonDown" Background="White" PreviewKeyDown="editorCanvas_PreviewKeyDown">
+                <TextBox Name="caretTextBox" Padding="0" Margin="0" Canvas.Left="0" Canvas.Top="10" VerticalContentAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" BorderThickness="0" PreviewTextInput="caretTextBox_PreviewTextInput" FontFamily="Times New Roman" Foreground="Black" FontSize="16" FontStyle="Italic"></TextBox>
+            </Canvas>
+            
+        </DockPanel>
+        
     </Grid>
 </UserControl>
