@@ -41,7 +41,52 @@ namespace MathSpace
 
         private void caretTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-           
+            if (IsChinese(e.Text))
+            {
+                if (!string.IsNullOrEmpty(e.Text))
+                {
+                    AcceptChineseInputText(0, 0, e.Text);
+                }
+            }
+            else
+            {
+               
+                 AcceptEnglishInputText(0, 0, e.Text);
+            }
+            e.Handled = true;
+        }
+
+        private void AcceptEnglishInputText(double lineOffsetX, double lineOffsetY, string text)
+        {
+
+        }
+
+        private void AcceptChineseInputText(double lineOffsetX, double lineOffsetY, string text)
+        {
+
+        }
+
+        private bool IsChinese(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return false;
+
+            text = text.Trim();
+
+            foreach (char c in text)
+            {
+                if (c < 0x301E) return false;
+            }
+
+            return true;
+        }
+
+        private bool IsLowerAlphabet(char charItem)
+        {
+            if (charItem>0x0061&&charItem<0x007B)
+            {
+                return true;
+            }   
+            return false;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace MathSpace.Model
 {
    public interface IBlock
     {
-        double GetHeight();
+        double GetRect();
 
         double GetVerticalAlignmentCenter();
 
