@@ -16,6 +16,8 @@ namespace MathSpace.Model
 
         public string Text { get; set; }
 
+        public string FontStyle { get; set; }
+
         public void AlignElementsToVerticalCenter()
         {
             throw new NotImplementedException();
@@ -27,6 +29,11 @@ namespace MathSpace.Model
         }
 
         public double GetVerticalAlignmentCenter()
+        {
+            throw new NotImplementedException();
+        }
+
+        public double DrawBlock()
         {
             throw new NotImplementedException();
         }

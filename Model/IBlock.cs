@@ -10,6 +10,8 @@ namespace MathSpace.Model
     {
         double GetRect();
 
+        double DrawBlock();
+
         double GetVerticalAlignmentCenter();
 
         /// <summary>

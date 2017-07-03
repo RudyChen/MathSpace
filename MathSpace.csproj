@@ -82,11 +82,12 @@
     <Compile Include="Model\Block.cs" />
     <Compile Include="Model\BlockNode.cs" />
     <Compile Include="Model\CharactorBlock.cs" />
+    <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\Exponential.cs" />
     <Compile Include="Model\Fraction.cs" />
     <Compile Include="Model\IBlock.cs" />
     <Compile Include="Model\LineBlock.cs" />
-    <Compile Include="Model\Page.cs" />
+    <Compile Include="Model\BlockPage.cs" />
     <Compile Include="Model\Radical.cs" />
     <Compile Include="Model\Row.cs" />
     <Compile Include="Model\ShapeBlock.cs" />

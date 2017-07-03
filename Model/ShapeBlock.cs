@@ -13,6 +13,11 @@ namespace MathSpace.Model
             throw new NotImplementedException();
         }
 
+        public double DrawBlock()
+        {
+            throw new NotImplementedException();
+        }
+
         public double GetRect()
         {
             throw new NotImplementedException();

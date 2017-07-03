@@ -16,7 +16,14 @@ namespace MathSpace.Model
             set { _children = value; }
         }
 
+        
+
         public void AlignElementsToVerticalCenter()
+        {
+            throw new NotImplementedException();
+        }
+
+        public double DrawBlock()
         {
             throw new NotImplementedException();
         }

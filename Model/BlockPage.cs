@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathSpace.Model
 {
-   public class Page
+   public class BlockPage
     {
         private List<Row> _rows=new List<Row>();
 
