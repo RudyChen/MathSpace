@@ -3,22 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace MathSpace.Model
 {
     public class ShapeBlock : IBlock
     {
-        public void AlignElementsToVerticalCenter()
+        public void AddChildren(List<IBlock> inputCharactors)
         {
             throw new NotImplementedException();
         }
 
-        public double DrawBlock()
+        public void SetBlockLocation(double locationX,double alignmentCenterY)
         {
             throw new NotImplementedException();
         }
 
-        public double GetRect()
+        public void DrawBlock(Canvas canvas)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Size GetSize()
         {
             throw new NotImplementedException();
         }

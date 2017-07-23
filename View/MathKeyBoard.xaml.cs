@@ -23,6 +23,9 @@ namespace MathSpace
     /// </summary>
     public partial class MathKeyBoard : UserControl
     {
+        public delegate void  InputTypeChangedEventHandler(InputTypes inputType);
+        public event InputTypeChangedEventHandler InputTypeChangedEvent;
+
         public MathKeyBoard()
         {
             InitializeComponent();
@@ -42,6 +45,32 @@ namespace MathSpace
         {
             var vm=this.DataContext as MathKeyBoardViewModel;
             vm.LoadKey();
+        }
+
+        private void InputType_Changed(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn.Tag.ToString() == "Fraction")
+            {
+                if (InputTypeChangedEvent != null)
+                {
+                    InputTypeChangedEvent(InputTypes.Fraction);
+                }
+            }
+            else if (btn.Tag.ToString()=="Radical") 
+            {
+                if (InputTypeChangedEvent != null)
+                {
+                    InputTypeChangedEvent(InputTypes.Radical);
+                }
+            }
+            else if (btn.Tag.ToString()== "Exponenal")
+            {
+                if (InputTypeChangedEvent!=null)
+                {
+                    InputTypeChangedEvent(InputTypes.Exponential);                
+                }
+            }
         }
     }
 }

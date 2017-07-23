@@ -39,9 +39,9 @@
                 
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button  Focusable="False" Margin="0,0,20,0">分数</Button>
-                <Button  Focusable="False" Margin="0,0,20,0">根式</Button>
-                <Button  Focusable="False" Margin="0,0,20,0">指数 </Button>
+                <Button  Focusable="False" Margin="0,0,20,0" Click="InputType_Changed" Tag="Fraction">分数</Button>
+                <Button  Focusable="False" Margin="0,0,20,0" Click="InputType_Changed" Tag="Radical">根式</Button>
+                <Button  Focusable="False" Margin="0,0,20,0" Click="InputType_Changed" Tag="Exponenal">指数 </Button>
             </StackPanel>
             <TabControl Style="{StaticResource ResourceKey=BottomTabControlStyle}">
                 <TabItem x:Name="symbolTabItem" Header="符号">

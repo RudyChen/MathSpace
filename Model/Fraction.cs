@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace MathSpace.Model
 {
@@ -25,12 +27,12 @@ namespace MathSpace.Model
         }
    
 
-        public void AlignElementsToVerticalCenter()
+        public void SetBlockLocation(double locationX,double alignmentCenterY)
         {
             throw new NotImplementedException();
         }
 
-        public double GetRect()
+        public Size GetSize()
         {
             throw new NotImplementedException();
         }
@@ -40,7 +42,12 @@ namespace MathSpace.Model
             throw new NotImplementedException();
         }
 
-        public double DrawBlock()
+        public void DrawBlock(Canvas canvas)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddChildren(List<IBlock> inputCharactors)
         {
             throw new NotImplementedException();
         }

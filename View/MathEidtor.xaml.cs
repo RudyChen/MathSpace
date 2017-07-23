@@ -24,10 +24,20 @@ namespace MathSpace
         public MathEidtor()
         {
             InitializeComponent();
+            FontSize = 14;
         }
 
-        private Row _currentRow=new Row();
 
+        /// <summary>
+        /// 输入父节点ID
+        /// 通过父节点ID寻找输入对象，不用再用栈存储
+        /// </summary>
+        public string InputParentId { get; set; }
+
+        private Row _currentRow = new Row();
+        /// <summary>
+        /// 当前输入的行
+        /// </summary>
         public Row CurrentRow
         {
             get { return _currentRow; }
@@ -51,7 +61,7 @@ namespace MathSpace
 
             var absolutePoint = e.GetPosition(editorCanvas);
             //todo: find the row who contains this absolutePoint as currentInputBlockRow
-           // var rowPoint = new Point(absolutePoint.X, absolutePoint.Y - currentInputBlockRow.RowRect.Top);
+            // var rowPoint = new Point(absolutePoint.X, absolutePoint.Y - currentInputBlockRow.RowRect.Top);
         }
 
         private void editorCanvas_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -61,83 +71,150 @@ namespace MathSpace
 
         private void caretTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (IsChinese(e.Text))
-            {
-                if (!string.IsNullOrEmpty(e.Text))
-                {
-                    AcceptChineseInputText(0, 0, e.Text);
-                }
-            }
-            else
-            {
-               
-                 AcceptEnglishInputText(0, 0, e.Text);
-            }
+            AcceptInputText(e.Text);
+          
             e.Handled = true;
         }
 
-        private void AcceptEnglishInputText(double lineOffsetX, double lineOffsetY, string text)
+        private List<Row> _rows = new List<Row>();
+        /// <summary>
+        /// 编辑器的多行公式集合
+        /// </summary>
+        public List<Row> Rows
         {
+            get { return _rows; }
+            set { _rows = value; }
+        }
+
+
+        private void AcceptInputText(string text)
+        {
+            //todo:空格输入没有响应
+
             List<CharactorBlock> inputCharactors = new List<CharactorBlock>();
-            inputCharactors = CreateInputCharactorBlocks(text);
+            foreach (var item in text)
+            {
+                var charactorBlock = CreateNewCharactorBlock(item);
+                inputCharactors.Add(charactorBlock);
+            }
 
 
+            if (!string.IsNullOrEmpty(InputParentId))
+            {
+                var parentNode = CurrentRow.FindParentNode(InputParentId);
+                foreach (var item in inputCharactors)
+                {
+                    parentNode.AddChildren(item);
+                }
 
+            }
+            else
+            {
+                CurrentRow.Members.AddRange(inputCharactors);
+            }
+
+            RefreshRow();
+            /*输入完毕之后得
+              1.绘制整个currentRow
+              2.管理输入文本框的位置
+            */
+            double offsetx = 0;
+            foreach (var item in inputCharactors)
+            {
+                offsetx += item.GetSize().Width;
+            }
+            var charactorSize = inputCharactors.Last().GetSize();
+            ResetCaretLocation(offsetx);
         }
 
         /// <summary>
-        /// 创建输入文字块集合
-        /// 区分小写字符，小写字符必须用特定字体与样式
+        /// 刷新行显示内容
         /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        private List<CharactorBlock> CreateInputCharactorBlocks(string text)
+        private void RefreshRow()
         {
-            List<CharactorBlock> inputCharactors = new List<CharactorBlock>();
-            for (int i = 0; i < text.Length; i++)
+            ClearInputElements();
+
+            double maxVerticalAlignment = GetMaxVerticalAlignment();
+
+            double locationX = 0;
+            double locationY = 0;
+            foreach (var item in CurrentRow.Members)
             {
-                CharactorBlock lowerAlphabet;
-                lowerAlphabet = inputCharactors.Last();
-                bool isLowerCharactor = IsLowerAlphabet(text[i]);
+                var itemSize = item.GetSize();
 
-                if (null == lowerAlphabet)
-                {
-                    lowerAlphabet = CreateNewCharactorBlock(text[i]);
+                locationY = maxVerticalAlignment + CurrentRow.Location;
+                item.SetBlockLocation(locationX, locationY);
+                locationX += itemSize.Width;
+                item.DrawBlock(editorCanvas);
+            }
+        }
 
-                    inputCharactors.Add(lowerAlphabet);
-                }
-                else
-                {
-                    bool isLastCharactorLowerAlphabet = IsLowerAlphabet(lowerAlphabet.Text[lowerAlphabet.Text.Length - 1]);
-                    if (isLastCharactorLowerAlphabet)
-                    {
-                        if (isLowerCharactor)
-                        {
-                            lowerAlphabet.Text += text[i].ToString();
-                        }
-                        else
-                        {
-                            var newCharactor = CreateNewCharactorBlock(text[i]);
-                            inputCharactors.Add(newCharactor);
-                        }
-                    }
-                    else
-                    {
-                        if (isLowerCharactor)
-                        {
-                            var newCharactor = CreateNewCharactorBlock(text[i]);
-                            inputCharactors.Add(newCharactor);
-                        }
-                        else
-                        {
-                            lowerAlphabet.Text += text[i].ToString();
-                        }
-                    }
-                }
+        private void AddComponentType(IBlock block)
+        {
+            if (!string.IsNullOrEmpty(InputParentId))
+            {
+                var parentNode = CurrentRow.FindParentNode(InputParentId);
+                parentNode.AddChildren(block);
+            }
+            else
+            {
+                CurrentRow.Members.Add(block);
             }
 
-            return inputCharactors;
+            RefreshRow();
+
+            /*分输入类型调整插字符的位置
+              1.分数插字符位置
+              2.指数插字符位置
+              3.根式插字符位置
+            */
+
+
         }
+
+        private void ClearInputElements()
+        {
+            for (int i = 0; i < editorCanvas.Children.Count; i++)
+            {
+                if (editorCanvas.Children[i] is TextBlock)
+                {
+                    editorCanvas.Children.Remove(editorCanvas.Children[i]);
+                }
+            }
+        }
+
+        private void ResetCaretLocation(double offsetX)
+        {
+            caretTextBox.Text = string.Empty;
+            var oldLeft = Canvas.GetLeft(caretTextBox);
+            Canvas.SetLeft(caretTextBox, oldLeft+ offsetX);
+        }
+
+        private double GetMaxVerticalAlignment()
+        {
+            double maxValue = 0;
+            List<double> verticalAlignmentList = new List<double>();
+            foreach (var item in CurrentRow.Members)
+            {
+                var itemSize = item.GetSize();
+                verticalAlignmentList.Add(item.GetVerticalAlignmentCenter());
+            }
+
+            if (verticalAlignmentList.Count > 0)
+            {
+                foreach (var item in verticalAlignmentList)
+                {
+                    if (item>maxValue)
+                    {
+                        maxValue = item;
+                    }
+                }               
+            }
+
+            return maxValue;
+        }
+
+
 
         /// <summary>
         /// 文字块数学中小写字母必须用特定字体
@@ -147,12 +224,16 @@ namespace MathSpace
         /// <returns></returns>
         private CharactorBlock CreateNewCharactorBlock(char c)
         {
-            var lowerAlphabet = new CharactorBlock();           
+            var lowerAlphabet = new CharactorBlock();
             lowerAlphabet.FontSize = FontSize;
             lowerAlphabet.Text = c.ToString();
-            if (IsLowerAlphabet(c))
+            lowerAlphabet.FontWeight = FontWeights.Normal.ToString();
+            lowerAlphabet.ForgroundColor = Brushes.Black.ToString();
+            lowerAlphabet.ID = new Guid().ToString();
+            if (IsLowerAlphabet(c)||IsNumber(c))
             {
-                lowerAlphabet.FontStyle = "Italic";
+               
+                lowerAlphabet.FontStyle = IsNumber(c)?"Normal":"Italic";
                 lowerAlphabet.FontFamily = "Times New Roman";
             }
             else
@@ -164,10 +245,6 @@ namespace MathSpace
             return lowerAlphabet;
         }
 
-        private void AcceptChineseInputText(double lineOffsetX, double lineOffsetY, string text)
-        {
-
-        }
 
         private bool IsChinese(string text)
         {
@@ -182,14 +259,49 @@ namespace MathSpace
 
             return true;
         }
-    
+
         private bool IsLowerAlphabet(char charItem)
         {
-            if (charItem>0x0061&&charItem<0x007B)
+            if (charItem >= 'a' && charItem <= 'z')
             {
                 return true;
-            }   
+            }
             return false;
+        }
+
+        private bool IsNumber(char charItem)
+        {
+            if (charItem>'0'&&charItem<='9')
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void InputType_Changed(InputTypes inputType)
+        {
+            switch (inputType)
+            {
+                case InputTypes.Fraction:
+                    AddDefaultFraction();
+                    break;
+                case InputTypes.Radical:
+                    break;
+                case InputTypes.Exponential:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void AddDefaultFraction()
+        {
+            Fraction fraction = new Fraction();
+
+
+
+            
         }
     }
 }
