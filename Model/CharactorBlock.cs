@@ -24,10 +24,20 @@ namespace MathSpace.Model
 
         public string Text { get; set; }
 
+        /// <summary>
+        /// 块ID
+        /// </summary>
         public string ID { get; set; }
 
+        /// <summary>
+        /// 父容器ID
+        /// </summary>
         public string ParentId { get; set; }
 
+        public CharactorBlock()
+        {
+            ID = Guid.NewGuid().ToString();
+        }
 
 
         public Point Location { get; set; }
@@ -131,7 +141,7 @@ namespace MathSpace.Model
             return tb;
         }
 
-        public void AddChildren(List<IBlock> inputCharactors)
+        public void AddChildren(List<IBlock> inputCharactors,Point caretPoint, string parentId)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MathSpace.Tool;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,11 +26,28 @@ namespace MathSpace.Model
             get { return _denominator; }
             set { _denominator = value; }
         }
-   
 
-        public void SetBlockLocation(double locationX,double alignmentCenterY)
+        /// <summary>
+        /// 块ID
+        /// </summary>
+        public string ID { get; set; }
+
+        /// <summary>
+        /// 父容器ID
+        /// </summary>
+        public string ParentId { get; set; }
+
+
+        public Fraction()
         {
-            throw new NotImplementedException();
+            ID = Guid.NewGuid().ToString();
+        }
+
+
+        public void AddChildren(List<IBlock> inputCharactors,Point caretPoint,string parentId)
+        {
+            var moleculeSize = Molecule.GetSize();
+
         }
 
         public Size GetSize()
@@ -37,7 +55,7 @@ namespace MathSpace.Model
             if (null==Molecule&&null== Denominator)
             {
                 //返回默认分数大小
-               return new Size(MathEidtor.FontSize, MathEidtor.FontSize * 2.4);
+               return new Size(FontManager.Instance.FontSize, FontManager.Instance.FontSize * 2.4);
             }
             else
             {
@@ -45,15 +63,15 @@ namespace MathSpace.Model
                 double maxHeight = 0;
                 if (null==Molecule&&null!= Denominator)
                 {
-                    maxWidth = MathEidtor.FontSize > Denominator.GetSize().Width ? MathEidtor.FontSize : Denominator.GetSize().Width;
-                    maxHeight = MathEidtor.FontSize * 1.4 + Denominator.GetSize().Height;
+                    maxWidth = FontManager.Instance.FontSize > Denominator.GetSize().Width ? FontManager.Instance.FontSize : Denominator.GetSize().Width;
+                    maxHeight = FontManager.Instance.FontSize * 1.4 + Denominator.GetSize().Height;
                     return new Size(maxWidth,maxHeight);
                 }
 
                 if (null!=Molecule&&null==Denominator)
                 {
-                    maxWidth = MathEidtor.FontSize > Molecule.GetSize().Width ? MathEidtor.FontSize : Molecule.GetSize().Width;
-                    maxHeight = MathEidtor.FontSize * 1.4 + Molecule.GetSize().Height;
+                    maxWidth = FontManager.Instance.FontSize > Molecule.GetSize().Width ? FontManager.Instance.FontSize : Molecule.GetSize().Width;
+                    maxHeight = FontManager.Instance.FontSize * 1.4 + Molecule.GetSize().Height;
                     return new Size(maxWidth, maxHeight);
                 }
 
@@ -61,23 +79,39 @@ namespace MathSpace.Model
                 var bottomSize = Denominator.GetSize();
 
                 maxWidth = topSize.Width > bottomSize.Width ? topSize.Width : bottomSize.Width;
-                return new Size(maxWidth,topSize.Height+bottomSize.Height+MathEidtor.FontSize*0.4);
+                return new Size(maxWidth,topSize.Height+bottomSize.Height+FontManager.Instance.FontSize*0.4);
             }
         }
 
         public double GetVerticalAlignmentCenter()
+        {
+
+            if (null==Molecule)
+            {
+                //默认情况
+                return FontManager.Instance.FontSize * 1.2;
+            }
+            else
+            {
+                var moleculeSize = Molecule.GetSize();
+
+                return moleculeSize.Height + FontManager.Instance.FontSize * 0.2;
+            }
+        }
+
+        public void SetBlockLocation(double locationX, double alignmentCenterY)
         {
             throw new NotImplementedException();
         }
 
         public void DrawBlock(Canvas canvas)
         {
-            throw new NotImplementedException();
+            if (null==Molecule&&null==Denominator)
+            {
+
+            }
         }
 
-        public void AddChildren(List<IBlock> inputCharactors)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

@@ -10,7 +10,7 @@ namespace MathSpace.Model
 {
     public class ShapeBlock : IBlock
     {
-        public void AddChildren(List<IBlock> inputCharactors)
+        public void AddChildren(List<IBlock> inputCharactors,Point caretPoint, string parentId)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,15 @@ namespace MathSpace.Tool
 
         private  FontManager()
         {
-           
+            var fontsizeStr=ConfigurationManager.AppSettings["FontSize"].ToString();
+            double fontSize = 0;
+            double.TryParse(fontsizeStr,out fontSize);
+            FontSize = fontSize;
         }
 
-        private FontManager _instance;
+        private static FontManager _instance;
 
-        public FontManager Instance
+        public static FontManager Instance
         {
             get
             {

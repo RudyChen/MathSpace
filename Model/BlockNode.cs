@@ -20,6 +20,8 @@ namespace MathSpace.Model
             set { _children = value; }
         }
 
+        public Point Location { get; set; }
+
         /// <summary>
         /// 块ID
         /// </summary>
@@ -34,6 +36,11 @@ namespace MathSpace.Model
         /// 输入部分索引
         /// </summary>
         public int InputPartIndex { get; set; }
+
+        public BlockNode()
+        {
+            ID = Guid.NewGuid().ToString();
+        }
 
 
         public void SetBlockLocation(double locationX,double alignmentCenterY)
@@ -56,7 +63,7 @@ namespace MathSpace.Model
             throw new NotImplementedException();
         }
 
-        public void AddChildren(List<IBlock> inputCharactors)
+        public void AddChildren(List<IBlock> inputCharactors,Point caretPoint, string parentId)
         {
             throw new NotImplementedException();
         }

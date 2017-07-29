@@ -48,7 +48,7 @@ namespace MathSpace.Model
             throw new NotImplementedException();
         }
 
-        public void AddChildren(List<IBlock> inputCharactors)
+        public void AddChildren(List<IBlock> inputCharactors,Point caretPoint, string parentId)
         {
             throw new NotImplementedException();
         }
