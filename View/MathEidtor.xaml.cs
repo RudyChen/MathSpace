@@ -134,7 +134,8 @@ namespace MathSpace
         {
             ClearInputElements();
 
-            double maxVerticalAlignment = GetMaxVerticalAlignment();
+            double maxVerticalAlignment = 0.0;
+            maxVerticalAlignment= (double)GetMaxVerticalAlignment();
 
             double locationX = 0;
             double locationY = 0;
@@ -142,7 +143,7 @@ namespace MathSpace
             {
                 var itemSize = item.GetSize();
 
-                locationY = maxVerticalAlignment + CurrentRow.Location;
+                locationY = (maxVerticalAlignment + CurrentRow.Location);
                 item.SetBlockLocation(locationX, locationY);
                 locationX += itemSize.Width;
                 item.DrawBlock(editorCanvas);
@@ -174,13 +175,14 @@ namespace MathSpace
 
         private void ClearInputElements()
         {
-            for (int i = 0; i < editorCanvas.Children.Count; i++)
-            {
-                if (editorCanvas.Children[i] is TextBlock)
-                {
-                    editorCanvas.Children.Remove(editorCanvas.Children[i]);
-                }
-            }
+           var caretLeft= Canvas.GetLeft(caretTextBox);
+            var caretTop= Canvas.GetTop(caretTextBox);
+            var tempCaretTextBox = caretTextBox;
+
+            editorCanvas.Children.Clear();
+            editorCanvas.Children.Add(caretTextBox);
+            Canvas.SetLeft(caretTextBox,caretLeft);
+            Canvas.SetTop(caretTextBox, caretTop);           
         }
 
         private void ResetCaretLocation(double offsetX)
@@ -199,6 +201,8 @@ namespace MathSpace
                 var itemSize = item.GetSize();
                 verticalAlignmentList.Add(item.GetVerticalAlignmentCenter());
             }
+
+            return verticalAlignmentList.Max();
 
             if (verticalAlignmentList.Count > 0)
             {
@@ -230,10 +234,10 @@ namespace MathSpace
             lowerAlphabet.FontWeight = FontWeights.Normal.ToString();
             lowerAlphabet.ForgroundColor = Brushes.Black.ToString();
             lowerAlphabet.ID = new Guid().ToString();
-            if (IsLowerAlphabet(c)||IsNumber(c))
+            if (IsLowerAlphabet(c)||IsSymbolOrNumber(c))
             {
                
-                lowerAlphabet.FontStyle = IsNumber(c)?"Normal":"Italic";
+                lowerAlphabet.FontStyle = IsSymbolOrNumber(c)?"Normal":"Italic";
                 lowerAlphabet.FontFamily = "Times New Roman";
             }
             else
@@ -269,9 +273,9 @@ namespace MathSpace
             return false;
         }
 
-        private bool IsNumber(char charItem)
+        private bool IsSymbolOrNumber(char charItem)
         {
-            if (charItem>'0'&&charItem<='9')
+            if (charItem>'!'&&charItem<='?')
             {
                 return true;
             }

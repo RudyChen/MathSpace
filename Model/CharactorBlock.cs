@@ -54,11 +54,11 @@ namespace MathSpace.Model
 
             if (FontStyles.Italic==GetFontStyle())
             {
-                BlockSize = new Size(FormatedCharactor.WidthIncludingTrailingWhitespace+1, FormatedCharactor.MaxTextHeight);
+                BlockSize = new Size(FormatedCharactor.WidthIncludingTrailingWhitespace+1, FormatedCharactor.Height);
             }
             else
             {
-                BlockSize = new Size(FormatedCharactor.WidthIncludingTrailingWhitespace, FormatedCharactor.MaxTextHeight);
+                BlockSize = new Size(FormatedCharactor.WidthIncludingTrailingWhitespace, FormatedCharactor.Height);
             }
             
 
@@ -96,16 +96,15 @@ namespace MathSpace.Model
         }
 
         public double GetVerticalAlignmentCenter()
-        {
-            double verticalCenter = 0;
-            VerticalCenter = BlockSize.Height / 2;
-            verticalCenter= BlockSize.Height / 2;
-            return verticalCenter;
+        {            
+            VerticalCenter = BlockSize.Height / 2;            
+            return VerticalCenter;
         }
 
         public void SetBlockLocation(double locationX, double alignmentCenterY)
         {
-            Location = new Point(locationX, alignmentCenterY - BlockSize.Height / 2);
+            var y = alignmentCenterY - BlockSize.Height / 2;
+            Location = new Point(locationX, y);
         }
 
         public void DrawBlock(Canvas canvas)
