@@ -92,6 +92,7 @@
     <Compile Include="Model\Radical.cs" />
     <Compile Include="Model\Row.cs" />
     <Compile Include="Model\ShapeBlock.cs" />
+    <Compile Include="Tool\FontManager.cs" />
     <Compile Include="Tool\MathUIElementTool.cs" />
     <Compile Include="View\MathEidtor.xaml.cs">
       <DependentUpon>MathEidtor.xaml</DependentUpon>

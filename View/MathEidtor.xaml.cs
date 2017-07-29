@@ -52,7 +52,7 @@ namespace MathSpace
             set { _inputCommandStack = value; }
         }
 
-        public int FontSize { get; set; }
+        public static int FontSize { get; set; }
 
 
         private void editorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -162,15 +162,7 @@ namespace MathSpace
                 CurrentRow.Members.Add(block);
             }
 
-            RefreshRow();
-
-            /*分输入类型调整插字符的位置
-              1.分数插字符位置
-              2.指数插字符位置
-              3.根式插字符位置
-            */
-
-
+            RefreshRow();                       
         }
 
         private void ClearInputElements()

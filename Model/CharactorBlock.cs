@@ -18,15 +18,17 @@ namespace MathSpace.Model
 
         public double FontSize { get; set; }
 
-        public string Text { get; set; }
+        public string ForgroundColor { get; set; }
 
         public string FontStyle { get; set; }
+
+        public string Text { get; set; }
 
         public string ID { get; set; }
 
         public string ParentId { get; set; }
 
-        public string ForgroundColor { get; set; }
+
 
         public Point Location { get; set; }
 
