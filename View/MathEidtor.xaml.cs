@@ -102,11 +102,8 @@ namespace MathSpace
             if (!string.IsNullOrEmpty(InputParentId))
             {
                 var parentNode = CurrentRow.FindParentNode(InputParentId);
-                foreach (var item in inputCharactors)
-                {
-                    parentNode.AddChildren(item);
-                }
 
+                parentNode.AddChildren(inputCharactors, GetCaretLocation(), InputParentId);              
             }
             else
             {
@@ -155,7 +152,9 @@ namespace MathSpace
             if (!string.IsNullOrEmpty(InputParentId))
             {
                 var parentNode = CurrentRow.FindParentNode(InputParentId);
-                parentNode.AddChildren(block);
+                List<IBlock> blocks = new List<IBlock>();
+                blocks.Add(block);
+                parentNode.AddChildren(blocks, GetCaretLocation(),InputParentId);
             }
             else
             {
@@ -294,10 +293,16 @@ namespace MathSpace
         private void AddDefaultFraction()
         {
             Fraction fraction = new Fraction();
+            AddComponentType(fraction);
+            InputParentId = fraction.ID;
+        }
 
+        private Point GetCaretLocation()
+        {
+           var left= Canvas.GetLeft(caretTextBox);
+            var top = Canvas.GetTop(caretTextBox);
 
-
-            
+            return new Point(left,top);
         }
     }
 }

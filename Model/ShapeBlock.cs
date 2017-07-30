@@ -10,7 +10,7 @@ namespace MathSpace.Model
 {
     public class ShapeBlock : IBlock
     {
-        public void AddChildren(List<IBlock> inputCharactors,Point caretPoint, string parentId)
+        public void AddChildren(IEnumerable<IBlock> inputCharactors,Point caretPoint, string parentId)
         {
             throw new NotImplementedException();
         }
@@ -31,6 +31,11 @@ namespace MathSpace.Model
         }
 
         public double GetVerticalAlignmentCenter()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IBlock FindNodeById(string id)
         {
             throw new NotImplementedException();
         }

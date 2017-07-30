@@ -30,9 +30,18 @@ namespace MathSpace.Model
         /// </summary>
         /// <param name="inputParentId"></param>
         /// <returns></returns>
-        internal BlockNode FindParentNode(string inputParentId)
+        internal IBlock FindParentNode(string inputParentId)
         {
-            throw new NotImplementedException();
+            foreach (var item in Members)
+            {
+              var node=  item.FindNodeById(inputParentId);
+                if (null!=node)
+                {
+                    return node;
+                }
+            }
+
+            return null;
         }
     }
 }

@@ -26,6 +26,8 @@ namespace MathSpace.Model
         /// 添加节点元素
         /// </summary>
         /// <param name="inputCharactors"></param>
-        void AddChildren(List<IBlock> inputCharactors,Point caretPoint, string parentId);
+        void AddChildren(IEnumerable<IBlock> inputCharactors,Point caretPoint, string parentId);
+
+        IBlock FindNodeById(string id);
     }
 }

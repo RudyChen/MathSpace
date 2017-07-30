@@ -45,25 +45,40 @@ namespace MathSpace.Model
 
         public void SetBlockLocation(double locationX,double alignmentCenterY)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void DrawBlock(Canvas canvas)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public Size GetSize()
         {
-            throw new NotImplementedException();
+            double width = 0;
+            double maxHeight = 0;
+            
+            foreach (var item in Children)
+            {
+               var itemSize= item.GetSize();
+                width += itemSize.Width;
+                if (itemSize.Height>maxHeight)
+                {
+                    maxHeight = itemSize.Height;
+                }
+            }
+
+            return new Size(width,maxHeight);
         }
 
         public double GetVerticalAlignmentCenter()
         {
             throw new NotImplementedException();
         }
+        public void DrawBlock(Canvas canvas)
+        {
+            throw new NotImplementedException();
+        }
 
-        public void AddChildren(List<IBlock> inputCharactors,Point caretPoint, string parentId)
+
+        public void AddChildren(IEnumerable<IBlock> inputCharactors,Point caretPoint, string parentId)
         {
             throw new NotImplementedException();
         }
@@ -71,6 +86,27 @@ namespace MathSpace.Model
         public void AddChildren(IBlock inputCharactors)
         {
             throw new NotImplementedException();
+        }
+
+        public IBlock FindNodeById(string id)
+        {
+            if (ID==id)
+            {
+                return this;
+            }
+            else
+            {
+                foreach (var item in Children)
+                {
+                    var node=item.FindNodeById(id);
+                    if (node!=null)
+                    {
+                        return node;
+                    }
+                }
+
+                return null;
+            }
         }
     }
 }
