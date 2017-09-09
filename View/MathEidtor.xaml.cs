@@ -95,6 +95,10 @@ namespace MathSpace
             foreach (var item in text)
             {
                 var charactorBlock = CreateNewCharactorBlock(item);
+                if (!string.IsNullOrEmpty(InputParentId))
+                {
+                    charactorBlock.ParentId = InputParentId;
+                }
                 inputCharactors.Add(charactorBlock);
             }
 
@@ -292,9 +296,10 @@ namespace MathSpace
 
         private void AddDefaultFraction()
         {
-            Fraction fraction = new Fraction();
+            Fraction fraction = new Fraction();           
             AddComponentType(fraction);
             InputParentId = fraction.ID;
+
         }
 
         private Point GetCaretLocation()

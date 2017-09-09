@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MathSpace.Tool;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,6 +55,10 @@ namespace MathSpace.Model
         {
             double width = 0;
             double maxHeight = 0;
+            if (null==Children||Children.Count==0)
+            {
+                return new Size(FontManager.Instance.FontSize, FontManager.Instance.FontSize*1.2);
+            }
             
             foreach (var item in Children)
             {
@@ -72,20 +77,49 @@ namespace MathSpace.Model
         {
             throw new NotImplementedException();
         }
+
         public void DrawBlock(Canvas canvas)
         {
-            throw new NotImplementedException();
+            if (Children.Count>0)
+            {
+                foreach (var item in Children)
+                {
+                    item.DrawBlock(canvas);
+                }
+            }
         }
 
 
         public void AddChildren(IEnumerable<IBlock> inputCharactors,Point caretPoint, string parentId)
         {
-            throw new NotImplementedException();
+            //查找到索引，在索引处添加入集合即可     
+            int index = 0;
+            if (Children.Count>0)
+            {
+                for (int i = 0; i < Children.Count; i++)
+                {
+                    var itemSize = Children[i].GetSize();
+                    var expandSize = new Size(itemSize.Width + 2, itemSize.Height + 2);
+                    var itemRect = new Rect(Location, expandSize);
+
+                    if (itemRect.Contains(caretPoint))
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+
+            foreach (var item in inputCharactors)
+            {
+                Children.Insert(index,item);
+                index++;
+            }
         }
 
         public void AddChildren(IBlock inputCharactors)
         {
-            throw new NotImplementedException();
+            Children.Add(inputCharactors);
         }
 
         public IBlock FindNodeById(string id)

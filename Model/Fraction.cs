@@ -142,14 +142,27 @@ namespace MathSpace.Model
         {
             var y = alignmentCenterY - GetVerticalAlignmentCenter();
             Location = new Point(locationX,y);
+            if (null!=Molecule)
+            {
+                Molecule.Location = new Point(locationX, y);
+            }
+            if (null!=Denominator)
+            {
+                Denominator.Location = new Point(locationX, alignmentCenterY);
+            }            
         }
 
         public void DrawBlock(Canvas canvas)
         {
-            if (null==Molecule&&null==Denominator)
+            var line = CreateFractionLine();
+            canvas.Children.Add(line);
+            if (null!=Molecule)
             {
-                var line = CreateFractionLine();
-                canvas.Children.Add(line);
+                Molecule.DrawBlock(canvas);
+            }
+            if (null!= Denominator)
+            {
+                Denominator.DrawBlock(canvas);
             }
         }
 
