@@ -113,7 +113,7 @@ namespace MathSpace.Model
             return VerticalCenter;
         }
 
-        public void SetBlockLocation(double locationX, double alignmentCenterY)
+        public void SetBlockLocation(double locationX, double alignmentCenterY, double rowY)
         {
             var y = alignmentCenterY - BlockSize.Height / 2;
             Location = new Point(locationX, y);

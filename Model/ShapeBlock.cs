@@ -15,7 +15,7 @@ namespace MathSpace.Model
             throw new NotImplementedException();
         }
 
-        public void SetBlockLocation(double locationX,double alignmentCenterY)
+        public void SetBlockLocation(double locationX,double alignmentCenterY, double rowY)
         {
             throw new NotImplementedException();
         }

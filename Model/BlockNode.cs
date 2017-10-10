@@ -44,17 +44,17 @@ namespace MathSpace.Model
         }
 
 
-        public void SetBlockLocation(double locationX,double alignmentCenterY)
+        public void SetBlockLocation(double locationX,double alignmentCenterY, double rowY)
         {
             double tempLocationX = 0;
             if (Children != null && Children.Count > 0)
-            {
+            {                
+                var nasttedCenter= rowY + GetVerticalAlignmentCenter();
                 foreach (var item in Children)
-                {
-                    var y = alignmentCenterY - item.GetVerticalAlignmentCenter();
+                {                   
                     var itemSize = item.GetSize();                   
-                    item.SetBlockLocation(Location.X+tempLocationX, y);
-                    tempLocationX += itemSize.Width;
+                    item.SetBlockLocation(locationX + tempLocationX, nasttedCenter, rowY);
+                    tempLocationX += itemSize.Width;                    
                 }
             }
         }
@@ -117,7 +117,7 @@ namespace MathSpace.Model
         public void AddChildren(IEnumerable<IBlock> inputCharactors,Point caretPoint, string parentId)
         {
             //查找到索引，在索引处添加入集合即可     
-            int index = 0;
+            int index = Children.Count;
             double tempWidth = 0;
             if (Children.Count>0)
             {
@@ -126,8 +126,8 @@ namespace MathSpace.Model
                     var itemSize = Children[i].GetSize();
                     var expandSize = new Size(itemSize.Width + 2, itemSize.Height + 2);
                     tempWidth += itemSize.Width;
-                    var itemRect = new Rect(new Point(Location.X + tempWidth, Location.Y), expandSize);
-
+                    var itemRect = new Rect(new Point(Location.X + tempWidth-2, Location.Y-4), expandSize);
+                                       
                     if (itemRect.Contains(caretPoint))
                     {
                         index = i;

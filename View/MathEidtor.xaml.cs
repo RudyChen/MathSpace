@@ -139,13 +139,13 @@ namespace MathSpace
             maxVerticalAlignment= (double)GetMaxVerticalAlignment();
 
             double locationX = 0;
-            double locationY = 0;
+            double alignmentCenterY = 0;
             foreach (var item in CurrentRow.Members)
             {
                 var itemSize = item.GetSize();
 
-                locationY = (maxVerticalAlignment + CurrentRow.Location);
-                item.SetBlockLocation(locationX, locationY);
+                alignmentCenterY = (maxVerticalAlignment + CurrentRow.Location);
+                item.SetBlockLocation(locationX, alignmentCenterY,CurrentRow.Location);
                 locationX += itemSize.Width;
                 item.DrawBlock(editorCanvas);
             }

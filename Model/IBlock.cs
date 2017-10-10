@@ -17,7 +17,7 @@ namespace MathSpace.Model
         /// <summary>
         /// 给每个元素计算一个位置
         /// </summary>
-        void SetBlockLocation(double locationX,double alignmentCenterY);
+        void SetBlockLocation(double locationX,double alignmentCenterY,double rowY);
 
 
         void DrawBlock(Canvas canvas);

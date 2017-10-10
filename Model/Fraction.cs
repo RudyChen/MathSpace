@@ -54,12 +54,12 @@ namespace MathSpace.Model
             Rect denominatorRect;
             if (null==Molecule)
             {
-                moleculeRect = new Rect(Location.X-2, Location.Y-2, FontManager.Instance.FontSize+4, FontManager.Instance.FontSize * 1.2+4);               
+                moleculeRect = new Rect(Location.X-2, Location.Y-4, FontManager.Instance.FontSize+4, FontManager.Instance.FontSize * 1.2+4);               
 
             }
             else
             {                
-                moleculeRect = new Rect(Location.X-2,Location.Y-2, Molecule.GetSize().Width+4, Molecule.GetSize().Height+4);
+                moleculeRect = new Rect(Location.X-2,Location.Y-4, Molecule.GetSize().Width+4, Molecule.GetSize().Height+4);
             }
 
             if (null==Denominator)
@@ -138,17 +138,26 @@ namespace MathSpace.Model
             }
         }
 
-        public void SetBlockLocation(double locationX, double alignmentCenterY)
+        public void SetBlockLocation(double locationX, double alignmentCenterY, double rowY)
         {
-            var y = alignmentCenterY - GetVerticalAlignmentCenter();
-            Location = new Point(locationX,y);
+            var y = rowY + GetVerticalAlignmentCenter();
+           
             if (null!=Molecule)
             {
+                var locationY = y - Molecule.GetSize().Height;
+                Location = new Point(locationX, locationY);
                 Molecule.Location = new Point(locationX, y);
+                Molecule.SetBlockLocation(locationX, y,rowY);
+            }
+            else
+            {
+                var locationY = y - FontManager.Instance.FontSize * 1.2;
+                Location = new Point(locationX, locationY);
             }
             if (null!=Denominator)
             {
-                Denominator.Location = new Point(locationX, alignmentCenterY);
+                Denominator.Location = new Point(locationX, alignmentCenterY + FontManager.Instance.FontSize * 0.2);
+                Denominator.SetBlockLocation(locationX, alignmentCenterY + FontManager.Instance.FontSize * 0.2,rowY);
             }            
         }
 
