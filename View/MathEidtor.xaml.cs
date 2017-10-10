@@ -194,22 +194,13 @@ namespace MathSpace
             foreach (var item in CurrentRow.Members)
             {
                 var itemSize = item.GetSize();
-                verticalAlignmentList.Add(item.GetVerticalAlignmentCenter());
-            }
-
-            return verticalAlignmentList.Max();
-
-            if (verticalAlignmentList.Count > 0)
-            {
-                foreach (var item in verticalAlignmentList)
+                var temMax = item.GetVerticalAlignmentCenter();
+                if (temMax> maxValue)
                 {
-                    if (item>maxValue)
-                    {
-                        maxValue = item;
-                    }
-                }               
+                    maxValue = temMax;
+                }
+             
             }
-
             return maxValue;
         }
 

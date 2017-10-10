@@ -54,21 +54,21 @@ namespace MathSpace.Model
             Rect denominatorRect;
             if (null==Molecule)
             {
-                moleculeRect = new Rect(Location.X-2, Location.Y-2, FontManager.Instance.FontSize, FontManager.Instance.FontSize * 1.2);               
+                moleculeRect = new Rect(Location.X-2, Location.Y-2, FontManager.Instance.FontSize+4, FontManager.Instance.FontSize * 1.2+4);               
 
             }
             else
             {                
-                moleculeRect = new Rect(Location.X-2,Location.Y-2, Molecule.GetSize().Width, Molecule.GetSize().Height);
+                moleculeRect = new Rect(Location.X-2,Location.Y-2, Molecule.GetSize().Width+4, Molecule.GetSize().Height+4);
             }
 
             if (null==Denominator)
             {
-                denominatorRect= new Rect(Location.X-2, Location.Y + FontManager.Instance.FontSize * 1.2-2, FontManager.Instance.FontSize, FontManager.Instance.FontSize);
+                denominatorRect= new Rect(Location.X-2, Location.Y + FontManager.Instance.FontSize * 1.2-2, FontManager.Instance.FontSize+4, FontManager.Instance.FontSize+4);
             }
             else
             {
-                denominatorRect = new Rect(Location.X-2,Location.Y+moleculeRect.Height+FontManager.Instance.FontSize*0.2-2,Denominator.GetSize().Width,Denominator.GetSize().Height);
+                denominatorRect = new Rect(Location.X-2,Location.Y+moleculeRect.Height+FontManager.Instance.FontSize*0.2-2,Denominator.GetSize().Width+4,Denominator.GetSize().Height+4);
             }
 
             if (moleculeRect.Contains(caretPoint))

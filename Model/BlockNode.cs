@@ -46,7 +46,17 @@ namespace MathSpace.Model
 
         public void SetBlockLocation(double locationX,double alignmentCenterY)
         {
-            
+            double tempLocationX = 0;
+            if (Children != null && Children.Count > 0)
+            {
+                foreach (var item in Children)
+                {
+                    var y = alignmentCenterY - item.GetVerticalAlignmentCenter();
+                    var itemSize = item.GetSize();                   
+                    item.SetBlockLocation(Location.X+tempLocationX, y);
+                    tempLocationX += itemSize.Width;
+                }
+            }
         }
 
        
@@ -75,7 +85,21 @@ namespace MathSpace.Model
 
         public double GetVerticalAlignmentCenter()
         {
-            throw new NotImplementedException();
+            double maxVerticalAlignment = 0;
+            if (Children != null && Children.Count > 0)
+            {
+
+                foreach (var item in Children)
+                {
+                    var tempVerticalAlignment = item.GetVerticalAlignmentCenter();
+                    if (tempVerticalAlignment > maxVerticalAlignment)
+                    {
+                        maxVerticalAlignment = tempVerticalAlignment;
+                    }
+                }
+            }
+
+            return maxVerticalAlignment;
         }
 
         public void DrawBlock(Canvas canvas)
@@ -94,13 +118,15 @@ namespace MathSpace.Model
         {
             //查找到索引，在索引处添加入集合即可     
             int index = 0;
+            double tempWidth = 0;
             if (Children.Count>0)
             {
                 for (int i = 0; i < Children.Count; i++)
                 {
                     var itemSize = Children[i].GetSize();
                     var expandSize = new Size(itemSize.Width + 2, itemSize.Height + 2);
-                    var itemRect = new Rect(Location, expandSize);
+                    tempWidth += itemSize.Width;
+                    var itemRect = new Rect(new Point(Location.X + tempWidth, Location.Y), expandSize);
 
                     if (itemRect.Contains(caretPoint))
                     {
@@ -110,11 +136,7 @@ namespace MathSpace.Model
                 }
             }
 
-            foreach (var item in inputCharactors)
-            {
-                Children.Insert(index,item);
-                index++;
-            }
+            Children.InsertRange(index, inputCharactors);           
         }
 
         public void AddChildren(IBlock inputCharactors)
