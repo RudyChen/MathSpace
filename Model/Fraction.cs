@@ -54,7 +54,7 @@ namespace MathSpace.Model
             Rect denominatorRect;
             if (null==Molecule)
             {
-                moleculeRect = new Rect(Location.X-2, Location.Y-4, FontManager.Instance.FontSize+4, FontManager.Instance.FontSize * 1.2+4);               
+                moleculeRect = new Rect(Location.X-2, Location.Y-4, FontManager.Instance.FontSize+4, FontManager.Instance.FontSize +4);               
 
             }
             else
@@ -79,7 +79,7 @@ namespace MathSpace.Model
                 }
                 Molecule.AddChildren(inputCharactors, caretPoint, parentId);
             }
-            else if(denominatorRect.Contains(caretPoint))
+            else
             {
                 if (null==Denominator)
                 {
@@ -140,25 +140,29 @@ namespace MathSpace.Model
 
         public void SetBlockLocation(double locationX, double alignmentCenterY, double rowY)
         {
-            var y = rowY + GetVerticalAlignmentCenter();
-           
+            double moleculeY = 0;
             if (null!=Molecule)
             {
-                var locationY = y - Molecule.GetSize().Height;
+               var maxMoleculeCenter= Molecule.GetVerticalAlignmentCenter();
+                var locationY = alignmentCenterY - Molecule.GetSize().Height;
                 Location = new Point(locationX, locationY);
-                Molecule.Location = new Point(locationX, y);
-                Molecule.SetBlockLocation(locationX, y,rowY);
+                Molecule.Location = new Point(locationX, locationY);
+                Molecule.SetBlockLocation(locationX, locationY+ maxMoleculeCenter, rowY);
+                moleculeY= locationY;
             }
             else
             {
-                var locationY = y - FontManager.Instance.FontSize * 1.2;
+                var locationY = alignmentCenterY - FontManager.Instance.FontSize * 1.2;
                 Location = new Point(locationX, locationY);
+                moleculeY = locationY;
             }
             if (null!=Denominator)
             {
-                Denominator.Location = new Point(locationX, alignmentCenterY + FontManager.Instance.FontSize * 0.2);
-                Denominator.SetBlockLocation(locationX, alignmentCenterY + FontManager.Instance.FontSize * 0.2,rowY);
-            }            
+                var maxDenominatorCenter = Denominator.GetVerticalAlignmentCenter();
+                Denominator.Location = new Point(locationX, alignmentCenterY  + FontManager.Instance.FontSize * 0.2);
+                Denominator.SetBlockLocation(locationX, Denominator.Location.Y+maxDenominatorCenter,rowY);
+            }
+            
         }
 
         public void DrawBlock(Canvas canvas)
@@ -224,6 +228,62 @@ namespace MathSpace.Model
 
                 return null;
             }
+        }
+
+        public Point GotoNextPart(Point caretLocation)
+        {
+            /*1.当前输入分子；2.当前输入分母*/
+            bool isInputMolecule = IsContainCaretLocation(Molecule,caretLocation);
+            
+            if (isInputMolecule)
+            {
+                if (null== Denominator)
+                {
+                    return new Point(this.Location.X, this.Location.Y + FontManager.Instance.FontSize * 1.4);
+                }
+                else
+                {
+                    var denominatorSize = Denominator.GetSize();
+
+                    return new Point(Denominator.Location.X+denominatorSize.Width, Denominator.Location.Y);
+                }
+            }
+            else
+            {
+                var fractionSize = GetSize();
+                return new Point(Location.X + Molecule.GetSize().Width+2, Location.Y + Molecule.GetSize().Height-FontManager.Instance.FontSize*0.3);
+            }
+
+        }
+
+        public Point GotoPreviousPart(Point caretLocation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsContainCaretLocation(BlockNode node,Point caretLocation)
+        {
+            //光标位置可能不在输入范围内，所以要找一个中心点判断
+            var middlePoint = new Point(caretLocation.X - 6, caretLocation.Y + FontManager.Instance.FontSize / 2);
+            Size nodeSize;
+            if (null==node)
+            {
+                nodeSize= new Size(FontManager.Instance.FontSize, FontManager.Instance.FontSize * 1.2);
+            }
+            else
+            {
+                nodeSize = node.GetSize();
+            }
+
+            
+            var nodeRect = new Rect(Location,nodeSize);
+            
+            if (nodeRect.Contains(middlePoint))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

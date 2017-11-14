@@ -157,5 +157,15 @@ namespace MathSpace.Model
                 return null;
             }
         }
+
+        public Point GotoNextPart(Point caretLocation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Point GotoPreviousPart(Point caretLocation)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

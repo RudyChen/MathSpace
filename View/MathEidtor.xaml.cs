@@ -187,6 +187,12 @@ namespace MathSpace
             Canvas.SetLeft(caretTextBox, oldLeft+ offsetX);
         }
 
+        private void SetCaretLocation(Point location)
+        {
+            Canvas.SetLeft(caretTextBox,location.X);
+            Canvas.SetTop(caretTextBox,location.Y);
+        }
+
         private double GetMaxVerticalAlignment()
         {
             double maxValue = 0;
@@ -269,6 +275,24 @@ namespace MathSpace
             return false;
         }
 
+       
+
+        private void AddDefaultFraction()
+        {
+            Fraction fraction = new Fraction();           
+            AddComponentType(fraction);
+            InputParentId = fraction.ID;
+
+        }
+
+        private Point GetCaretLocation()
+        {
+           var left= Canvas.GetLeft(caretTextBox);
+            var top = Canvas.GetTop(caretTextBox);
+
+            return new Point(left,top);
+        }
+
         private void InputType_Changed(InputTypes inputType)
         {
             switch (inputType)
@@ -285,20 +309,39 @@ namespace MathSpace
             }
         }
 
-        private void AddDefaultFraction()
+        private void InputCommand_Changed(InputCommands command)
         {
-            Fraction fraction = new Fraction();           
-            AddComponentType(fraction);
-            InputParentId = fraction.ID;
-
+            switch (command)
+            {
+                case InputCommands.NextCommand:
+                    GotoNextPart();
+                    break;
+                case InputCommands.PreviousCommand:
+                    break;
+                case InputCommands.DeleteCommand:
+                    break;
+                default:
+                    break;
+            }
         }
 
-        private Point GetCaretLocation()
+        private void GotoNextPart()
         {
-           var left= Canvas.GetLeft(caretTextBox);
-            var top = Canvas.GetTop(caretTextBox);
-
-            return new Point(left,top);
+            if (!string.IsNullOrEmpty(InputParentId))
+            {
+                var parentNode = CurrentRow.FindParentNode(InputParentId);
+                //非输入行元素子元素
+                if (null!=parentNode)
+                {
+                    var location = GetCaretLocation();
+                    var point=parentNode.GotoNextPart(location);
+                    if (null==point)
+                    {
+                        return;
+                    }
+                    SetCaretLocation(point);
+                }
+            }
         }
     }
 }

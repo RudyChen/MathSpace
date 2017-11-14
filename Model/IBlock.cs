@@ -29,5 +29,16 @@ namespace MathSpace.Model
         void AddChildren(IEnumerable<IBlock> inputCharactors,Point caretPoint, string parentId);
 
         IBlock FindNodeById(string id);
+
+        /// <summary>
+        /// 在组合模式对象中跳转输入部分
+        /// </summary>
+        Point GotoNextPart(Point location);
+
+        /// <summary>
+        /// 在组合模式对象中跳转到前一个部分
+        /// </summary>
+        /// <returns></returns>
+        Point GotoPreviousPart(Point location);
     }
 }

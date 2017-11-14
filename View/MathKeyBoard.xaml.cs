@@ -1,4 +1,5 @@
 ﻿
+using MathSpace.Model;
 using MathSpace.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,9 @@ namespace MathSpace
         public delegate void  InputTypeChangedEventHandler(InputTypes inputType);
         public event InputTypeChangedEventHandler InputTypeChangedEvent;
 
+
+        public delegate void InputCommandChangedEventHandler(InputCommands command);
+        public event InputCommandChangedEventHandler InputCommandChangedEvent;
         public MathKeyBoard()
         {
             InitializeComponent();
@@ -70,6 +74,23 @@ namespace MathSpace
                 {
                     InputTypeChangedEvent(InputTypes.Exponential);                
                 }
+            }
+        }
+
+        private void InputCommand_Changed(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn.Tag.ToString()== "Previous")
+            {
+                InputCommandChangedEvent(InputCommands.PreviousCommand);
+            }
+            else if (btn.Tag.ToString()=="Next")
+            {
+                InputCommandChangedEvent(InputCommands.NextCommand);
+            }
+            else if (btn.Tag.ToString()=="Delete")
+            {
+
             }
         }
     }

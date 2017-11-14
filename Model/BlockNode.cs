@@ -67,7 +67,7 @@ namespace MathSpace.Model
             double maxHeight = 0;
             if (null==Children||Children.Count==0)
             {
-                return new Size(FontManager.Instance.FontSize, FontManager.Instance.FontSize*1.2);
+                return new Size(FontManager.Instance.FontSize, FontManager.Instance.FontSize);
             }
             
             foreach (var item in Children)
@@ -124,13 +124,13 @@ namespace MathSpace.Model
                 for (int i = 0; i < Children.Count; i++)
                 {
                     var itemSize = Children[i].GetSize();
-                    var expandSize = new Size(itemSize.Width + 2, itemSize.Height + 2);
+                    var expandSize = new Size(itemSize.Width -2, itemSize.Height + 2);
                     tempWidth += itemSize.Width;
                     var itemRect = new Rect(new Point(Location.X + tempWidth-2, Location.Y-4), expandSize);
                                        
                     if (itemRect.Contains(caretPoint))
                     {
-                        index = i;
+                        index = i+1;
                         break;
                     }
                 }
@@ -163,6 +163,16 @@ namespace MathSpace.Model
 
                 return null;
             }
+        }
+
+        public Point GotoNextPart(Point caretLocation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Point GotoPreviousPart(Point caretLocation)
+        {
+            throw new NotImplementedException();
         }
     }
 }

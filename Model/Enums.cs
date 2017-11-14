@@ -9,30 +9,15 @@ namespace MathSpace.Model
     public enum InputCommands
     {
         /// <summary>
-        /// 分数
-        /// </summary>
-        FractionCommand,
-
-        /// <summary>
         /// 输入下一个部分
         /// </summary>
         NextCommand,
 
         /// <summary>
-        /// 指数
+        /// 输入位置切换到上一部分
         /// </summary>
-        Exponential,
-
-        /// <summary>
-        /// 根式
-        /// </summary>
-        Radical,
-
-        /// <summary>
-        /// 下标
-        /// </summary>
-        SubscriptCommand,
-
+        PreviousCommand,
+       
         /// <summary>
         /// 删除命令
         /// </summary>

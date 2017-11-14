@@ -39,5 +39,15 @@ namespace MathSpace.Model
         {
             throw new NotImplementedException();
         }
+
+        public Point GotoNextPart(Point caretLocation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Point GotoPreviousPart(Point caretLocation)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
