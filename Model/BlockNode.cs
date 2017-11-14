@@ -52,8 +52,9 @@ namespace MathSpace.Model
                 var nasttedCenter= rowY + GetVerticalAlignmentCenter();
                 foreach (var item in Children)
                 {                   
-                    var itemSize = item.GetSize();                   
-                    item.SetBlockLocation(locationX + tempLocationX, nasttedCenter, rowY);
+                    var itemSize = item.GetSize();
+                    
+                    item.SetBlockLocation(locationX + tempLocationX, alignmentCenterY, rowY);
                     tempLocationX += itemSize.Width;                    
                 }
             }

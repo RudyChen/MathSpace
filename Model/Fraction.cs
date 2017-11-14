@@ -41,7 +41,7 @@ namespace MathSpace.Model
         /// </summary>
         public string ParentId { get; set; }
 
-
+        private double _separateLineY;
         public Fraction()
         {
             ID = Guid.NewGuid().ToString();
@@ -144,7 +144,7 @@ namespace MathSpace.Model
             if (null!=Molecule)
             {
                var maxMoleculeCenter= Molecule.GetVerticalAlignmentCenter();
-                var locationY = alignmentCenterY - Molecule.GetSize().Height;
+                var locationY = alignmentCenterY - Molecule.GetSize().Height- FontManager.Instance.FontSize * 0.2;
                 Location = new Point(locationX, locationY);
                 Molecule.Location = new Point(locationX, locationY);
                 Molecule.SetBlockLocation(locationX, locationY+ maxMoleculeCenter, rowY);
@@ -185,17 +185,30 @@ namespace MathSpace.Model
             separateLine.Uid = ID;
             separateLine.Stroke = Brushes.Black;
             separateLine.X1 = Location.X;
+            double maxLineWidth = 0;
             if (null!=Molecule)
             {
                 separateLine.Y1 = Location.Y + Molecule.GetSize().Height + FontManager.Instance.FontSize * 0.2;
-                separateLine.X2 = Location.X + Molecule.GetSize().Width;
+                maxLineWidth = Molecule.GetSize().Width;
+                separateLine.X2 = Location.X + maxLineWidth;
             }
             else
             {
                 separateLine.Y1 = Location.Y +  FontManager.Instance.FontSize * 1.2;
                 separateLine.X2 = Location.X + FontManager.Instance.FontSize;
             }
+
+            if (null!=Denominator)
+            {
+                var denominatorMaxLineWidth = Denominator.GetSize().Width;
+                if (denominatorMaxLineWidth>maxLineWidth)
+                {
+                    separateLine.X2 = Location.X + denominatorMaxLineWidth;
+                }
+            }
+           
             separateLine.Y2 = separateLine.Y1;
+            _separateLineY = separateLine.Y1;
 
             return separateLine;
         }
@@ -251,7 +264,9 @@ namespace MathSpace.Model
             else
             {
                 var fractionSize = GetSize();
-                return new Point(Location.X + Molecule.GetSize().Width+2, Location.Y + Molecule.GetSize().Height-FontManager.Instance.FontSize*0.3);
+                MessageManager.Instance.OnInputParentChanged(ParentId);
+                return new Point(Location.X + fractionSize.Width+2, Location.Y + Molecule.GetSize().Height-FontManager.Instance.FontSize*0.3);
+
             }
 
         }

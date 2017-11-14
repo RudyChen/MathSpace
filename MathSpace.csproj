@@ -95,6 +95,7 @@
     <Compile Include="Model\ShapeBlock.cs" />
     <Compile Include="Tool\FontManager.cs" />
     <Compile Include="Tool\MathUIElementTool.cs" />
+    <Compile Include="Tool\MessageManager.cs" />
     <Compile Include="View\MathEidtor.xaml.cs">
       <DependentUpon>MathEidtor.xaml</DependentUpon>
     </Compile>

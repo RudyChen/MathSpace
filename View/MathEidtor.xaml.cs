@@ -1,4 +1,5 @@
 ﻿using MathSpace.Model;
+using MathSpace.Tool;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,16 @@ namespace MathSpace
         {
             InitializeComponent();
             FontSize = 14;
+            MessageManager.Instance.InputParentChangedEvent += Instance_InputParentChangedEvent;
+        }
+
+        /// <summary>
+        /// 输入父元素改变事件
+        /// </summary>
+        /// <param name="parentId"></param>
+        private void Instance_InputParentChangedEvent(string parentId)
+        {
+            this.InputParentId = parentId;
         }
 
 
@@ -281,7 +292,12 @@ namespace MathSpace
         {
             Fraction fraction = new Fraction();           
             AddComponentType(fraction);
+            if (!string.IsNullOrEmpty(InputParentId))
+            {
+                fraction.ParentId = InputParentId;
+            }
             InputParentId = fraction.ID;
+
 
         }
 
