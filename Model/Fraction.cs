@@ -252,7 +252,15 @@ namespace MathSpace.Model
             {
                 if (null== Denominator)
                 {
-                    return new Point(this.Location.X, this.Location.Y + FontManager.Instance.FontSize * 1.4);
+                    if (null==Molecule)
+                    {
+                        return new Point(this.Location.X, this.Location.Y + FontManager.Instance.FontSize * 1.4);
+                    }
+                    else
+                    {
+                        return new Point(this.Location.X, this.Location.Y +Molecule.GetSize().Height+ FontManager.Instance.FontSize * 0.4);
+                    }
+                    
                 }
                 else
                 {
@@ -265,7 +273,7 @@ namespace MathSpace.Model
             {
                 var fractionSize = GetSize();
                 MessageManager.Instance.OnInputParentChanged(ParentId);
-                return new Point(Location.X + fractionSize.Width+2, Location.Y + Molecule.GetSize().Height-FontManager.Instance.FontSize*0.3);
+                return new Point(Location.X + fractionSize.Width, Location.Y + Molecule.GetSize().Height-FontManager.Instance.FontSize*0.3);
 
             }
 

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Git\MathSpace\obj\Debug\
+F:\Git Projects\MathSpace\obj\Debug\
 MathSpace
 none
 false
 DEBUG;TRACE
-D:\Git\MathSpace\App.xaml
+F:\Git Projects\MathSpace\App.xaml
 4-417030089
 1-2052265810
-31498691968
-711613591130
+31-375614851
+71192195702
 MainWindow.xaml;View\MathEidtor.xaml;View\MathKeyBoard.xaml;Resource\Control\TableControl.xaml;
 
 True
