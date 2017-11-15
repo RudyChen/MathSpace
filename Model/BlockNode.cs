@@ -125,10 +125,10 @@ namespace MathSpace.Model
                 for (int i = 0; i < Children.Count; i++)
                 {
                     var itemSize = Children[i].GetSize();
-                    var expandSize = new Size(itemSize.Width -2, itemSize.Height + 2);
-                    tempWidth += itemSize.Width;
+                    var expandSize = new Size(itemSize.Width -2, itemSize.Height + 2);                    
                     var itemRect = new Rect(new Point(Location.X + tempWidth-2, Location.Y-4), expandSize);
-                                       
+                    tempWidth += itemSize.Width;
+
                     if (itemRect.Contains(caretPoint))
                     {
                         index = i+1;
