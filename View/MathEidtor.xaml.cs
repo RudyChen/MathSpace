@@ -297,8 +297,9 @@ namespace MathSpace
                 fraction.ParentId = InputParentId;
             }
             InputParentId = fraction.ID;
+                        
 
-
+            SetCaretLocation(fraction.Location);
         }
 
         private Point GetCaretLocation()
