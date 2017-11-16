@@ -288,20 +288,7 @@ namespace MathSpace
 
        
 
-        private void AddDefaultFraction()
-        {
-            Fraction fraction = new Fraction();           
-            AddComponentType(fraction);
-            if (!string.IsNullOrEmpty(InputParentId))
-            {
-                fraction.ParentId = InputParentId;
-            }
-            InputParentId = fraction.ID;
-                        
-
-            SetCaretLocation(fraction.Location);
-        }
-
+       
         private Point GetCaretLocation()
         {
            var left= Canvas.GetLeft(caretTextBox);
@@ -320,10 +307,38 @@ namespace MathSpace
                 case InputTypes.Radical:
                     break;
                 case InputTypes.Exponential:
+                    AddDefaultExponential();
                     break;
                 default:
                     break;
             }
+        }
+
+        private void AddDefaultFraction()
+        {
+            Fraction fraction = new Fraction();
+            AddComponentType(fraction);
+            if (!string.IsNullOrEmpty(InputParentId))
+            {
+                fraction.ParentId = InputParentId;
+            }
+            InputParentId = fraction.ID;
+
+
+            SetCaretLocation(fraction.Location);
+        }
+
+
+        private void AddDefaultExponential()
+        {
+            Exponential exponential = new Exponential();
+            AddComponentType(exponential);
+            if (!string.IsNullOrEmpty(InputParentId))
+            {
+                exponential.ParentId = InputParentId;
+            }
+
+            InputParentId = exponential.ID;
         }
 
         private void InputCommand_Changed(InputCommands command)

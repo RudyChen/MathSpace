@@ -10,6 +10,7 @@ namespace MathSpace.Model
 {
     public class Exponential : IBlock
     {
+        #region Properties
         private BlockNode _base;
 
         public BlockNode Base
@@ -24,6 +25,28 @@ namespace MathSpace.Model
         {
             get { return _index; }
             set { _index = value; }
+        }
+
+        private string _parentId;
+
+        public string ParentId
+        {
+            get { return _parentId; }
+            set { _parentId = value; }
+        }
+
+        private string _id;
+
+        public string ID
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+        #endregion
+
+        public Exponential()
+        {
+            ID = Guid.NewGuid().ToString();
         }
 
 
