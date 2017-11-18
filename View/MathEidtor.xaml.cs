@@ -339,6 +339,8 @@ namespace MathSpace
             }
 
             InputParentId = exponential.ID;
+
+            SetCaretLocation(new Point(exponential.Location.X, exponential.Location.Y + FontManager.Instance.FontSize * exponential.Proportion));
         }
 
         private void InputCommand_Changed(InputCommands command)
