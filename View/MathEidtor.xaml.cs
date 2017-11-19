@@ -305,6 +305,7 @@ namespace MathSpace
                     AddDefaultFraction();
                     break;
                 case InputTypes.Radical:
+                    AddDefaultRadical();
                     break;
                 case InputTypes.Exponential:
                     AddDefaultExponential();
@@ -312,6 +313,20 @@ namespace MathSpace
                 default:
                     break;
             }
+        }
+
+        private void AddDefaultRadical()
+        {
+            Radical radical = new Radical();
+            AddComponentType(radical);
+            if (!string.IsNullOrEmpty(InputParentId))
+            {
+                radical.ParentId = InputParentId;
+            }
+            InputParentId = radical.ID;
+
+
+            SetCaretLocation(radical.Location);
         }
 
         private void AddDefaultFraction()
