@@ -30,6 +30,9 @@ namespace MathSpace
 
         public delegate void InputCommandChangedEventHandler(InputCommands command);
         public event InputCommandChangedEventHandler InputCommandChangedEvent;
+
+        public delegate void InputCharEventHandler(string inputContent);
+        public event InputCharEventHandler InputCharEvent;
         public MathKeyBoard()
         {
             InitializeComponent();
@@ -37,7 +40,9 @@ namespace MathSpace
 
         private void InputCharButton_Clicked(object sender, RoutedEventArgs e)
         {
-
+            Button btn = e.OriginalSource as Button;
+            string inputChar = btn.Content.ToString();
+            InputCharEvent(inputChar);
         }
 
         private void InputCommandButton_Clicked(object sender, RoutedEventArgs e)

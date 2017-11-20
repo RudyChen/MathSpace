@@ -87,14 +87,6 @@ F:\Git Projects\MathSpace\obj\Debug\MathSpace_MarkupCompile.lref
 F:\Git Projects\MathSpace\bin\Debug\MathSpace.exe
 F:\Git Projects\MathSpace\bin\Debug\MathSpace.pdb
 F:\Git Projects\MathSpace\bin\Debug\GongSolutions.Wpf.DragDrop.dll
-F:\Git Projects\MathSpace\bin\Debug\GalaSoft.MvvmLight.pdb
-F:\Git Projects\MathSpace\bin\Debug\GalaSoft.MvvmLight.xml
-F:\Git Projects\MathSpace\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
-F:\Git Projects\MathSpace\bin\Debug\GalaSoft.MvvmLight.Extras.xml
-F:\Git Projects\MathSpace\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
-F:\Git Projects\MathSpace\bin\Debug\GalaSoft.MvvmLight.Platform.xml
-F:\Git Projects\MathSpace\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-F:\Git Projects\MathSpace\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 F:\Git Projects\MathSpace\obj\Debug\App.baml
 F:\Git Projects\MathSpace\obj\Debug\MainWindow.baml
 F:\Git Projects\MathSpace\obj\Debug\View\MathEidtor.baml

@@ -44,23 +44,51 @@
                 <Button  Focusable="False" Margin="0,0,20,0" Click="InputType_Changed" Tag="Exponenal">指数 </Button>
             </StackPanel>
             <TabControl Style="{StaticResource ResourceKey=BottomTabControlStyle}">
-                <TabItem x:Name="symbolTabItem" Header="符号">
-                    <ListBox ItemsSource="{Binding Path=SymbolKeys}" 
+                <TabItem x:Name="symbolTabItem">
+                    <TabItem.HeaderTemplate>
+                        <DataTemplate>
+                            <Border Height="60">
+                                <TextBlock Text="符号" VerticalAlignment="Center"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </TabItem.HeaderTemplate>
+                    <ListBox ItemsSource="{Binding Path=SymbolKeys}" MaxHeight="370"  ButtonBase.Click="InputCharButton_Clicked"
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"/>
                 </TabItem>
-                <TabItem x:Name="operatorTabItem" Header="运算符">
-                    <ListBox ItemsSource="{Binding Path=OperatorKeys}" 
+                <TabItem x:Name="operatorTabItem">
+                    <TabItem.HeaderTemplate>
+                        <DataTemplate>
+                            <Border Height="60" >
+                                <TextBlock Text="运算符" VerticalAlignment="Center"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </TabItem.HeaderTemplate>
+                    <ListBox ItemsSource="{Binding Path=OperatorKeys}"  MaxHeight="370"  ButtonBase.Click="InputCharButton_Clicked"
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"/>
                 </TabItem>
-                <TabItem x:Name="numberTabItem" Header="数字">
-                    <ListBox ItemsSource="{Binding Path=NumberKeys}" 
+                <TabItem x:Name="numberTabItem">
+                    <TabItem.HeaderTemplate>
+                        <DataTemplate>
+                            <Border Height="60" >
+                                <TextBlock Text="数字" VerticalAlignment="Center"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </TabItem.HeaderTemplate>
+                    <ListBox ItemsSource="{Binding Path=NumberKeys}" MaxHeight="370"  ButtonBase.Click="InputCharButton_Clicked"
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"/>
                 </TabItem>
-                <TabItem x:Name="letterTabItem" Header="字母">
-                    <ListBox ItemsSource="{Binding Path=LetterKeys}"
+                <TabItem x:Name="letterTabItem">
+                    <TabItem.HeaderTemplate>
+                        <DataTemplate>
+                            <Border Height="60" >
+                                <TextBlock Text="字母" VerticalAlignment="Center"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </TabItem.HeaderTemplate>
+                    <ListBox ItemsSource="{Binding Path=LetterKeys}" MaxHeight="370" ButtonBase.Click="InputCharButton_Clicked"
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"/>
                 </TabItem>
