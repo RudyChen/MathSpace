@@ -369,9 +369,18 @@ namespace MathSpace
                     break;
                 case InputCommands.DeleteCommand:
                     break;
+                case InputCommands.SerializeCommand:
+                    SerializeEquations();
+                    break;
                 default:
                     break;
             }
+        }
+
+        private void SerializeEquations()
+        {
+            var rowData = Newtonsoft.Json.JsonConvert.SerializeObject(CurrentRow);
+            var newData = rowData;
         }
 
         private void GotoNextPart()

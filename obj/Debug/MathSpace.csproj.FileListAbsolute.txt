@@ -73,7 +73,6 @@ D:\Git Projects\MathSpace\MathSpace\obj\Debug\MathSpace.csproj.GenerateResource.
 F:\Git Projects\MathSpace\bin\Debug\MathSpace.exe.config
 F:\Git Projects\MathSpace\obj\Debug\MathSpace.exe
 F:\Git Projects\MathSpace\obj\Debug\MathSpace.pdb
-F:\Git Projects\MathSpace\obj\Debug\MathSpace.csprojResolveAssemblyReference.cache
 F:\Git Projects\MathSpace\obj\Debug\View\MathKeyBoard.baml
 F:\Git Projects\MathSpace\obj\Debug\Resource\Control\TableControl.baml
 F:\Git Projects\MathSpace\obj\Debug\MainWindow.g.cs
@@ -125,3 +124,5 @@ D:\Git\MathSpace\obj\Debug\MathSpace.csproj.GenerateResource.Cache
 D:\Git\MathSpace\obj\Debug\MathSpace.csproj.CoreCompileInputs.cache
 D:\Git\MathSpace\obj\Debug\MathSpace.exe
 D:\Git\MathSpace\obj\Debug\MathSpace.pdb
+F:\Git Projects\MathSpace\bin\Debug\Newtonsoft.Json.dll
+F:\Git Projects\MathSpace\obj\Debug\MathSpace.csprojResolveAssemblyReference.cache

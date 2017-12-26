@@ -58,5 +58,7 @@
   <Key Group="Letter" Charactor="v"></Key>
   <Key Group="Letter" Charactor="w"></Key>
   <Key Group="Letter" Charactor="x"></Key>
+  <Key Group="Letter" Charactor="y"></Key>
+  <Key Group="Letter" Charactor="z"></Key>
   
 </Keys>

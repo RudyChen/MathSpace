@@ -23,5 +23,10 @@ namespace MathSpace.Model
         /// </summary>
         DeleteCommand,
 
+        /// <summary>
+        /// 序列化
+        /// </summary>
+        SerializeCommand,
+
     }
 }

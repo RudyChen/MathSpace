@@ -9,5 +9,6 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/gongsolutions.wpf.dragdrop.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/newtonsoft.json.dll")]
 
 

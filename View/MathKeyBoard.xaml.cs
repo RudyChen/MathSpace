@@ -97,6 +97,10 @@ namespace MathSpace
             {
 
             }
+            else if (btn.Tag.ToString()== "Serialize")
+            {
+                InputCommandChangedEvent(InputCommands.SerializeCommand);
+            }
         }
     }
 }

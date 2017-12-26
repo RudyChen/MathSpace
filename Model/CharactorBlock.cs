@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Media;
 
 namespace MathSpace.Model
 {
+    [DataContract]
     public class CharactorBlock : IBlock
     {
         #region Properties
@@ -22,6 +24,7 @@ namespace MathSpace.Model
 
         public string FontStyle { get; set; }
 
+        [DataMember]
         public string Text { get; set; }
 
         /// <summary>
