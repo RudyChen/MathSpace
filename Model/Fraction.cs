@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace MathSpace.Model
 {
@@ -307,6 +308,24 @@ namespace MathSpace.Model
             }
 
             return false;
+        }
+
+        public XElement Serialize()
+        {
+            var typeFraction = (new Fraction()).GetType();
+            XElement fraction = new XElement("Fraction");
+            XElement molecule = new XElement("Molecule");
+            XElement denominator = new XElement("Denominator");
+
+            XElement moleculeBlockNode = Molecule.Serialize();
+            molecule.Add(moleculeBlockNode);
+
+            XElement denominatorBlockNode = Denominator.Serialize();
+            denominator.Add(denominatorBlockNode);
+
+            fraction.Add(molecule);
+            fraction.Add(denominator);
+            return fraction;
         }
     }
 }

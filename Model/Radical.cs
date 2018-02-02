@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace MathSpace.Model
 {
@@ -294,6 +295,24 @@ namespace MathSpace.Model
         public Point GotoPreviousPart(Point caretLocation)
         {
             throw new NotImplementedException();
+        }
+
+        public XElement Serialize()
+        {
+            var typeFraction = (new Radical()).GetType();
+            XElement fraction = new XElement("Radical");
+            XElement molecule = new XElement("RootIndex");
+            XElement denominator = new XElement("Radicand");
+
+            XElement rootIndexBlockNode = RootIndex.Serialize();
+            molecule.Add(rootIndexBlockNode);
+
+            XElement radicandBlockNode = Radicand.Serialize();
+            denominator.Add(radicandBlockNode);
+
+            fraction.Add(molecule);
+            fraction.Add(denominator);
+            return fraction;
         }
     }
 }

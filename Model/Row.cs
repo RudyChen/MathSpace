@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace MathSpace.Model
 {
-   public class Row
+    public class Row
     {
-        private List<IBlock> _members=new List<IBlock>();
+        private BlockNode _block = new BlockNode();
 
-        [XmlElement(ElementName = "IBlock")]
-        public List<IBlock> Members
+        public BlockNode Blocks
         {
-            get { return _members; }
-            set { _members = value; }
+            get { return _block; }
+            set { _block = value; }
         }
+
 
         public double Location { get; set; }
 
@@ -32,16 +33,30 @@ namespace MathSpace.Model
         /// <returns></returns>
         internal IBlock FindParentNode(string inputParentId)
         {
-            foreach (var item in Members)
+            foreach (var item in Blocks.Children)
             {
-              var node=  item.FindNodeById(inputParentId);
-                if (null!=node)
+                var node = item.FindNodeById(inputParentId);
+                if (null != node)
                 {
                     return node;
                 }
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// 行元素序列化
+        /// </summary>
+        /// <param name="row"></param>
+        /// <returns></returns>
+        public XElement Serialize()
+        {
+            var type = (new Row()).GetType();
+            XElement root = new XElement("Row");
+            var node = Blocks.Serialize();
+            root.Add(node);
+            return root;
         }
     }
 }

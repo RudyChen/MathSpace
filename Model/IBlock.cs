@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace MathSpace.Model
 {
@@ -40,5 +41,11 @@ namespace MathSpace.Model
         /// </summary>
         /// <returns></returns>
         Point GotoPreviousPart(Point location);
+
+        /// <summary>
+        /// 元素序列化
+        /// </summary>
+        /// <returns></returns>
+        XElement Serialize();
     }
 }

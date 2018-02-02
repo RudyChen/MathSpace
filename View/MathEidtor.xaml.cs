@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace MathSpace
 {
@@ -122,7 +123,7 @@ namespace MathSpace
             }
             else
             {
-                CurrentRow.Members.AddRange(inputCharactors);
+                CurrentRow.Blocks.Children.AddRange(inputCharactors);
             }
 
             RefreshRow();
@@ -151,7 +152,7 @@ namespace MathSpace
 
             double locationX = 0;
             double alignmentCenterY = 0;
-            foreach (var item in CurrentRow.Members)
+            foreach (var item in CurrentRow.Blocks.Children)
             {
                 var itemSize = item.GetSize();
 
@@ -173,7 +174,7 @@ namespace MathSpace
             }
             else
             {
-                CurrentRow.Members.Add(block);
+                CurrentRow.Blocks.Children.Add(block);
             }
 
             RefreshRow();                       
@@ -208,7 +209,7 @@ namespace MathSpace
         {
             double maxValue = 0;
             List<double> verticalAlignmentList = new List<double>();
-            foreach (var item in CurrentRow.Members)
+            foreach (var item in CurrentRow.Blocks.Children)
             {
                 var itemSize = item.GetSize();
                 var temMax = item.GetVerticalAlignmentCenter();
@@ -379,8 +380,15 @@ namespace MathSpace
 
         private void SerializeEquations()
         {
+            //XDocument document = new XDocument("d:\\rowDocument.xml");
+            var rowElement = CurrentRow.Serialize();
+            rowElement.Save("d:\\rowDocument.xml");
+            var rowstring=rowElement.ToString();
+
             var rowData = Newtonsoft.Json.JsonConvert.SerializeObject(CurrentRow);
             var newData = rowData;
+            Row backRow = Newtonsoft.Json.JsonConvert.DeserializeObject<Row>(newData);
+            var i = 0;
         }
 
         private void GotoNextPart()

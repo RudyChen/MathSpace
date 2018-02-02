@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace MathSpace.Model
 {
-    public class BlockNode :IBlock
-    {       
-        private List<IBlock> _children=new List<IBlock>();
+    public class BlockNode : IBlock
+    {
+        private List<IBlock> _children = new List<IBlock>();
         /// <summary>
         /// 子节点
         /// </summary>
@@ -44,44 +45,44 @@ namespace MathSpace.Model
         }
 
 
-        public void SetBlockLocation(double locationX,double alignmentCenterY, double rowY)
+        public void SetBlockLocation(double locationX, double alignmentCenterY, double rowY)
         {
             double tempLocationX = 0;
             if (Children != null && Children.Count > 0)
-            {                
-                var nasttedCenter= rowY + GetVerticalAlignmentCenter();
+            {
+                var nasttedCenter = rowY + GetVerticalAlignmentCenter();
                 foreach (var item in Children)
-                {                   
+                {
                     var itemSize = item.GetSize();
-                    
+
                     item.SetBlockLocation(locationX + tempLocationX, alignmentCenterY, rowY);
-                    tempLocationX += itemSize.Width;                    
+                    tempLocationX += itemSize.Width;
                 }
             }
         }
 
-       
+
 
         public Size GetSize()
         {
             double width = 0;
             double maxHeight = 0;
-            if (null==Children||Children.Count==0)
+            if (null == Children || Children.Count == 0)
             {
                 return new Size(FontManager.Instance.FontSize, FontManager.Instance.FontSize);
             }
-            
+
             foreach (var item in Children)
             {
-               var itemSize= item.GetSize();
+                var itemSize = item.GetSize();
                 width += itemSize.Width;
-                if (itemSize.Height>maxHeight)
+                if (itemSize.Height > maxHeight)
                 {
                     maxHeight = itemSize.Height;
                 }
             }
 
-            return new Size(width,maxHeight);
+            return new Size(width, maxHeight);
         }
 
         public double GetVerticalAlignmentCenter()
@@ -105,7 +106,7 @@ namespace MathSpace.Model
 
         public void DrawBlock(Canvas canvas)
         {
-            if (Children.Count>0)
+            if (Children.Count > 0)
             {
                 foreach (var item in Children)
                 {
@@ -115,29 +116,29 @@ namespace MathSpace.Model
         }
 
 
-        public void AddChildren(IEnumerable<IBlock> inputCharactors,Point caretPoint, string parentId)
+        public void AddChildren(IEnumerable<IBlock> inputCharactors, Point caretPoint, string parentId)
         {
             //查找到索引，在索引处添加入集合即可     
             int index = Children.Count;
             double tempWidth = 0;
-            if (Children.Count>0)
+            if (Children.Count > 0)
             {
                 for (int i = 0; i < Children.Count; i++)
                 {
                     var itemSize = Children[i].GetSize();
-                    var expandSize = new Size(itemSize.Width -2, itemSize.Height + 2);                    
-                    var itemRect = new Rect(new Point(Location.X + tempWidth-2, Location.Y-4), expandSize);
+                    var expandSize = new Size(itemSize.Width - 2, itemSize.Height + 2);
+                    var itemRect = new Rect(new Point(Location.X + tempWidth - 2, Location.Y - 4), expandSize);
                     tempWidth += itemSize.Width;
 
                     if (itemRect.Contains(caretPoint))
                     {
-                        index = i+1;
+                        index = i + 1;
                         break;
                     }
                 }
             }
 
-            Children.InsertRange(index, inputCharactors);           
+            Children.InsertRange(index, inputCharactors);
         }
 
         public void AddChildren(IBlock inputCharactors)
@@ -147,7 +148,7 @@ namespace MathSpace.Model
 
         public IBlock FindNodeById(string id)
         {
-            if (ID==id)
+            if (ID == id)
             {
                 return this;
             }
@@ -155,8 +156,8 @@ namespace MathSpace.Model
             {
                 foreach (var item in Children)
                 {
-                    var node=item.FindNodeById(id);
-                    if (node!=null)
+                    var node = item.FindNodeById(id);
+                    if (node != null)
                     {
                         return node;
                     }
@@ -174,6 +175,49 @@ namespace MathSpace.Model
         public Point GotoPreviousPart(Point caretLocation)
         {
             throw new NotImplementedException();
+        }
+
+        public XElement Serialize()
+        {
+            XElement nodeElement = new XElement("BlockNode");
+            StringBuilder continueCharactorBlockBuilder = new StringBuilder();
+            for (int i = 0; i < Children.Count; i++)
+            {
+                var itemElement = Children[i].Serialize();
+                if (null == itemElement && Children[i] is CharactorBlock)
+                {
+                    var charactorBlock = Children[i] as CharactorBlock;
+                    continueCharactorBlockBuilder.Append(charactorBlock.Text);
+                    //判断以字符结尾的序列化连续字符
+                    if (i == Children.Count - 1)
+                    {
+                        if (continueCharactorBlockBuilder.Length > 0)
+                        {
+                            var continueCharactor = SerializeCharactorBlock(continueCharactorBlockBuilder.ToString());
+                            nodeElement.Add(continueCharactor);
+                            continueCharactorBlockBuilder.Clear();
+                        }
+                    }
+                }
+                else
+                {
+                    if (continueCharactorBlockBuilder.Length > 0)
+                    {
+                        var continueCharactor = SerializeCharactorBlock(continueCharactorBlockBuilder.ToString());
+                        nodeElement.Add(continueCharactor);
+                        continueCharactorBlockBuilder.Clear();
+                    }
+                    nodeElement.Add(itemElement);
+                }
+
+            }
+            return nodeElement;
+        }
+
+        private XElement SerializeCharactorBlock(string charactorBlocks)
+        {            
+            XElement charactorBlock = new XElement("CharactorBlock", charactorBlocks);
+            return charactorBlock;
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Xml.Linq;
 
 namespace MathSpace.Model
 {
@@ -169,6 +170,16 @@ namespace MathSpace.Model
         public Point GotoPreviousPart(Point caretLocation)
         {
             throw new NotImplementedException();
+        }
+
+
+        /// <summary>
+        /// 组合模式组合对象方法叶子元素空处理
+        /// </summary>
+        /// <returns></returns>
+        public XElement Serialize()
+        {
+            return null;
         }
     }
 }

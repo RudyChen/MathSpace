@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace MathSpace.Model
 {
@@ -46,6 +47,11 @@ namespace MathSpace.Model
         }
 
         public Point GotoPreviousPart(Point caretLocation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public XElement Serialize()
         {
             throw new NotImplementedException();
         }
