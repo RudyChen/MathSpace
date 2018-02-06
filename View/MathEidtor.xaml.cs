@@ -3,6 +3,7 @@ using MathSpace.Tool;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace MathSpace
@@ -84,7 +86,7 @@ namespace MathSpace
         private void caretTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             AcceptInputText(e.Text);
-          
+
             e.Handled = true;
         }
 
@@ -119,7 +121,7 @@ namespace MathSpace
             {
                 var parentNode = CurrentRow.FindParentNode(InputParentId);
 
-                parentNode.AddChildren(inputCharactors, GetCaretLocation(), InputParentId);              
+                parentNode.AddChildren(inputCharactors, GetCaretLocation(), InputParentId);
             }
             else
             {
@@ -148,7 +150,7 @@ namespace MathSpace
             ClearInputElements();
 
             double maxVerticalAlignment = 0.0;
-            maxVerticalAlignment= (double)GetMaxVerticalAlignment();
+            maxVerticalAlignment = (double)GetMaxVerticalAlignment();
 
             double locationX = 0;
             double alignmentCenterY = 0;
@@ -157,7 +159,7 @@ namespace MathSpace
                 var itemSize = item.GetSize();
 
                 alignmentCenterY = (maxVerticalAlignment + CurrentRow.Location);
-                item.SetBlockLocation(locationX, alignmentCenterY,CurrentRow.Location);
+                item.SetBlockLocation(locationX, alignmentCenterY, CurrentRow.Location);
                 locationX += itemSize.Width;
                 item.DrawBlock(editorCanvas);
             }
@@ -170,39 +172,39 @@ namespace MathSpace
                 var parentNode = CurrentRow.FindParentNode(InputParentId);
                 List<IBlock> blocks = new List<IBlock>();
                 blocks.Add(block);
-                parentNode.AddChildren(blocks, GetCaretLocation(),InputParentId);
+                parentNode.AddChildren(blocks, GetCaretLocation(), InputParentId);
             }
             else
             {
                 CurrentRow.Blocks.Children.Add(block);
             }
 
-            RefreshRow();                       
+            RefreshRow();
         }
 
         private void ClearInputElements()
         {
-           var caretLeft= Canvas.GetLeft(caretTextBox);
-            var caretTop= Canvas.GetTop(caretTextBox);
+            var caretLeft = Canvas.GetLeft(caretTextBox);
+            var caretTop = Canvas.GetTop(caretTextBox);
             var tempCaretTextBox = caretTextBox;
 
             editorCanvas.Children.Clear();
             editorCanvas.Children.Add(caretTextBox);
-            Canvas.SetLeft(caretTextBox,caretLeft);
-            Canvas.SetTop(caretTextBox, caretTop);           
+            Canvas.SetLeft(caretTextBox, caretLeft);
+            Canvas.SetTop(caretTextBox, caretTop);
         }
 
         private void ResetCaretLocation(double offsetX)
         {
             caretTextBox.Text = string.Empty;
             var oldLeft = Canvas.GetLeft(caretTextBox);
-            Canvas.SetLeft(caretTextBox, oldLeft+ offsetX);
+            Canvas.SetLeft(caretTextBox, oldLeft + offsetX);
         }
 
         private void SetCaretLocation(Point location)
         {
-            Canvas.SetLeft(caretTextBox,location.X);
-            Canvas.SetTop(caretTextBox,location.Y);
+            Canvas.SetLeft(caretTextBox, location.X);
+            Canvas.SetTop(caretTextBox, location.Y);
         }
 
         private double GetMaxVerticalAlignment()
@@ -213,11 +215,11 @@ namespace MathSpace
             {
                 var itemSize = item.GetSize();
                 var temMax = item.GetVerticalAlignmentCenter();
-                if (temMax> maxValue)
+                if (temMax > maxValue)
                 {
                     maxValue = temMax;
                 }
-             
+
             }
             return maxValue;
         }
@@ -238,10 +240,10 @@ namespace MathSpace
             lowerAlphabet.FontWeight = FontWeights.Normal.ToString();
             lowerAlphabet.ForgroundColor = Brushes.Black.ToString();
             lowerAlphabet.ID = new Guid().ToString();
-            if (IsLowerAlphabet(c)||IsSymbolOrNumber(c))
+            if (IsLowerAlphabet(c) || IsSymbolOrNumber(c))
             {
-               
-                lowerAlphabet.FontStyle = IsSymbolOrNumber(c)?"Normal":"Italic";
+
+                lowerAlphabet.FontStyle = IsSymbolOrNumber(c) ? "Normal" : "Italic";
                 lowerAlphabet.FontFamily = "Times New Roman";
             }
             else
@@ -279,7 +281,7 @@ namespace MathSpace
 
         private bool IsSymbolOrNumber(char charItem)
         {
-            if (charItem>'!'&&charItem<='?')
+            if (charItem > '!' && charItem <= '?')
             {
                 return true;
             }
@@ -287,15 +289,15 @@ namespace MathSpace
             return false;
         }
 
-       
 
-       
+
+
         private Point GetCaretLocation()
         {
-           var left= Canvas.GetLeft(caretTextBox);
+            var left = Canvas.GetLeft(caretTextBox);
             var top = Canvas.GetTop(caretTextBox);
 
-            return new Point(left,top);
+            return new Point(left, top);
         }
 
         private void InputType_Changed(InputTypes inputType)
@@ -383,7 +385,31 @@ namespace MathSpace
             //XDocument document = new XDocument("d:\\rowDocument.xml");
             var rowElement = CurrentRow.Serialize();
             rowElement.Save("d:\\rowDocument.xml");
-            var rowstring=rowElement.ToString();
+            var rowstring = rowElement.ToString();
+
+            var currentAssembly = Assembly.GetExecutingAssembly();
+            var allTypes = currentAssembly.GetTypes();
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(rowstring);
+            var rootElement = doc.DocumentElement;
+            foreach (XmlNode item in rootElement.ChildNodes)
+            {
+                
+                foreach (var typeItem in allTypes)
+                {
+                    if (typeItem.Name==item.Name)
+                    {
+
+                    }
+                }
+                var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+                if (true)
+                {
+                    
+                }
+               
+            }
+
 
             var rowData = Newtonsoft.Json.JsonConvert.SerializeObject(CurrentRow);
             var newData = rowData;
@@ -397,11 +423,11 @@ namespace MathSpace
             {
                 var parentNode = CurrentRow.FindParentNode(InputParentId);
                 //非输入行元素子元素
-                if (null!=parentNode)
+                if (null != parentNode)
                 {
                     var location = GetCaretLocation();
-                    var point=parentNode.GotoNextPart(location);
-                    if (null==point)
+                    var point = parentNode.GotoNextPart(location);
+                    if (null == point)
                     {
                         return;
                     }
