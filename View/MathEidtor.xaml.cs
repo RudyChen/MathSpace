@@ -387,28 +387,16 @@ namespace MathSpace
             rowElement.Save("d:\\rowDocument.xml");
             var rowstring = rowElement.ToString();
 
-            var currentAssembly = Assembly.GetExecutingAssembly();
-            var allTypes = currentAssembly.GetTypes();
+           
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(rowstring);
             var rootElement = doc.DocumentElement;
-            foreach (XmlNode item in rootElement.ChildNodes)
+            var type=DeserailizeHelper.GetXmlNodeType(rootElement.Name);
+            if (null!= type)
             {
-                
-                foreach (var typeItem in allTypes)
-                {
-                    if (typeItem.Name==item.Name)
-                    {
-
-                    }
-                }
-                var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-                if (true)
-                {
-                    
-                }
-               
+                var xmlObj = type.Assembly.CreateInstance(type.Name);
             }
+            
 
 
             var rowData = Newtonsoft.Json.JsonConvert.SerializeObject(CurrentRow);

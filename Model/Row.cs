@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -57,6 +58,18 @@ namespace MathSpace.Model
             var node = Blocks.Serialize();
             root.Add(node);
             return root;
+        }
+
+        public static Row Deserialize(XmlNode xmlNode)
+        {
+            Row row = new Row();
+            foreach (XmlNode item in xmlNode.ChildNodes)
+            {
+                //item.Name
+               // var itemObject = item.Deserialize(item);
+            }
+
+            return row;
         }
     }
 }
