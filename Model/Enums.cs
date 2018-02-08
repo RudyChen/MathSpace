@@ -28,5 +28,9 @@ namespace MathSpace.Model
         /// </summary>
         SerializeCommand,
 
+        /// <summary>
+        /// 反序列化
+        /// </summary>
+        DeserializeCommand,
     }
 }

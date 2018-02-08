@@ -101,6 +101,10 @@ namespace MathSpace
             {
                 InputCommandChangedEvent(InputCommands.SerializeCommand);
             }
+            else if (btn.Tag.ToString() == "Deserialize")
+            {
+                InputCommandChangedEvent(InputCommands.DeserializeCommand);
+            }
         }
     }
 }

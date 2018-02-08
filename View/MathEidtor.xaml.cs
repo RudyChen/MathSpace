@@ -108,7 +108,7 @@ namespace MathSpace
             List<CharactorBlock> inputCharactors = new List<CharactorBlock>();
             foreach (var item in text)
             {
-                var charactorBlock = CreateNewCharactorBlock(item);
+                var charactorBlock =FontManager.CreateNewCharactorBlock(item);
                 if (!string.IsNullOrEmpty(InputParentId))
                 {
                     charactorBlock.ParentId = InputParentId;
@@ -223,74 +223,7 @@ namespace MathSpace
             }
             return maxValue;
         }
-
-
-
-        /// <summary>
-        /// 文字块数学中小写字母必须用特定字体
-        /// 特殊符号必须用“微软雅黑”
-        /// </summary>
-        /// <param name="c"></param>
-        /// <returns></returns>
-        private CharactorBlock CreateNewCharactorBlock(char c)
-        {
-            var lowerAlphabet = new CharactorBlock();
-            lowerAlphabet.FontSize = FontSize;
-            lowerAlphabet.Text = c.ToString();
-            lowerAlphabet.FontWeight = FontWeights.Normal.ToString();
-            lowerAlphabet.ForgroundColor = Brushes.Black.ToString();
-            lowerAlphabet.ID = new Guid().ToString();
-            if (IsLowerAlphabet(c) || IsSymbolOrNumber(c))
-            {
-
-                lowerAlphabet.FontStyle = IsSymbolOrNumber(c) ? "Normal" : "Italic";
-                lowerAlphabet.FontFamily = "Times New Roman";
-            }
-            else
-            {
-                lowerAlphabet.FontStyle = "Normal";
-                lowerAlphabet.FontFamily = "微软雅黑";
-            }
-
-            return lowerAlphabet;
-        }
-
-
-        private bool IsChinese(string text)
-        {
-            if (string.IsNullOrEmpty(text)) return false;
-
-            text = text.Trim();
-
-            foreach (char c in text)
-            {
-                if (c < 0x301E) return false;
-            }
-
-            return true;
-        }
-
-        private bool IsLowerAlphabet(char charItem)
-        {
-            if (charItem >= 'a' && charItem <= 'z')
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsSymbolOrNumber(char charItem)
-        {
-            if (charItem > '!' && charItem <= '?')
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-
-
+        
 
         private Point GetCaretLocation()
         {
@@ -375,8 +308,43 @@ namespace MathSpace
                 case InputCommands.SerializeCommand:
                     SerializeEquations();
                     break;
+                case InputCommands.DeserializeCommand:
+                    DeserializeEquation();
+                    break;
                 default:
                     break;
+            }
+        }
+
+        private void DeserializeEquation()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("d:\\rowDocument.xml");
+            var rootElement = doc.DocumentElement;
+            var type = DeserailizeHelper.GetXmlNodeType(rootElement.Name);
+            if (null != type)
+            {
+                var xmlObj = Activator.CreateInstance(type);
+                if (xmlObj is Row)
+                {
+                    Row row = xmlObj as Row;
+                    foreach (XmlNode item in rootElement.ChildNodes)
+                    {
+                        var nodeType = DeserailizeHelper.GetXmlNodeType(item.Name);
+                        if (null != nodeType)
+                        {
+                            var nodeObj = Activator.CreateInstance(nodeType);
+                            if (nodeObj is BlockNode)
+                            {
+                                row.Blocks = nodeObj as BlockNode;
+
+                                DeserailizeHelper.DeserializeBlockNode(item, row.Blocks);
+                            }
+                        }
+                    }
+                    CurrentRow = row;
+                    RefreshRow();
+                }
             }
         }
 
@@ -388,22 +356,10 @@ namespace MathSpace
             var rowstring = rowElement.ToString();
 
            
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(rowstring);
-            var rootElement = doc.DocumentElement;
-            var type=DeserailizeHelper.GetXmlNodeType(rootElement.Name);
-            if (null!= type)
-            {
-                var xmlObj = type.Assembly.CreateInstance(type.Name);
-            }
-            
-
-
-            var rowData = Newtonsoft.Json.JsonConvert.SerializeObject(CurrentRow);
-            var newData = rowData;
-            Row backRow = Newtonsoft.Json.JsonConvert.DeserializeObject<Row>(newData);
-            var i = 0;
+           
         }
+
+       
 
         private void GotoNextPart()
         {

@@ -37,6 +37,7 @@
                 <Button Focusable="False" Click="InputCommand_Changed" Tag="Next">下一部分</Button>
                 <Button Focusable="False" Click="InputCommand_Changed" Tag="Delete">删除</Button>
                 <Button Focusable="False" Click="InputCommand_Changed" Tag="Serialize">序列化</Button>
+                <Button Focusable="False" Click="InputCommand_Changed" Tag="Deserialize">反序列化</Button>
                 
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
