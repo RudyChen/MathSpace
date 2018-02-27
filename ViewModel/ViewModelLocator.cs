@@ -45,6 +45,7 @@ namespace MathSpace.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MathKeyBoardViewModel>();
+            SimpleIoc.Default.Register<LoginViewModel>();
         }
 
         public MainViewModel Main
@@ -60,6 +61,15 @@ namespace MathSpace.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MathKeyBoardViewModel>();
+            }
+        }
+
+
+        public LoginViewModel LoginVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LoginViewModel>();
             }
         }
 
