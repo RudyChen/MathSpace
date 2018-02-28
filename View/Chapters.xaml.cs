@@ -16,22 +16,31 @@ using System.Windows.Shapes;
 namespace MathSpace.View
 {
     /// <summary>
-    /// Achievement.xaml 的交互逻辑
+    /// Chapters.xaml 的交互逻辑
     /// </summary>
-    public partial class Achievement : UserControl
+    public partial class Chapters : UserControl
     {
-        public Achievement()
+        public Chapters()
         {
             InitializeComponent();
         }
 
-        private void Enter_Click(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
             var win = Application.Current.MainWindow as MainWindow;
-            if (null!=win)
+            if (null != win)
             {
-                win.OnPageSwitchEvent(Model.ContentPages.Chapters);
-            }            
+                win.OnPageSwitchEvent(Model.ContentPages.Achievement);
+            }
+        }
+
+        private void Chapter_Click(object sender, RoutedEventArgs e)
+        {
+            var win = Application.Current.MainWindow as MainWindow;
+            if (null != win)
+            {
+                win.OnPageSwitchEvent(Model.ContentPages.Questions);
+            }
         }
     }
 }

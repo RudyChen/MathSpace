@@ -46,6 +46,8 @@ namespace MathSpace.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MathKeyBoardViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<ChaptersViewModel>();
+            SimpleIoc.Default.Register<QuestionsViewModel>();
         }
 
         public MainViewModel Main
@@ -70,6 +72,22 @@ namespace MathSpace.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<LoginViewModel>();
+            }
+        }
+
+        public ChaptersViewModel ChaptersVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ChaptersViewModel>();
+            }
+        }
+
+        public QuestionsViewModel QuestionsVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<QuestionsViewModel>();
             }
         }
 

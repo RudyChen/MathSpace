@@ -125,10 +125,14 @@ D:\Git\MathSpace\obj\Debug\MathSpace.csproj.CoreCompileInputs.cache
 D:\Git\MathSpace\obj\Debug\MathSpace.exe
 D:\Git\MathSpace\obj\Debug\MathSpace.pdb
 F:\Git Projects\MathSpace\bin\Debug\Newtonsoft.Json.dll
-F:\Git Projects\MathSpace\obj\Debug\MathSpace.csprojResolveAssemblyReference.cache
 F:\Git Projects\MathSpace\obj\Debug\View\Login.g.cs
 F:\Git Projects\MathSpace\obj\Debug\View\Login.baml
 F:\Git Projects\MathSpace\obj\Debug\View\Achievement.g.cs
 F:\Git Projects\MathSpace\obj\Debug\View\Subjects.g.cs
 F:\Git Projects\MathSpace\obj\Debug\View\Achievement.baml
 F:\Git Projects\MathSpace\obj\Debug\View\Subjects.baml
+F:\Git Projects\MathSpace\obj\Debug\View\Chapters.g.cs
+F:\Git Projects\MathSpace\obj\Debug\View\Questions.g.cs
+F:\Git Projects\MathSpace\obj\Debug\View\Chapters.baml
+F:\Git Projects\MathSpace\obj\Debug\View\Questions.baml
+F:\Git Projects\MathSpace\obj\Debug\MathSpace.csprojResolveAssemblyReference.cache

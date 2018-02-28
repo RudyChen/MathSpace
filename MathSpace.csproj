@@ -88,6 +88,7 @@
     <Compile Include="InputTypes.cs" />
     <Compile Include="Model\Block.cs" />
     <Compile Include="Model\BlockNode.cs" />
+    <Compile Include="Model\ChapterModel.cs" />
     <Compile Include="Model\CharactorBlock.cs" />
     <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\Exponential.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Model\IBlock.cs" />
     <Compile Include="Model\LineBlock.cs" />
     <Compile Include="Model\BlockPage.cs" />
+    <Compile Include="Model\QuestionModel.cs" />
     <Compile Include="Model\Radical.cs" />
     <Compile Include="Model\Row.cs" />
     <Compile Include="Model\ShapeBlock.cs" />
@@ -102,9 +104,14 @@
     <Compile Include="Tool\FontManager.cs" />
     <Compile Include="Tool\MathUIElementTool.cs" />
     <Compile Include="Tool\MessageManager.cs" />
+    <Compile Include="ViewModel\ChaptersViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\QuestionsViewModel.cs" />
     <Compile Include="View\Achievement.xaml.cs">
       <DependentUpon>Achievement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Chapters.xaml.cs">
+      <DependentUpon>Chapters.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -119,6 +126,9 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MathKeyBoardViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\Questions.xaml.cs">
+      <DependentUpon>Questions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Subjects.xaml.cs">
       <DependentUpon>Subjects.xaml</DependentUpon>
     </Compile>
@@ -138,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Chapters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,6 +167,10 @@
     <Page Include="Resource\Control\TableControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Questions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Subjects.xaml">
       <SubType>Designer</SubType>

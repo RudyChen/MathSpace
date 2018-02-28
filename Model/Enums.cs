@@ -33,4 +33,24 @@ namespace MathSpace.Model
         /// </summary>
         DeserializeCommand,
     }
+
+    public enum ContentPages
+    {
+        /// <summary>
+        /// 成就页面
+        /// </summary>
+        Achievement,
+        /// <summary>
+        /// 章节页面
+        /// </summary>
+        Chapters,
+        /// <summary>
+        /// 题目列表页面
+        /// </summary>
+        Questions,
+        /// <summary>
+        /// 答题页面
+        /// </summary>
+        AnswerQuestion,
+    }
 }

@@ -165,6 +165,26 @@ namespace MathSpace
             }
         }
 
+        private void RefreshQuestion()
+        {
+            ClearInputElements();
+
+            double maxVerticalAlignment = 0.0;
+            maxVerticalAlignment = (double)GetMaxVerticalAlignment();
+
+            double locationX = 0;
+            double alignmentCenterY = 0;
+            foreach (var item in CurrentRow.Blocks.Children)
+            {
+                var itemSize = item.GetSize();
+
+                alignmentCenterY = (maxVerticalAlignment + CurrentRow.Location);
+                item.SetBlockLocation(locationX, alignmentCenterY, CurrentRow.Location);
+                locationX += itemSize.Width;
+                item.DrawBlock(questionCanvas);
+            }
+        }
+
         private void AddComponentType(IBlock block)
         {
             if (!string.IsNullOrEmpty(InputParentId))
@@ -343,7 +363,7 @@ namespace MathSpace
                         }
                     }
                     CurrentRow = row;
-                    RefreshRow();
+                    RefreshQuestion();
                 }
             }
         }

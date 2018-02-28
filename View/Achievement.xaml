@@ -54,7 +54,7 @@
         </UniformGrid>
 
         <Grid Grid.Row="2">
-            <Button Content="进入"></Button>
+            <Button Content="进入" Click="Enter_Click"></Button>
         </Grid>
     </Grid>
 </UserControl>

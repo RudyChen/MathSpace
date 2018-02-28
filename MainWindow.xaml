@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MathSpace"
         xmlns:localView="clr-namespace:MathSpace.View"
+        Loaded="Window_Loaded"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1280">
     <Grid>
         <!--<local:MathEidtor></local:MathEidtor>-->
-        <ContentControl>
-            <localView:Achievement/>
+        <ContentControl x:Name="mainContent">
+            
         </ContentControl>
     </Grid>
 </Window>
