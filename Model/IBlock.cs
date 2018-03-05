@@ -47,5 +47,12 @@ namespace MathSpace.Model
         /// </summary>
         /// <returns></returns>
         XElement Serialize();
+
+        /// <summary>
+        /// 获得插字符前面的元素
+        /// </summary>
+        /// <returns></returns>
+        IBlock GetElementBeforeCaret(Point caretLocation);
+
     }
 }

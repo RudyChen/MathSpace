@@ -323,5 +323,28 @@ namespace MathSpace.Model
             fraction.Add(denominator);
             return fraction;
         }
+
+        public IBlock GetElementBeforeCaret(Point caretLocation)
+        {
+            if (null!=Base)
+            {
+                var block = Base.GetElementBeforeCaret(caretLocation);
+                if (null!=block)
+                {
+                    return block;
+                }
+            }
+
+            if (null!=Index)
+            {
+                var block = Index.GetElementBeforeCaret(caretLocation);
+                if (null!=block)
+                {
+                    return block;
+                }
+            }
+
+            return null;
+        }
     }
 }

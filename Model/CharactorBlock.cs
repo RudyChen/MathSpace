@@ -181,5 +181,10 @@ namespace MathSpace.Model
         {
             return null;
         }
+
+        public IBlock GetElementBeforeCaret(Point caretLocation)
+        {
+            return null;
+        }
     }
 }

@@ -93,9 +93,9 @@ namespace MathSpace
             {
                 InputCommandChangedEvent(InputCommands.NextCommand);
             }
-            else if (btn.Tag.ToString()=="Delete")
+            else if (btn.Tag.ToString()== "Backspace")
             {
-
+                InputCommandChangedEvent(InputCommands.Backspace);
             }
             else if (btn.Tag.ToString()== "Serialize")
             {

@@ -327,5 +327,28 @@ namespace MathSpace.Model
             fraction.Add(denominator);
             return fraction;
         }
+
+        public IBlock GetElementBeforeCaret(Point caretLocation)
+        {
+            if (null!=Molecule)
+            {
+                var block=Molecule.GetElementBeforeCaret(caretLocation);
+                if (null!=block)
+                {
+                    return block;
+                }
+            }
+
+            if (null!=Denominator)
+            {
+                var blockNode = Denominator.GetElementBeforeCaret(caretLocation);
+                if (null!=blockNode)
+                {
+                    return blockNode;
+                }
+            }
+
+            return null;
+        }
     }
 }

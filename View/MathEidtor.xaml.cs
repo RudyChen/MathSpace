@@ -325,6 +325,9 @@ namespace MathSpace
                     break;
                 case InputCommands.DeleteCommand:
                     break;
+                case InputCommands.Backspace:
+                    ExecuteBackspace();
+                    break;
                 case InputCommands.SerializeCommand:
                     SerializeEquations();
                     break;
@@ -334,6 +337,30 @@ namespace MathSpace
                 default:
                     break;
             }
+        }
+
+        /// <summary>
+        /// 执行回退方法
+        /// 删除光标前一个元素，再将光标移动到前一个位置
+        /// </summary>
+        private void ExecuteBackspace()
+        {
+            //找到包含插字符元素，找到插字符前一个元素索引，移除那个元素，找到索引前一个元素，设置插字符到索引前一个元素后面
+
+            var caretLocation = GetCaretLocation();
+            var block = CurrentRow.Blocks.GetElementBeforeCaret(caretLocation);
+            if (null!=block)
+            {
+                //var blockParent = CurrentRow.FindParentNode();
+            }
+
+            
+            foreach (var item in CurrentRow.Blocks.Children)
+            {
+                
+            }
+
+
         }
 
         private void DeserializeEquation()

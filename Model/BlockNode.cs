@@ -219,5 +219,34 @@ namespace MathSpace.Model
             XElement charactorBlock = new XElement("CharactorBlock", charactorBlocks);
             return charactorBlock;
         }
+
+
+        public IBlock GetElementBeforeCaret(Point caretLocation)
+        {            
+            var size = GetSize();
+            if (null!=size&&size.Width>0)
+            {
+                var rect = new Rect(this.Location, size);
+                var shadowCaretLocation = new Point(caretLocation.X-4,caretLocation.Y+FontManager.Instance.FontSize/2);
+                if (rect.Contains(shadowCaretLocation))
+                {
+                    return this;
+                }
+            }
+
+            if (Children!=null&&Children.Count>0)
+            {
+                foreach (IBlock item in Children)
+                {
+                   var blockElement= item.GetElementBeforeCaret(caretLocation);
+                    if (null!=blockElement)
+                    {
+                        return blockElement;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

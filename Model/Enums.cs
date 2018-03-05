@@ -32,6 +32,11 @@ namespace MathSpace.Model
         /// 反序列化
         /// </summary>
         DeserializeCommand,
+
+        /// <summary>
+        /// 回退命令
+        /// </summary>
+        Backspace,
     }
 
     public enum ContentPages
