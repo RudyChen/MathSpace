@@ -345,22 +345,24 @@ namespace MathSpace
         /// </summary>
         private void ExecuteBackspace()
         {
-            //找到包含插字符元素，找到插字符前一个元素索引，移除那个元素，找到索引前一个元素，设置插字符到索引前一个元素后面
+            //找到包含插字符元素，找到插字符前一个元素索引，移除那个元素，
+            //将差字符前移动删除元素的宽度
+            //全行查找代价太大了，必须正确维护parentId,使用parentId查找
 
+            //var inputParent=CurrentRow.FindParentNode(InputParentId);
+            
+            GlobalData.Instance.ContainStack = new Stack<IBlock>();
             var caretLocation = GetCaretLocation();
-            var block = CurrentRow.Blocks.GetElementBeforeCaret(caretLocation);
+             CurrentRow.Blocks.GetElementBeforeCaret(caretLocation);
+            var block = GlobalData.Instance.ContainStack.Pop();
             if (null!=block)
             {
                 //var blockParent = CurrentRow.FindParentNode();
-            }
-
-            
-            foreach (var item in CurrentRow.Blocks.Children)
-            {
+                double blockWidth = block.GetSize().Width;
+                SetCaretLocation(new Point(caretLocation.X - blockWidth, caretLocation.Y));
                 
             }
-
-
+                                    
         }
 
         private void DeserializeEquation()

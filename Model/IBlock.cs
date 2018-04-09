@@ -52,7 +52,7 @@ namespace MathSpace.Model
         /// 获得插字符前面的元素
         /// </summary>
         /// <returns></returns>
-        IBlock GetElementBeforeCaret(Point caretLocation);
+        void GetElementBeforeCaret(Point caretLocation);
 
     }
 }

@@ -102,6 +102,7 @@
     <Compile Include="Model\ShapeBlock.cs" />
     <Compile Include="Tool\DeserailizeHelper.cs" />
     <Compile Include="Tool\FontManager.cs" />
+    <Compile Include="Tool\GlobalData.cs" />
     <Compile Include="Tool\MathUIElementTool.cs" />
     <Compile Include="Tool\MessageManager.cs" />
     <Compile Include="ViewModel\ChaptersViewModel.cs" />

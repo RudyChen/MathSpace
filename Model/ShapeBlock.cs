@@ -56,7 +56,7 @@ namespace MathSpace.Model
             throw new NotImplementedException();
         }
 
-        public IBlock GetElementBeforeCaret(Point caretLocation)
+        public void GetElementBeforeCaret(Point caretLocation)
         {
             throw new NotImplementedException();
         }

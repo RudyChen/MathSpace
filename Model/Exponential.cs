@@ -324,27 +324,18 @@ namespace MathSpace.Model
             return fraction;
         }
 
-        public IBlock GetElementBeforeCaret(Point caretLocation)
+        public void GetElementBeforeCaret(Point caretLocation)
         {
             if (null!=Base)
             {
-                var block = Base.GetElementBeforeCaret(caretLocation);
-                if (null!=block)
-                {
-                    return block;
-                }
+                Base.GetElementBeforeCaret(caretLocation);
+                
             }
 
             if (null!=Index)
             {
-                var block = Index.GetElementBeforeCaret(caretLocation);
-                if (null!=block)
-                {
-                    return block;
-                }
+                Index.GetElementBeforeCaret(caretLocation);
             }
-
-            return null;
         }
     }
 }

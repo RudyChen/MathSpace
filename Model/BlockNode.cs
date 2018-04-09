@@ -221,7 +221,7 @@ namespace MathSpace.Model
         }
 
 
-        public IBlock GetElementBeforeCaret(Point caretLocation)
+        public void GetElementBeforeCaret(Point caretLocation)
         {            
             var size = GetSize();
             if (null!=size&&size.Width>0)
@@ -230,23 +230,16 @@ namespace MathSpace.Model
                 var shadowCaretLocation = new Point(caretLocation.X-4,caretLocation.Y+FontManager.Instance.FontSize/2);
                 if (rect.Contains(shadowCaretLocation))
                 {
-                    return this;
-                }
-            }
-
-            if (Children!=null&&Children.Count>0)
-            {
-                foreach (IBlock item in Children)
-                {
-                   var blockElement= item.GetElementBeforeCaret(caretLocation);
-                    if (null!=blockElement)
+                    GlobalData.Instance.ContainStack.Push(this);
+                    if (Children != null && Children.Count > 0)
                     {
-                        return blockElement;
+                        foreach (IBlock item in Children)
+                        {
+                             item.GetElementBeforeCaret(caretLocation);
+                        }
                     }
                 }
             }
-
-            return null;
         }
     }
 }

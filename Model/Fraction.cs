@@ -328,27 +328,18 @@ namespace MathSpace.Model
             return fraction;
         }
 
-        public IBlock GetElementBeforeCaret(Point caretLocation)
+        public void GetElementBeforeCaret(Point caretLocation)
         {
             if (null!=Molecule)
             {
-                var block=Molecule.GetElementBeforeCaret(caretLocation);
-                if (null!=block)
-                {
-                    return block;
-                }
+               Molecule.GetElementBeforeCaret(caretLocation);
+                
             }
 
             if (null!=Denominator)
             {
-                var blockNode = Denominator.GetElementBeforeCaret(caretLocation);
-                if (null!=blockNode)
-                {
-                    return blockNode;
-                }
-            }
-
-            return null;
+               Denominator.GetElementBeforeCaret(caretLocation);                
+            }           
         }
     }
 }
