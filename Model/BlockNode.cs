@@ -227,7 +227,7 @@ namespace MathSpace.Model
             if (null!=size&&size.Width>0)
             {
                 var rect = new Rect(this.Location, size);
-                var shadowCaretLocation = new Point(caretLocation.X-4,caretLocation.Y+FontManager.Instance.FontSize/2);
+                var shadowCaretLocation = new Point(caretLocation.X-4,caretLocation.Y+4);
                 if (rect.Contains(shadowCaretLocation))
                 {
                     GlobalData.Instance.ContainStack.Push(this);
@@ -238,6 +238,23 @@ namespace MathSpace.Model
                              item.GetElementBeforeCaret(caretLocation);
                         }
                     }
+                }
+            }
+        }
+
+        public string GetParentId()
+        {
+            return ParentId;
+        }
+
+        public void RemoveChild(IBlock block)
+        {
+            if (Children.Count>0)
+            {
+                int index=Children.IndexOf(block);
+                if (index>=0)
+                {
+                    Children.Remove(block);
                 }
             }
         }

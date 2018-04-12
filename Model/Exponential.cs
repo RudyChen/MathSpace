@@ -337,5 +337,23 @@ namespace MathSpace.Model
                 Index.GetElementBeforeCaret(caretLocation);
             }
         }
+
+        public string GetParentId()
+        {
+            return ParentId;
+        }
+
+        public void RemoveChild(IBlock block)
+        {
+            if (Index!=null)
+            {
+                Index.RemoveChild(block);
+            }
+
+            if (Base!=null)
+            {
+                Base.RemoveChild(block);
+            }
+        }
     }
 }

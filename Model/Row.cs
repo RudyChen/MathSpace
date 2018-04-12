@@ -41,6 +41,7 @@ namespace MathSpace.Model
                 {
                     return node;
                 }
+
             }
 
             return null;

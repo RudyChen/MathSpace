@@ -346,11 +346,9 @@ namespace MathSpace
         private void ExecuteBackspace()
         {
             //找到包含插字符元素，找到插字符前一个元素索引，移除那个元素，
-            //将差字符前移动删除元素的宽度
+            //将插字符前移动删除元素的宽度
             //全行查找代价太大了，必须正确维护parentId,使用parentId查找
-
-            //var inputParent=CurrentRow.FindParentNode(InputParentId);
-            
+                        
             GlobalData.Instance.ContainStack = new Stack<IBlock>();
             var caretLocation = GetCaretLocation();
              CurrentRow.Blocks.GetElementBeforeCaret(caretLocation);
@@ -359,7 +357,28 @@ namespace MathSpace
             {
                 //var blockParent = CurrentRow.FindParentNode();
                 double blockWidth = block.GetSize().Width;
-                SetCaretLocation(new Point(caretLocation.X - blockWidth, caretLocation.Y));
+                if (blockWidth>0)
+                {
+                    SetCaretLocation(new Point(caretLocation.X - blockWidth, caretLocation.Y));
+
+                    var parentId = block.GetParentId();
+
+                    if (!string.IsNullOrEmpty(parentId))
+                    {
+                        var parentBlock = CurrentRow.FindParentNode(parentId);
+                        if (null != parentBlock)
+                        {
+                            parentBlock.RemoveChild(block);
+                        }
+                    }
+                    else
+                    {
+                        CurrentRow.Blocks.RemoveChild(block);
+                    }
+
+                    RefreshRow();
+                }
+                
                 
             }
                                     

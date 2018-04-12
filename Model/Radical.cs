@@ -315,27 +315,35 @@ namespace MathSpace.Model
             return fraction;
         }
 
-        public IBlock GetElementBeforeCaret(Point caretLocation)
+        public void GetElementBeforeCaret(Point caretLocation)
         {
             if (null!=RootIndex)
             {
-                var block = RootIndex.GetElementBeforeCaret(caretLocation);
-                if (null!=block)
-                {
-                    return block;
-                }
+               RootIndex.GetElementBeforeCaret(caretLocation);
             }
 
             if (null!=Radicand)
             {
-                var block = Radicand.GetElementBeforeCaret(caretLocation);
-                if (null!=block)
-                {
-                    return block;
-                }
+                Radicand.GetElementBeforeCaret(caretLocation);
+            }
+        }
+
+        public string GetParentId()
+        {
+            return ParentId;
+        }
+
+        public void RemoveChild(IBlock block)
+        {
+            if (null!=RootIndex)
+            {
+                RootIndex.RemoveChild(block); ;
             }
 
-            return null;
+            if (null!=Radicand)
+            {
+                Radicand.RemoveChild(block);
+            }
         }
     }
 }

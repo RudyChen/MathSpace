@@ -341,5 +341,23 @@ namespace MathSpace.Model
                Denominator.GetElementBeforeCaret(caretLocation);                
             }           
         }
+
+        public string GetParentId()
+        {
+            return ParentId;
+        }
+
+        public void RemoveChild(IBlock block)
+        {
+            if (null!= Molecule)
+            {
+                Molecule.RemoveChild(block);
+            }
+
+            if (null!=Denominator)
+            {
+                Denominator.RemoveChild(block);
+            }
+        }
     }
 }

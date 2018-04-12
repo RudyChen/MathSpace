@@ -171,3 +171,14 @@ D:\Git\MathSpace\.git\MathSpace\obj\Debug\MathSpace.csproj.GenerateResource.Cach
 D:\Git\MathSpace\.git\MathSpace\obj\Debug\MathSpace.csproj.CoreCompileInputs.cache
 D:\Git\MathSpace\.git\MathSpace\obj\Debug\MathSpace.exe
 D:\Git\MathSpace\.git\MathSpace\obj\Debug\MathSpace.pdb
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Achievement.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Chapters.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Login.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Questions.g.cs
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Subjects.g.cs
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\Newtonsoft.Json.dll
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Achievement.baml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Chapters.baml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Login.baml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Questions.baml
+D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Subjects.baml

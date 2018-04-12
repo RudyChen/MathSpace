@@ -54,5 +54,17 @@ namespace MathSpace.Model
         /// <returns></returns>
         void GetElementBeforeCaret(Point caretLocation);
 
+        /// <summary>
+        /// 获取组合元素的父亲ID
+        /// </summary>
+        /// <returns></returns>
+        string GetParentId();
+
+        /// <summary>
+        /// 移除子元素
+        /// </summary>
+        /// <param name="block"></param>
+        void RemoveChild(IBlock block);
+
     }
 }

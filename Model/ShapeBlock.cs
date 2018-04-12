@@ -60,5 +60,15 @@ namespace MathSpace.Model
         {
             throw new NotImplementedException();
         }
+
+        public string GetParentId()
+        {
+            return string.Empty;
+        }
+
+        public void RemoveChild(IBlock block)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

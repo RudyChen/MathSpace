@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MathSpace.Tool;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -68,15 +69,15 @@ namespace MathSpace.Model
                 FormatedCharactor = new FormattedText(Text, System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, typeFact, FontSize, foreGroundBrush);
             }
 
-            if (FontStyles.Italic==GetFontStyle())
+            if (FontStyles.Italic == GetFontStyle())
             {
-                BlockSize = new Size(FormatedCharactor.WidthIncludingTrailingWhitespace+1, FormatedCharactor.Height);
+                BlockSize = new Size(FormatedCharactor.WidthIncludingTrailingWhitespace + 1, FormatedCharactor.Height);
             }
             else
             {
                 BlockSize = new Size(FormatedCharactor.WidthIncludingTrailingWhitespace, FormatedCharactor.Height);
             }
-            
+
 
 
             return BlockSize;
@@ -112,8 +113,8 @@ namespace MathSpace.Model
         }
 
         public double GetVerticalAlignmentCenter()
-        {            
-            VerticalCenter = BlockSize.Height / 2;            
+        {
+            VerticalCenter = BlockSize.Height / 2;
             return VerticalCenter;
         }
 
@@ -145,14 +146,14 @@ namespace MathSpace.Model
             return tb;
         }
 
-        public void AddChildren(IEnumerable<IBlock> inputCharactors,Point caretPoint, string parentId)
+        public void AddChildren(IEnumerable<IBlock> inputCharactors, Point caretPoint, string parentId)
         {
             throw new NotImplementedException();
         }
 
         public IBlock FindNodeById(string id)
         {
-            if (ID==id)
+            if (ID == id)
             {
                 return this;
             }
@@ -184,7 +185,22 @@ namespace MathSpace.Model
 
         public void GetElementBeforeCaret(Point caretLocation)
         {
-            
+            var rect = new Rect(this.Location, GetSize());
+            var shadowCaretLocation = new Point(caretLocation.X - 4, caretLocation.Y + 4);
+            if (rect.Contains(shadowCaretLocation))
+            {
+                GlobalData.Instance.ContainStack.Push(this);
+            }
+        }
+
+        public string GetParentId()
+        {
+            return ParentId;
+        }
+
+        public void RemoveChild(IBlock block)
+        {
+
         }
     }
 }
