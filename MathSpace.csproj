@@ -207,7 +207,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="KeyBoardKeys.xml" />
+    <None Include="KeyBoardKeys.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="MathDataFile.xml" />
   </ItemGroup>
   <ItemGroup>

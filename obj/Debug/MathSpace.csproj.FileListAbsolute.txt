@@ -182,3 +182,4 @@ D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Chapters.baml
 D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Login.baml
 D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Questions.baml
 D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Subjects.baml
+D:\Git Projects\MathSpace\MathSpace\bin\Debug\KeyBoardKeys.xml

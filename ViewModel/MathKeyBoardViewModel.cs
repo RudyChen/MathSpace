@@ -4,9 +4,11 @@ using MathSpace.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 
 namespace MathSpace.ViewModel
@@ -14,7 +16,7 @@ namespace MathSpace.ViewModel
     public class MathKeyBoardViewModel : ViewModelBase
     {
 
-        private ObservableCollection<MathKey> _numberKeys=new ObservableCollection<MathKey>();
+        private ObservableCollection<MathKey> _numberKeys = new ObservableCollection<MathKey>();
 
         public ObservableCollection<MathKey> NumberKeys
         {
@@ -22,7 +24,7 @@ namespace MathSpace.ViewModel
             set { _numberKeys = value; }
         }
 
-        private ObservableCollection<MathKey> _symbolKeys=new ObservableCollection<MathKey>();
+        private ObservableCollection<MathKey> _symbolKeys = new ObservableCollection<MathKey>();
 
         public ObservableCollection<MathKey> SymbolKeys
         {
@@ -42,7 +44,10 @@ namespace MathSpace.ViewModel
         internal void LoadKey()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(@"..\..\KeyBoardKeys.xml");
+            Uri keyboardPath = new Uri("pack://siteoforigin:,,,/KeyBoardKeys.xml", UriKind.Absolute);
+
+            var filePath = Environment.CurrentDirectory + "/KeyBoardKeys.xml";
+            doc.Load(filePath);
             XmlNode xn = doc.SelectSingleNode("Keys");
             foreach (XmlNode item in xn.ChildNodes)
             {
@@ -69,7 +74,7 @@ namespace MathSpace.ViewModel
             }
         }
 
-        private ObservableCollection<MathKey> _letterKeys=new ObservableCollection<MathKey>();
+        private ObservableCollection<MathKey> _letterKeys = new ObservableCollection<MathKey>();
 
         public ObservableCollection<MathKey> LetterKeys
         {
@@ -78,7 +83,7 @@ namespace MathSpace.ViewModel
         }
 
 
-       
+
 
     }
 }
