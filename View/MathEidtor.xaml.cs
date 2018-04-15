@@ -74,6 +74,9 @@ namespace MathSpace
             caretTextBox.Focus();
 
             var absolutePoint = e.GetPosition(editorCanvas);
+
+
+            SetCaretLocationByClick(absolutePoint);
             //todo: find the row who contains this absolutePoint as currentInputBlockRow
             // var rowPoint = new Point(absolutePoint.X, absolutePoint.Y - currentInputBlockRow.RowRect.Top);
         }
@@ -108,7 +111,7 @@ namespace MathSpace
             List<CharactorBlock> inputCharactors = new List<CharactorBlock>();
             foreach (var item in text)
             {
-                var charactorBlock =FontManager.CreateNewCharactorBlock(item);
+                var charactorBlock = FontManager.CreateNewCharactorBlock(item);
                 if (!string.IsNullOrEmpty(InputParentId))
                 {
                     charactorBlock.ParentId = InputParentId;
@@ -243,7 +246,7 @@ namespace MathSpace
             }
             return maxValue;
         }
-        
+
 
         private Point GetCaretLocation()
         {
@@ -339,6 +342,37 @@ namespace MathSpace
             }
         }
 
+
+        /// <summary>
+        /// 点击用户输入区域，跳转输入位置
+        /// 重定位插字符位置
+        /// </summary>
+        private void SetCaretLocationByClick(Point clickPoint)
+        {
+            //在当前输入行
+            var rowSize=CurrentRow.Blocks.GetSize();
+            var rowRect = new Rect(CurrentRow.Blocks.Location, rowSize);
+            if (!rowRect.Contains(clickPoint))
+            {
+                return;
+            }
+            GlobalData.Instance.ContainStack = new Stack<IBlock>();
+            CurrentRow.Blocks.GetElementBeforeCaret(clickPoint);
+            if (GlobalData.Instance.ContainStack.Count>0)
+            {
+                var block = GlobalData.Instance.ContainStack.Pop();
+                if (null != block)
+                {
+
+                    var blockSize = block.GetSize();
+                    var blockLocation = block.GetBlockLocation();
+                    var verticalAlignmentCenter = block.GetVerticalAlignmentCenter();
+                    var positionAfterBlock = new Point(blockLocation.X + blockSize.Width, blockLocation.Y + verticalAlignmentCenter - FontManager.Instance.FontSize / 2);
+                    SetCaretLocation(positionAfterBlock);
+                }
+            }
+        }
+
         /// <summary>
         /// 执行回退方法
         /// 删除光标前一个元素，再将光标移动到前一个位置
@@ -348,16 +382,16 @@ namespace MathSpace
             //找到包含插字符元素，找到插字符前一个元素索引，移除那个元素，
             //将插字符前移动删除元素的宽度
             //全行查找代价太大了，必须正确维护parentId,使用parentId查找
-                        
+
             GlobalData.Instance.ContainStack = new Stack<IBlock>();
             var caretLocation = GetCaretLocation();
-             CurrentRow.Blocks.GetElementBeforeCaret(caretLocation);
+            CurrentRow.Blocks.GetElementBeforeCaret(caretLocation);
             var block = GlobalData.Instance.ContainStack.Pop();
-            if (null!=block)
+            if (null != block)
             {
                 //var blockParent = CurrentRow.FindParentNode();
                 double blockWidth = block.GetSize().Width;
-                if (blockWidth>0)
+                if (blockWidth > 0)
                 {
                     SetCaretLocation(new Point(caretLocation.X - blockWidth, caretLocation.Y));
 
@@ -378,10 +412,10 @@ namespace MathSpace
 
                     RefreshRow();
                 }
-                
-                
+
+
             }
-                                    
+
         }
 
         private void DeserializeEquation()
@@ -423,11 +457,11 @@ namespace MathSpace
             rowElement.Save("d:\\rowDocument.xml");
             var rowstring = rowElement.ToString();
 
-           
-           
+
+
         }
 
-       
+
 
         private void GotoNextPart()
         {

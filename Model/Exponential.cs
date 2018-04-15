@@ -355,5 +355,10 @@ namespace MathSpace.Model
                 Base.RemoveChild(block);
             }
         }
+
+        public Point GetBlockLocation()
+        {
+            return Location;
+        }
     }
 }

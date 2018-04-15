@@ -258,5 +258,10 @@ namespace MathSpace.Model
                 }
             }
         }
+
+        public Point GetBlockLocation()
+        {
+            return Location;
+        }
     }
 }

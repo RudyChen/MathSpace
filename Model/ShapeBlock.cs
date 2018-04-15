@@ -70,5 +70,10 @@ namespace MathSpace.Model
         {
             throw new NotImplementedException();
         }
+
+        public Point GetBlockLocation()
+        {
+            return new Point(0,0);
+        }
     }
 }

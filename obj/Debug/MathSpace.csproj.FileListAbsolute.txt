@@ -183,3 +183,12 @@ D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Login.baml
 D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Questions.baml
 D:\Git Projects\MathSpace\MathSpace\obj\Debug\View\Subjects.baml
 D:\Git Projects\MathSpace\MathSpace\bin\Debug\KeyBoardKeys.xml
+D:\Git\MathSpace\.git\MathSpace\bin\Debug\KeyBoardKeys.xml
+D:\Git\MathSpace\.git\MathSpace\bin\Debug\GalaSoft.MvvmLight.pdb
+D:\Git\MathSpace\.git\MathSpace\bin\Debug\GalaSoft.MvvmLight.xml
+D:\Git\MathSpace\.git\MathSpace\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+D:\Git\MathSpace\.git\MathSpace\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+D:\Git\MathSpace\.git\MathSpace\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+D:\Git\MathSpace\.git\MathSpace\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+D:\Git\MathSpace\.git\MathSpace\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\Git\MathSpace\.git\MathSpace\bin\Debug\Microsoft.Practices.ServiceLocation.xml

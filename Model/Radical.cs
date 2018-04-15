@@ -345,5 +345,10 @@ namespace MathSpace.Model
                 Radicand.RemoveChild(block);
             }
         }
+
+        public Point GetBlockLocation()
+        {
+            return Location;
+        }
     }
 }

@@ -66,5 +66,10 @@ namespace MathSpace.Model
         /// <param name="block"></param>
         void RemoveChild(IBlock block);
 
+        /// <summary>
+        /// 获取块位置
+        /// </summary>
+        Point GetBlockLocation();
+
     }
 }
