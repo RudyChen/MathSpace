@@ -33,6 +33,9 @@ namespace MathSpace
 
         public delegate void InputCharEventHandler(string inputContent);
         public event InputCharEventHandler InputCharEvent;
+
+        public delegate void InputCharTypeChangedHandler();
+        public event InputCharTypeChangedHandler InputCharTypeChanged;
         public MathKeyBoard()
         {
             InitializeComponent();
@@ -105,6 +108,11 @@ namespace MathSpace
             {
                 InputCommandChangedEvent(InputCommands.DeserializeCommand);
             }
+        }
+
+        private void InputCharType_Changed(object sender, RoutedEventArgs e)
+        {
+            InputCharTypeChanged();
         }
     }
 }

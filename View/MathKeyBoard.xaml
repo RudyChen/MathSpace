@@ -21,6 +21,7 @@
         </Style>
 
         <Style TargetType="ListBoxItem">
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
@@ -29,24 +30,36 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="ControlButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <StackPanel HorizontalAlignment="Right">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Focusable="False" Click="InputCommand_Changed" Tag="Previous">上一部分</Button>
-                <Button Focusable="False" Click="InputCommand_Changed" Tag="Next">下一部分</Button>
-                <Button Focusable="False" Click="InputCommand_Changed" Tag="Backspace" Width="50">←</Button>
-                <Button Focusable="False" Click="InputCommand_Changed" Tag="Serialize">序列化</Button>
-                <Button Focusable="False" Click="InputCommand_Changed" Tag="Deserialize">反序列化</Button>
-                
+                <Button  Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0" Click="InputType_Changed" Tag="Fraction">分数</Button>
+                <Button  Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0" Click="InputType_Changed" Tag="Radical">根式</Button>
+                <Button  Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0" Click="InputType_Changed" Tag="Exponenal">指数</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0"/>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0"/>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0"/>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button  Focusable="False" Margin="0,0,20,0" Click="InputType_Changed" Tag="Fraction">分数</Button>
-                <Button  Focusable="False" Margin="0,0,20,0" Click="InputType_Changed" Tag="Radical">根式</Button>
-                <Button  Focusable="False" Margin="0,0,20,0" Click="InputType_Changed" Tag="Exponenal">指数 </Button>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Previous">上一部分</Button>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Next">下一部分</Button>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Backspace" Width="50">←</Button>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Serialize">序列化</Button>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Deserialize">反序列化</Button>
+                
             </StackPanel>
+            
             <TabControl Style="{StaticResource ResourceKey=BottomTabControlStyle}">
-                <TabItem x:Name="symbolTabItem">
+                <TabItem x:Name="symbolTabItem" GotFocus="InputCharType_Changed">
                     <TabItem.HeaderTemplate>
                         <DataTemplate>
                             <Border Height="60">
@@ -58,7 +71,7 @@
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"/>
                 </TabItem>
-                <TabItem x:Name="operatorTabItem">
+                <TabItem x:Name="operatorTabItem"  GotFocus="InputCharType_Changed">
                     <TabItem.HeaderTemplate>
                         <DataTemplate>
                             <Border Height="60" >
@@ -70,7 +83,7 @@
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"/>
                 </TabItem>
-                <TabItem x:Name="numberTabItem">
+                <TabItem x:Name="numberTabItem"  GotFocus="InputCharType_Changed">
                     <TabItem.HeaderTemplate>
                         <DataTemplate>
                             <Border Height="60" >
@@ -82,7 +95,7 @@
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"/>
                 </TabItem>
-                <TabItem x:Name="letterTabItem">
+                <TabItem x:Name="letterTabItem"  GotFocus="InputCharType_Changed">
                     <TabItem.HeaderTemplate>
                         <DataTemplate>
                             <Border Height="60" >

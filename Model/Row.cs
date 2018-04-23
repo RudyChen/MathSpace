@@ -19,12 +19,16 @@ namespace MathSpace.Model
             set { _block = value; }
         }
 
+        public string ID { get; set; }
+
 
         public double Location { get; set; }
 
         public Row()
         {
             Location = 10.023;
+            ID = new Guid().ToString();
+            _block.ParentId = ID;
         }
 
         /// <summary>

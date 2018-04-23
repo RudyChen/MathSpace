@@ -143,6 +143,8 @@ namespace MathSpace
             }
             var charactorSize = inputCharactors.Last().GetSize();
             ResetCaretLocation(offsetx);
+
+            caretTextBox.Focus();
         }
 
         /// <summary>
@@ -223,6 +225,11 @@ namespace MathSpace
             var oldLeft = Canvas.GetLeft(caretTextBox);
             Canvas.SetLeft(caretTextBox, oldLeft + offsetX);
         }
+
+        /// <summary>
+        /// 输入文本框与插字符存在间隙
+        /// </summary>
+        private const double CARETOFFSETX = 4;
 
         private void SetCaretLocation(Point location)
         {
@@ -482,5 +489,9 @@ namespace MathSpace
             }
         }
 
+        private void InputCharType_Changed()
+        {
+            caretTextBox.Focus();
+        }
     }
 }
