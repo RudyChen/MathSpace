@@ -37,6 +37,23 @@ namespace MathSpace.Model
         /// 回退命令
         /// </summary>
         Backspace,
+
+        /// <summary>
+        /// 向左移动
+        /// </summary>
+        MoveLeft,
+        /// <summary>
+        /// 向上移动插字符
+        /// </summary>
+        MoveUp,
+        /// <summary>
+        /// 向右移动插字符
+        /// </summary>
+        MoveRight,
+        /// <summary>
+        /// 向下移动插字符
+        /// </summary>
+        MoveDown,
     }
 
     public enum ContentPages

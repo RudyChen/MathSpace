@@ -108,6 +108,25 @@ namespace MathSpace
             {
                 InputCommandChangedEvent(InputCommands.DeserializeCommand);
             }
+            else if (btn.Tag.ToString()=="MoveLeft")
+            {
+                InputCommandChangedEvent(InputCommands.MoveLeft);
+            }
+            else if (btn.Tag.ToString()=="MoveUp")
+            {
+                InputCommandChangedEvent(InputCommands.MoveUp);
+            }
+            else if (btn.Tag.ToString()=="MoveRight")
+            {
+                InputCommandChangedEvent(InputCommands.MoveRight);
+            }
+            else if (btn.Tag.ToString()=="MoveDown")
+            {
+                InputCommandChangedEvent(InputCommands.MoveDown);
+            }
+            
+                
+            
         }
 
         private void InputCharType_Changed(object sender, RoutedEventArgs e)

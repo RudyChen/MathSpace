@@ -70,6 +70,13 @@ namespace MathSpace.Model
         /// 获取块位置
         /// </summary>
         Point GetBlockLocation();
+        
+        /// <summary>
+        /// 获取插字符兄弟节点
+        /// </summary>
+        /// <param name="before">ture表示前面的兄弟，false表示后面的兄弟</param>
+        /// <returns></returns>
+        IBlock GetCaretBrotherElement(bool before,Point caretPoint);
 
     }
 }

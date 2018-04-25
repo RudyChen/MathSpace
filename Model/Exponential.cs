@@ -360,5 +360,28 @@ namespace MathSpace.Model
         {
             return Location;
         }
+
+        public IBlock GetCaretBrotherElement(bool before, Point caretPoint)
+        {
+            if (null!=Base)
+            {
+                var block = Base.GetCaretBrotherElement(before,caretPoint);
+                if (null!=block)
+                {
+                    return block;
+                }
+            }
+
+            if (null!=Index)
+            {
+                var block = Index.GetCaretBrotherElement(before,caretPoint);
+                if (null!=block)
+                {
+                    return block;
+                }
+            }
+
+            return null;
+        }
     }
 }

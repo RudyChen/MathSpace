@@ -207,5 +207,20 @@ namespace MathSpace.Model
         {
             return Location;
         }
+
+        public IBlock GetCaretBrotherElement(bool before, Point caretPoint)
+        {
+            if (!string.IsNullOrEmpty(Text))
+            {
+                var charactorRect = new Rect(this.Location,GetSize());
+                var shadowPoint = before ? new Point(caretPoint.X-4,caretPoint.Y+4) : new Point(caretPoint.X+4,caretPoint.Y+4);
+                if (charactorRect.Contains(shadowPoint))
+                {
+                    return this;
+                }
+            }
+
+            return null;
+        }
     }
 }

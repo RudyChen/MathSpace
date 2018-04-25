@@ -44,15 +44,15 @@
                 <Button  Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0" Click="InputType_Changed" Tag="Exponenal">指数</Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0"/>
-                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0"/>
-                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0"/>
-                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Margin="0,0,20,0"/>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed"  Margin="0,0,20,0" Content="←" Tag="MoveLeft"/>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed"  Margin="0,0,20,0" Content="↑" Tag="MoveUp"/>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed"  Margin="0,0,20,0" Content="→" Tag="MoveRight"/>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed"  Margin="0,0,20,0" Content="↓" Tag="MoveDown"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Previous">上一部分</Button>
                 <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Next">下一部分</Button>
-                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Backspace" Width="50">←</Button>
+                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Backspace" Width="50">Backspace</Button>
                 <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Serialize">序列化</Button>
                 <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Deserialize">反序列化</Button>
                 

@@ -344,8 +344,58 @@ namespace MathSpace
                 case InputCommands.DeserializeCommand:
                     DeserializeEquation();
                     break;
+                case InputCommands.MoveLeft:
+                    MoveCaretLeft();
+                    break;
+                case InputCommands.MoveUp:
+                    MoveCaretUp();
+                    break;
+                case InputCommands.MoveRight:
+                    MoveCaretRight();
+                    break;
+                case InputCommands.MoveDown:
+                    MoveCaretDown();
+                    break;
                 default:
                     break;
+            }
+        }
+
+        private void MoveCaretDown()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MoveCaretRight()
+        {
+            var caretPoint = GetCaretLocation();
+            var block = CurrentRow.Blocks.GetCaretBrotherElement(false, caretPoint);
+            if (null != block)
+            {
+                var blockSize = block.GetSize();
+                var blockLocation = block.GetBlockLocation();
+                var verticalAlignmentCenter = block.GetVerticalAlignmentCenter();
+                var positionAfterBlock = new Point(blockLocation.X + blockSize.Width, blockLocation.Y + verticalAlignmentCenter - FontManager.Instance.FontSize / 2);
+                SetCaretLocation(positionAfterBlock);
+            }
+        }
+
+        private void MoveCaretUp()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MoveCaretLeft()
+        {
+            var caretPoint = GetCaretLocation();
+            var block = CurrentRow.Blocks.GetCaretBrotherElement(true, caretPoint);
+            if (null != block)
+            {
+                var blockSize = block.GetSize();
+                var blockLocation = block.GetBlockLocation();
+                var verticalAlignmentCenter = block.GetVerticalAlignmentCenter();
+                var positionAfterBlock = new Point(blockLocation.X, blockLocation.Y + verticalAlignmentCenter - FontManager.Instance.FontSize / 2);
+                SetCaretLocation(positionAfterBlock);
             }
         }
 
@@ -356,8 +406,9 @@ namespace MathSpace
         /// </summary>
         private void SetCaretLocationByClick(Point clickPoint)
         {
+            /*多行的话先选择行，再在行内进行查找*/
             //在当前输入行
-            var rowSize=CurrentRow.Blocks.GetSize();
+            var rowSize = CurrentRow.Blocks.GetSize();
             var rowRect = new Rect(CurrentRow.Blocks.Location, rowSize);
             if (!rowRect.Contains(clickPoint))
             {
@@ -365,7 +416,7 @@ namespace MathSpace
             }
             GlobalData.Instance.ContainStack = new Stack<IBlock>();
             CurrentRow.Blocks.GetElementBeforeCaret(clickPoint);
-            if (GlobalData.Instance.ContainStack.Count>0)
+            if (GlobalData.Instance.ContainStack.Count > 0)
             {
                 var block = GlobalData.Instance.ContainStack.Pop();
                 if (null != block)

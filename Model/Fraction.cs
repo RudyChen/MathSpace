@@ -364,5 +364,28 @@ namespace MathSpace.Model
         {
             return Location;
         }
+
+        public IBlock GetCaretBrotherElement(bool before, Point caretPoint)
+        {
+            if (null!=Molecule)
+            {
+                var block = Molecule.GetCaretBrotherElement(before,caretPoint);
+                if (null!=block)
+                {
+                    return block;
+                }
+            }
+
+            if (null!= Denominator)
+            {
+                var block = Denominator.GetCaretBrotherElement(before,caretPoint);
+                if (null!=block)
+                {
+                    return block;
+                }
+            }
+
+            return null;
+        }
     }
 }

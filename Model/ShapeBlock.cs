@@ -75,5 +75,10 @@ namespace MathSpace.Model
         {
             return new Point(0,0);
         }
+
+        public IBlock GetCaretBrotherElement(bool before, Point caretPoint)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
