@@ -78,5 +78,12 @@ namespace MathSpace.Model
         /// <returns></returns>
         IBlock GetCaretBrotherElement(bool before,Point caretPoint);
 
+        /// <summary>
+        /// 在元素之后加入元素
+        /// </summary>
+        /// <param name="block"></param>
+        /// <param name="inputCharactors"></param>
+        void AddChildrenAfterBlock(IBlock block,IEnumerable<IBlock> inputCharactors);
+
     }
 }

@@ -61,7 +61,30 @@ namespace MathSpace.Model
             }
         }
 
+        /// <summary>
+        /// 查找当前行中输入的节点
+        /// </summary>
+        /// <param name="inputParentId"></param>
+        /// <returns></returns>
+        internal IBlock FindParentNode(string inputParentId)
+        {
+            if (inputParentId==ID)
+            {
+                return this;
+            }
 
+            foreach (var item in Children)
+            {
+                var node = item.FindNodeById(inputParentId);
+                if (null != node)
+                {
+                    return node;
+                }
+
+            }
+
+            return null;
+        }
 
         public Size GetSize()
         {
@@ -290,6 +313,18 @@ namespace MathSpace.Model
             }
 
             return null;
+        }
+
+        public void AddChildrenAfterBlock(IBlock block, IEnumerable<IBlock> inputCharactors)
+        {
+            if (null!=Children&&Children.Count>0)
+            {
+                var index=Children.IndexOf(block);
+                if (index>-1)
+                {
+                    Children.InsertRange(index+1,inputCharactors);
+                }
+            }
         }
     }
 }

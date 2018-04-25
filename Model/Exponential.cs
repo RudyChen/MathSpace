@@ -383,5 +383,24 @@ namespace MathSpace.Model
 
             return null;
         }
+
+        public void AddChildrenAfterBlock(IBlock block, IEnumerable<IBlock> inputCharactors)
+        {
+            if (Index!=null)
+            {
+                if (Index.Children.Contains(block))
+                {
+                    Index.AddChildrenAfterBlock(block,inputCharactors);
+                }
+            }
+
+            if (Base!=null)
+            {
+                if (Base.Children.Contains(block))
+                {
+                    Base.AddChildrenAfterBlock(block,inputCharactors);
+                }
+            }
+        }
     }
 }

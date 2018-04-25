@@ -119,17 +119,38 @@ namespace MathSpace
                 inputCharactors.Add(charactorBlock);
             }
 
-
-            if (!string.IsNullOrEmpty(InputParentId))
+            //这有一个想法是把插入的东西，放到兄弟节点后面
+            var beforeBlock = CurrentRow.Blocks.GetCaretBrotherElement(true, GetCaretLocation());
+            
+            if (null!=beforeBlock)
             {
-                var parentNode = CurrentRow.FindParentNode(InputParentId);
-
-                parentNode.AddChildren(inputCharactors, GetCaretLocation(), InputParentId);
+                var beforeBlockParentId = beforeBlock.GetParentId();
+                var block = CurrentRow.Blocks.FindParentNode(beforeBlockParentId);
+                foreach (var item in inputCharactors)
+                {
+                    item.ParentId = beforeBlockParentId;
+                }
+                block.AddChildrenAfterBlock(beforeBlock, inputCharactors);
             }
             else
             {
-                CurrentRow.Blocks.Children.AddRange(inputCharactors);
+                if (!string.IsNullOrEmpty(InputParentId))
+                {
+                    var parentNode = CurrentRow.Blocks.FindParentNode(InputParentId);
+
+                    parentNode.AddChildren(inputCharactors, GetCaretLocation(), InputParentId);
+                }
+                else
+                {
+                    foreach (var item in inputCharactors)
+                    {
+                        item.ParentId = CurrentRow.Blocks.ID;
+                    }
+                    CurrentRow.Blocks.Children.AddRange(inputCharactors);
+                }
             }
+
+            
 
             RefreshRow();
             /*输入完毕之后得
@@ -194,7 +215,7 @@ namespace MathSpace
         {
             if (!string.IsNullOrEmpty(InputParentId))
             {
-                var parentNode = CurrentRow.FindParentNode(InputParentId);
+                var parentNode = CurrentRow.Blocks.FindParentNode(InputParentId);
                 List<IBlock> blocks = new List<IBlock>();
                 blocks.Add(block);
                 parentNode.AddChildren(blocks, GetCaretLocation(), InputParentId);
@@ -457,7 +478,7 @@ namespace MathSpace
 
                     if (!string.IsNullOrEmpty(parentId))
                     {
-                        var parentBlock = CurrentRow.FindParentNode(parentId);
+                        var parentBlock = CurrentRow.Blocks.FindParentNode(parentId);
                         if (null != parentBlock)
                         {
                             parentBlock.RemoveChild(block);
@@ -525,7 +546,7 @@ namespace MathSpace
         {
             if (!string.IsNullOrEmpty(InputParentId))
             {
-                var parentNode = CurrentRow.FindParentNode(InputParentId);
+                var parentNode = CurrentRow.Blocks.FindParentNode(InputParentId);
                 //非输入行元素子元素
                 if (null != parentNode)
                 {

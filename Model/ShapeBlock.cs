@@ -80,5 +80,10 @@ namespace MathSpace.Model
         {
             throw new NotImplementedException();
         }
+
+        public void AddChildrenAfterBlock(IBlock block, IEnumerable<IBlock> inputCharactors)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

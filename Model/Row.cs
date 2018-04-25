@@ -31,25 +31,7 @@ namespace MathSpace.Model
             _block.ParentId = ID;
         }
 
-        /// <summary>
-        /// 查找当前行中输入的节点
-        /// </summary>
-        /// <param name="inputParentId"></param>
-        /// <returns></returns>
-        internal IBlock FindParentNode(string inputParentId)
-        {
-            foreach (var item in Blocks.Children)
-            {
-                var node = item.FindNodeById(inputParentId);
-                if (null != node)
-                {
-                    return node;
-                }
-
-            }
-
-            return null;
-        }
+       
 
         /// <summary>
         /// 行元素序列化

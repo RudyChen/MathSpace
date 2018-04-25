@@ -387,5 +387,24 @@ namespace MathSpace.Model
 
             return null;
         }
+
+        public void AddChildrenAfterBlock(IBlock block, IEnumerable<IBlock> inputCharactors)
+        {
+            if (null!=Molecule)
+            {
+                if (Molecule.Children.Contains(block))
+                {
+                    Molecule.AddChildrenAfterBlock(block,inputCharactors);
+                }
+            }
+
+            if (null!=Denominator)
+            {
+                if (Denominator.Children.Contains(block))
+                {
+                    Denominator.AddChildrenAfterBlock(block,inputCharactors);
+                }
+            }
+        }
     }
 }

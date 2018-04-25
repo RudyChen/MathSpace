@@ -222,5 +222,10 @@ namespace MathSpace.Model
 
             return null;
         }
+
+        public void AddChildrenAfterBlock(IBlock block, IEnumerable<IBlock> inputCharactors)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
