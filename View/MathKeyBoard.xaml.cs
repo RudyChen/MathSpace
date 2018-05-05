@@ -112,18 +112,11 @@ namespace MathSpace
             {
                 InputCommandChangedEvent(InputCommands.MoveLeft);
             }
-            else if (btn.Tag.ToString()=="MoveUp")
-            {
-                InputCommandChangedEvent(InputCommands.MoveUp);
-            }
             else if (btn.Tag.ToString()=="MoveRight")
             {
                 InputCommandChangedEvent(InputCommands.MoveRight);
             }
-            else if (btn.Tag.ToString()=="MoveDown")
-            {
-                InputCommandChangedEvent(InputCommands.MoveDown);
-            }
+          
             
                 
             

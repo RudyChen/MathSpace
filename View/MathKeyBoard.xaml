@@ -45,9 +45,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed"  Margin="0,0,20,0" Content="←" Tag="MoveLeft"/>
-                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed"  Margin="0,0,20,0" Content="↑" Tag="MoveUp"/>
                 <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed"  Margin="0,0,20,0" Content="→" Tag="MoveRight"/>
-                <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed"  Margin="0,0,20,0" Content="↓" Tag="MoveDown"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Focusable="False" Style="{StaticResource ControlButtonStyle}" Click="InputCommand_Changed" Tag="Previous">上一部分</Button>

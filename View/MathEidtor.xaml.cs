@@ -370,29 +370,19 @@ namespace MathSpace
                 case InputCommands.MoveLeft:
                     MoveCaretLeft();
                     break;
-                case InputCommands.MoveUp:
-                    MoveCaretUp();
-                    break;
                 case InputCommands.MoveRight:
                     MoveCaretRight();
-                    break;
-                case InputCommands.MoveDown:
-                    MoveCaretDown();
                     break;
                 default:
                     break;
             }
         }
 
-        private void MoveCaretDown()
-        {
-            throw new NotImplementedException();
-        }
-
         private void MoveCaretRight()
         {
             var caretPoint = GetCaretLocation();
-            var block = CurrentRow.Blocks.GetCaretBrotherElement(false, caretPoint);
+            var parentBlock = CurrentRow.Blocks.FindNodeById(InputParentId);
+            var block = parentBlock.GetCaretBrotherElement(false, caretPoint);
             if (null != block)
             {
                 var blockSize = block.GetSize();
@@ -403,15 +393,11 @@ namespace MathSpace
             }
         }
 
-        private void MoveCaretUp()
-        {
-            throw new NotImplementedException();
-        }
-
         private void MoveCaretLeft()
         {
             var caretPoint = GetCaretLocation();
-            var block = CurrentRow.Blocks.GetCaretBrotherElement(true, caretPoint);
+           var parentBlock= CurrentRow.Blocks.FindNodeById(InputParentId);
+            var block = parentBlock.GetCaretBrotherElement(true, caretPoint);
             if (null != block)
             {
                 var blockSize = block.GetSize();
