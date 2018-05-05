@@ -227,5 +227,10 @@ namespace MathSpace.Model
         {
             throw new NotImplementedException();
         }
+
+        public void SetParentId(string parentID)
+        {
+            this.ParentId = parentID;
+        }
     }
 }

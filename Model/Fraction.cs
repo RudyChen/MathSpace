@@ -56,7 +56,7 @@ namespace MathSpace.Model
             if (null==Molecule)
             {
                 moleculeRect = new Rect(Location.X-2, Location.Y-4, FontManager.Instance.FontSize+4, FontManager.Instance.FontSize +4);               
-
+                
             }
             else
             {                
@@ -76,7 +76,8 @@ namespace MathSpace.Model
             {
                 if (null==Molecule)
                 {
-                    Molecule = new BlockNode();                   
+                    Molecule = new BlockNode();
+                    Molecule.ParentId = ID;
                 }
                 Molecule.AddChildren(inputCharactors, caretPoint, parentId);
             }
@@ -85,6 +86,7 @@ namespace MathSpace.Model
                 if (null==Denominator)
                 {
                     Denominator = new BlockNode();
+                    Denominator.ParentId = ID;
                 }
                 Denominator.AddChildren(inputCharactors,caretPoint,parentId);
             }
@@ -405,6 +407,11 @@ namespace MathSpace.Model
                     Denominator.AddChildrenAfterBlock(block,inputCharactors);
                 }
             }
+        }
+
+        public void SetParentId(string parentID)
+        {
+            this.ParentId = parentID;
         }
     }
 }

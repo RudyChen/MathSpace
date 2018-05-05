@@ -161,6 +161,11 @@ namespace MathSpace.Model
                 }
             }
 
+            foreach (var item in inputCharactors)
+            {
+                item.SetParentId(this.ID);
+            }
+
             Children.InsertRange(index, inputCharactors);
         }
 
@@ -317,6 +322,11 @@ namespace MathSpace.Model
 
         public void AddChildrenAfterBlock(IBlock block, IEnumerable<IBlock> inputCharactors)
         {
+            foreach (var item in inputCharactors)
+            {
+                item.SetParentId(ID); 
+            }
+
             if (null!=Children&&Children.Count>0)
             {
                 var index=Children.IndexOf(block);
@@ -325,6 +335,11 @@ namespace MathSpace.Model
                     Children.InsertRange(index+1,inputCharactors);
                 }
             }
+        }
+
+        public void SetParentId(string parentID)
+        {
+            this.ParentId = parentID;
         }
     }
 }

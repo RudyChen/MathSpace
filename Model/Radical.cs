@@ -230,6 +230,7 @@ namespace MathSpace.Model
                 if (null == RootIndex)
                 {
                     RootIndex = new BlockNode();
+                    RootIndex.ParentId = ID;
                 }
                 RootIndex.AddChildren(inputCharactors, caretPoint, parentId);
             }
@@ -239,6 +240,7 @@ namespace MathSpace.Model
                 if (null == Radicand)
                 {
                     Radicand = new BlockNode();
+                    Radicand.ParentId = ID;
                 }
                 Radicand.AddChildren(inputCharactors, caretPoint, parentId);
             }
@@ -387,6 +389,11 @@ namespace MathSpace.Model
                     Radicand.AddChildrenAfterBlock(block,inputCharactors);
                 }
             }
+        }
+
+        public void SetParentId(string parentID)
+        {
+            this.ParentId = parentID;
         }
     }
 }

@@ -72,7 +72,7 @@ namespace MathSpace.Model
         Point GetBlockLocation();
         
         /// <summary>
-        /// 获取插字符兄弟节点
+        /// 获取插字符兄弟节点,获取遇到了问题，不能确定插字符位于那个输入层级
         /// </summary>
         /// <param name="before">ture表示前面的兄弟，false表示后面的兄弟</param>
         /// <returns></returns>
@@ -84,6 +84,13 @@ namespace MathSpace.Model
         /// <param name="block"></param>
         /// <param name="inputCharactors"></param>
         void AddChildrenAfterBlock(IBlock block,IEnumerable<IBlock> inputCharactors);
+
+        /// <summary>
+        /// 设置父节点ID
+        /// </summary>
+        /// <param name="parentID"></param>
+        void SetParentId(string parentID);
+        
 
     }
 }

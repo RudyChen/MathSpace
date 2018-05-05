@@ -30,6 +30,8 @@ namespace MathSpace
             InitializeComponent();
             FontSize = 14;
             MessageManager.Instance.InputParentChangedEvent += Instance_InputParentChangedEvent;
+            InputParentId = CurrentRow.Blocks.ID;
+
         }
 
         /// <summary>
@@ -119,17 +121,17 @@ namespace MathSpace
                 inputCharactors.Add(charactorBlock);
             }
 
-            //这有一个想法是把插入的东西，放到兄弟节点后面
-            var beforeBlock = CurrentRow.Blocks.GetCaretBrotherElement(true, GetCaretLocation());
-            
-            if (null!=beforeBlock)
+            //这有一个想法是把插入的东西，放到兄弟节点后面，处理方式不当，指数，根式都可以找到不准确的brother
+
+            var inputParentBlock = CurrentRow.Blocks.FindNodeById(InputParentId);
+
+            var beforeBlock = inputParentBlock.GetCaretBrotherElement(true, GetCaretLocation());
+
+            if (null != beforeBlock)
             {
                 var beforeBlockParentId = beforeBlock.GetParentId();
                 var block = CurrentRow.Blocks.FindParentNode(beforeBlockParentId);
-                foreach (var item in inputCharactors)
-                {
-                    item.ParentId = beforeBlockParentId;
-                }
+
                 block.AddChildrenAfterBlock(beforeBlock, inputCharactors);
             }
             else
@@ -150,7 +152,7 @@ namespace MathSpace
                 }
             }
 
-            
+
 
             RefreshRow();
             /*输入完毕之后得
@@ -448,9 +450,13 @@ namespace MathSpace
                     var verticalAlignmentCenter = block.GetVerticalAlignmentCenter();
                     var positionAfterBlock = new Point(blockLocation.X + blockSize.Width, blockLocation.Y + verticalAlignmentCenter - FontManager.Instance.FontSize / 2);
                     SetCaretLocation(positionAfterBlock);
+
+                    //修改输入父亲元素
+                    InputParentId = block.GetParentId();
                 }
             }
         }
+
 
         /// <summary>
         /// 执行回退方法
