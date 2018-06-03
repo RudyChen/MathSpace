@@ -10,10 +10,10 @@
                     <Grid x:Name="templateRoot" ClipToBounds="True" SnapsToDevicePixels="True" KeyboardNavigation.TabNavigation="Local">
                       
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="1" x:Name="ContentPanel" BorderThickness="0,0,0,3" Background="{TemplateBinding Background}" KeyboardNavigation.DirectionalNavigation="Contained"  KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                        <Border Grid.Column="0" x:Name="ContentPanel" BorderThickness="0,0,0,3" Background="{TemplateBinding Background}" KeyboardNavigation.DirectionalNavigation="Contained"  KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
                             <Border.BorderBrush>
                                 <SolidColorBrush Color="Blue"/>
                             </Border.BorderBrush>
@@ -21,7 +21,7 @@
                                 <ContentPresenter x:Name="PART_SelectedContentHost" ContentTemplate="{TemplateBinding SelectedContentTemplate}" Content="{TemplateBinding SelectedContent}" ContentStringFormat="{TemplateBinding SelectedContentStringFormat}" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </ScrollViewer>
                         </Border>
-                        <StackPanel Grid.Column="0" x:Name="HeaderPanel" Background="Transparent"  IsItemsHost="True" Margin="2"  KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+                        <StackPanel Grid.Column="1" x:Name="HeaderPanel" Background="Transparent"  IsItemsHost="True" Margin="2"  KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
