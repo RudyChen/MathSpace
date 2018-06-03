@@ -1,0 +1,20 @@
+﻿1、编辑控件样式在Resource文件夹下面
+2、在编辑控件样式的时候提取出需要根据主题设定的颜色单独放在主题下面的Shared.xaml中
+	例如：“曜石黑/Shared.xaml”包含了所有控件需要的颜色
+	注意：纯色颜色命名使用[控件名][状态组][状态][属性]Color，渐变色命名使用[控件名][状态组][状态][属性]Color0 1 2 3……
+3、在exe项目的app.xaml中引用Themes.dll的资源字典：
+引用控件样式集合
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes;component/ControlThemes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+
+4、在app.xaml.cs代码中使用主题字典替换
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("/Themes;component/曜石黑/Shared.xaml", UriKind.RelativeOrAbsolute) });
+		}

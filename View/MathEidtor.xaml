@@ -3,24 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:graphic="clr-namespace:MathGraphics;assembly=MathGraphics"
              xmlns:local="clr-namespace:MathSpace"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1280">
     <Grid >
         
         <DockPanel>
-            <ContentControl DockPanel.Dock="Bottom" MaxHeight="420">
-                <local:MathKeyBoard InputTypeChangedEvent="InputType_Changed" 
-                                    InputCommandChangedEvent="InputCommand_Changed" 
-                                    InputCharEvent="AcceptInputText"
-                                    InputCharTypeChanged="InputCharType_Changed"/>
-            </ContentControl>
+            
             <Canvas Name="questionCanvas" DockPanel.Dock="Top" Background="LightGray" Height="90">
                 
             </Canvas>
-            <Canvas Name="editorCanvas" DockPanel.Dock="Top" Focusable="False" Margin="6" MouseLeftButtonDown="editorCanvas_MouseLeftButtonDown" Background="White" PreviewKeyDown="editorCanvas_PreviewKeyDown">
-                <TextBox Name="caretTextBox" Padding="-3,0,0,0" Margin="0" Canvas.Left="0" Canvas.Top="10" VerticalContentAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" BorderThickness="0" BorderBrush="Orange" PreviewTextInput="caretTextBox_PreviewTextInput" FontFamily="Times New Roman" Foreground="Black" FontSize="16" FontStyle="Italic"></TextBox>
-            </Canvas>
+            <DockPanel DockPanel.Dock="Top" Height="300">
+                <graphic:DrawBoard/>
+            </DockPanel>
+            
+            <DockPanel DockPanel.Dock="Top">
+                <ContentControl DockPanel.Dock="Right" MaxHeight="420">
+                    <local:MathKeyBoard InputTypeChangedEvent="InputType_Changed" 
+                                    InputCommandChangedEvent="InputCommand_Changed" 
+                                    InputCharEvent="AcceptInputText"
+                                    InputCharTypeChanged="InputCharType_Changed"/>
+                </ContentControl>
+                <Canvas Name="editorCanvas" DockPanel.Dock="Left" Focusable="False" Margin="6" 
+                        MouseLeftButtonDown="editorCanvas_MouseLeftButtonDown" 
+                        Background="White" 
+                        PreviewKeyDown="editorCanvas_PreviewKeyDown">
+                    <TextBox Name="caretTextBox" Padding="-3,0,0,0" Margin="0" Canvas.Left="0" Canvas.Top="10" VerticalContentAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" BorderThickness="0" BorderBrush="Orange" PreviewTextInput="caretTextBox_PreviewTextInput" FontFamily="Times New Roman" Foreground="Black" FontSize="16" FontStyle="Italic"></TextBox>
+                </Canvas>
+                
+            </DockPanel>
             
         </DockPanel>
         

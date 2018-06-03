@@ -1,0 +1,83 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
+                    xmlns:local="clr-namespace:Themes.CustomControls">
+    
+    <ControlTemplate x:Key="WinResizeButtonTemplate" TargetType="{x:Type local:EmbededToggleButton}">
+        <Border Name="border" BorderThickness="{TemplateBinding Border.BorderThickness}" BorderBrush="{TemplateBinding Border.BorderBrush}" Background="{TemplateBinding Panel.Background}"  SnapsToDevicePixels="True">
+            <Grid ToolTip="{TemplateBinding ToolTip}">
+                <Grid x:Name="maxmizedCanvas" Visibility="Collapsed">
+                    <Border x:Name="singleRect" BorderBrush="White" BorderThickness="1,3,1,1" Width="10" Height="10" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"/>
+                </Grid>
+                <Grid x:Name="normalCanvas">
+                    <Border x:Name="normalLowerRect" Margin="6,-5,0,0" BorderBrush="White" BorderThickness="1" Width="8" Height="6" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"/>
+                    <Border x:Name="normalHighRect" Margin="0,2,0,0" BorderBrush="White" BorderThickness="1" Width="8" Height="6" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" />
+                </Grid>
+                <ContentPresenter RecognizesAccessKey="True" Content="{TemplateBinding ContentControl.Content}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" Name="contentPresenter" Margin="{TemplateBinding Control.Padding}" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Focusable="False" />
+            </Grid>               
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Button.IsDefaulted" Value="true">
+                <Setter Property="Visibility" TargetName="normalCanvas" Value="Visible"></Setter>
+                <Setter Property="Visibility" TargetName="maxmizedCanvas" Value="Collapsed"></Setter>
+            </Trigger>            
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true"/>
+                    <Condition Property="Visibility" SourceName="normalCanvas" Value="Visible"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Panel.Background" TargetName="border">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource ResourceKey=ControlMouseOverColor}"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="normalLowerRect">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource ResourceKey=ControlMouseOverColor}"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="normalHighRect">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource ResourceKey=ControlMouseOverColor}"/>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true"/>
+                    <Condition Property="Visibility" SourceName="maxmizedCanvas" Value="Visible"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Panel.Background" TargetName="border">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource ResourceKey=ControlMouseOverColor}"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="singleRect">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource ResourceKey=ControlMouseOverColor}"/>
+                    </Setter.Value>
+                </Setter>              
+            </MultiTrigger>           
+            <Trigger Property="ButtonBase.IsPressed" Value="true">
+                <Setter Property="Panel.Background" TargetName="border">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource ResourceKey=ControlPressedColor}"></SolidColorBrush>
+                    </Setter.Value>
+                </Setter>               
+            </Trigger>
+            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                <Setter Property="Visibility" TargetName="normalCanvas" Value="Collapsed">
+                    
+                </Setter>
+                <Setter Property="Visibility" TargetName="maxmizedCanvas" Value="Visible">
+                </Setter>              
+            </Trigger>
+         
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="WinResizeButtonStyle" TargetType="{x:Type local:EmbededToggleButton}" BasedOn="{x:Null}">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Template" Value="{StaticResource WinResizeButtonTemplate}" />
+    </Style>
+</ResourceDictionary>
