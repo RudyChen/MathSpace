@@ -17,4 +17,3 @@ D:\Git Projects\MathSpace\FrameWorkExtension\bin\Debug\FrameWorkExtension.dll
 D:\Git Projects\MathSpace\FrameWorkExtension\bin\Debug\FrameWorkExtension.pdb
 D:\Git Projects\MathSpace\FrameWorkExtension\obj\Debug\FrameWorkExtension.dll
 D:\Git Projects\MathSpace\FrameWorkExtension\obj\Debug\FrameWorkExtension.pdb
-D:\Git Projects\MathSpace\FrameWorkExtension\obj\Debug\FrameWorkExtension.csprojResolveAssemblyReference.cache

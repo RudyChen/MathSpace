@@ -228,7 +228,7 @@
     <Resource Include="Resource\Images\head.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MathGraphics\MathGraphics.csproj">
+    <ProjectReference Include="MathGraphics\MathGraphics.csproj">
       <Project>{201ccc9d-e134-4162-86ba-cc7e4463cb45}</Project>
       <Name>MathGraphics</Name>
     </ProjectReference>

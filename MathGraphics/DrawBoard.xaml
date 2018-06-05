@@ -1,0 +1,800 @@
+﻿<UserControl x:Class="MathGraphics.DrawBoard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MathGraphics"
+             Loaded="Window_Loaded"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="Gray"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="Gray"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="White"/>
+
+        <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+
+                            <Viewbox Stretch="Fill" Width="16" Height="16">
+                                <Grid>
+                                    <Path Data="M3.4999703,3.8333452 C2.8335181,3.1675201 16.417405,16.833615 15.750698,15.916667" Fill="#FFF4F4F5" Margin="3.476,3.809,3.226,3.04" Stretch="Fill" Stroke="White"/>
+                                    <Path Data="M3.5003333,15.7503 C2.6670001,16.583655 16.500341,3.3326182 16.000332,3.8329826" Fill="#FFF4F4F5" Margin="3.464,3.819,2.987,3.213" Stretch="Fill" Stroke="White"/>
+
+                                </Grid>
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HorizontialCenterAlignButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Grid Width="22" Height="22">
+                                        <Path Data="M2.9166667,3.8333333 L2.8330001,16.667" Fill="Transparent" HorizontalAlignment="Left" Margin="2.916,3.248,0,3.417" Stretch="Fill" Stroke="#FF6EBBFF" StrokeThickness="1" Width="1.084"/>
+                                        <Path Data="M7.0833333,7.25 L7.0833333,13.833333" Fill="Transparent" HorizontalAlignment="Left" Margin="7.083,5.832,0,6.585" Stretch="Fill" Stroke="#FF6EBBFF" StrokeThickness="1" Width="1"/>
+                                        <Path Data="M12.333333,4.0833333 L12.167,16.417" Fill="Transparent" HorizontalAlignment="Right" Margin="0,3.248,8.991,3.418" Stretch="Fill" Stroke="#FF6EBBFF" StrokeThickness="1" Width="1.166"/>
+                                        <Path Data="M15.916667,7.5833333 L15.832889,13.834014" Fill="Transparent" HorizontalAlignment="Right" Margin="0,5.832,4.162,6.585" Stretch="Fill" Stroke="#FF6EBBFF" StrokeThickness="1" Width="1.084"/>
+                                    </Grid>
+                                </Viewbox>
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="VerticalCenterAlignButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Grid>
+                                        <Path Data="M5.3101926,8.341327 L19.665965,8.3401178" Fill="Transparent" Height="0.5" Margin="0.51,4.34,0,2.992" Stretch="Fill" Stroke="#FF6EBBFF" StrokeThickness="1" HorizontalAlignment="Left" Width="6.847"/>
+                                        <Path Data="M7.0833333,7.7494647 L14.556406,7.7496938" Fill="Transparent" Height="0.5" Margin="2.065,5.955,0,1.376" Stretch="Fill" Stroke="#FF6EBBFF" StrokeThickness="1" HorizontalAlignment="Left" Width="3.767" d:LayoutOverrides="TopMargin, BottomMargin" />
+                                        <Path Data="M3.8441473,15.916667 L18.260835,15.916667" Fill="Transparent" Margin="2.097,3.079,0,4.253" Stretch="Fill" Stroke="#FF6EBBFF" StrokeThickness="1" Height="0.5" HorizontalAlignment="Left" Width="3.652" />
+                                        <Path Data="M7.1247367,15.476468 L14.63877,15.476961" Fill="Transparent" Height="0.5" Margin="0.51,1.701,0,5.631" Stretch="Fill" Stroke="#FF6EBBFF" StrokeThickness="1" HorizontalAlignment="Left" Width="6.847"/>
+                                    </Grid>
+                                </Viewbox>
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="Center" Margin="0,0,4,0" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RotateButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Grid>
+                                        <Path Data="M9.4999065,15.749999 C3.9165732,13.749999 5.2094381,8.1008776 6.9997504,5.8332789 9.4998501,2.6666678 14.457449,3.5818241 16.499267,5.0000494 17.404754,5.6289906 21.064678,8.7529208 19.355978,12.478638 17.91639,15.749999 16.030103,15.477386 14.678806,15.477386" Fill="Transparent" HorizontalAlignment="Stretch" Margin="3.632,3.447,3.084,3.5" Stretch="Fill" Stroke="#FF6EBBFF" Width="Auto" StrokeThickness="2"/>
+                                        <Path Data="M15.192829,13.095945 C16.192494,11.595587 13.086319,16.165686 13.086319,16.165686 13.086319,16.165686 17.541085,18.674801 16.335815,18.082525" Fill="Transparent" Height="6.419" Margin="0,0,6.374,1.579" Stretch="Fill" Stroke="#FF6EBBFF" VerticalAlignment="Bottom" StrokeThickness="2" HorizontalAlignment="Right" Width="4.453"/>
+                                    </Grid>
+                                </Viewbox>
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="OpenButtonStyle" TargetType="{x:Type Button}">
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Grid>
+                                        <Path Data="M4.3921527,18.998492 L17.166327,18.833361 17.082997,5.8330543 4.1423375,5.8335177 z" Fill="#FF000000" Height="Auto" Margin="3.063,3.819,2.911,2.016" Stretch="Fill" Stroke="#FFD7AB68" VerticalAlignment="Stretch"/>
+                                        <Path Data="M1.333669,11.497455 L13.878419,11.428769 16.461415,18.267939 3.5003352,18.336293 z" Fill="#FFD7AB68" Height="7.901" Margin="0.461,0,3.408,1.6" Stretch="Fill" Stroke="Transparent" VerticalAlignment="Bottom"/>
+                                        <Path Data="M7.1264137,0.25336968 C4.9373775,-0.90328981 10.96263,2.3877577 13.247958,3.438889 11.059886,4.7351332 6.9810604,8.3481022 9.169223,6.6659978" Fill="Transparent" Height="7.623" Margin="5.9,0.474,8.326,0" Stretch="Fill" Stroke="#FF007ACC" VerticalAlignment="Top" StrokeThickness="2"/>
+                                        <Path Data="M4.74969,9.4169492 C2.3333881,9.3332999 1.5,3.5836663 5.6666667,3.6669997 9.8333333,3.750333 10.332874,3.0841471 10.415862,3.7507604 10.44013,3.9456987 5.1663318,3.3345425 3.9998299,5.5007605 3.1670475,7.7502945 4.74969,9.4169492 4.74969,9.4169492 z" Fill="#FF000000" Margin="1.324,2.865,8.998,9.168" Stretch="Fill" Stroke="#FF007ACC" StrokeThickness="2"/>
+                                    </Grid>
+                                </Viewbox>
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SaveButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Grid>
+                                        <Path Data="M2.4166667,2.5 L2.5875297,17.582046 16.646764,17.499055 16.564112,5.0002032 13.48515,2.3336648 z" Fill="#FF6EBBFF" HorizontalAlignment="Stretch" Margin="2.417,2.333,2.333,1.417" Stretch="Fill" Stroke="Transparent" Width="Auto"/>
+                                        <Path Data="M5.6663319,2.4170193 L5.5823206,9.3346676 12.359776,9.3346676 12.36011,2.3343493 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="5.583,2.333,6.667,9.667" Stretch="Fill" Stroke="Transparent" Width="Auto"/>
+                                        <Path Data="M8.7894283,2.3343756 L8.8734562,6.7510771 11.841692,6.7506599 11.840019,2.2513624 z" Fill="#FF6EBBFF" Height="5.499" Margin="7.795,2.25,8.165,0" Stretch="Fill" Stroke="Transparent" VerticalAlignment="Top"/>
+                                    </Grid>
+                                </Viewbox>
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DeleteButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <!--<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>-->
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Grid>
+                                        <Path Data="M3.0463095,5.2323986 C3.3583208,4.1694716 4.2958095,3.9198986 4.4833095,3.9198986 4.6708095,3.9198986 16.061737,16.440229 17.249236,17.127991 18.436736,17.815753 15.562081,16.690027 15.562081,16.690027 11.770554,13.293351 2.8802512,5.7981081 3.0463095,5.2323986 z" Fill="#FFF2806A" Margin="2.044,2.921,2.462,2.652" Stretch="Fill" Stroke="#FFF2806A"/>
+                                        <Path Data="M3.3005176,17.10487 C4.800185,16.917878 16.250069,4.1881244 16.562569,3.5631244 16.875069,2.9381244 16.50054,3.0006123 16.50054,3.0006123 L2.1746318,15.043231 C2.1746318,15.043231 1.8008502,17.291862 3.3005176,17.10487 z" Fill="#FFF2806A" Margin="2.135,2.998,2.313,1.885" Stretch="Fill" Stroke="#FFF2806A"/>
+                                    </Grid>
+                                </Viewbox>
+                                <ContentPresenter  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                                <!--<Setter Property="BorderBrush" TargetName="border" Value="#FF007ACC"/>-->
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <!--<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>-->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CopyButtonStyle" TargetType="{x:Type Button}">
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Grid>
+                                        <Path Data="M7.8130002,1.5624863 L7.7505,13.3125 17.062487,13.375505 16.999991,1.5619862 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="7.75,1.563,1.938,5.625" Stretch="Fill" Stroke="Gray" Width="Auto"/>
+                                        <Path Data="M2.8745322,5.0000229 L2.9375253,16.624491 12.249999,16.561994 12.061989,5.0000229 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="2.875,5,6.75,2.375" Stretch="Fill" Stroke="Gray" Width="Auto"/>
+                                    </Grid>
+                                </Viewbox>
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PasteButtonStyle" TargetType="{x:Type Button}">
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Grid>
+                                        <Path Data="M5.1875,4.375 L5.249438,16.562987 16.237969,16.499984 16.113099,4.3744998 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="5.188,4.375,2.75,2.437" Stretch="Fill" Stroke="Gray" Width="Auto"/>
+                                        <Path Data="M8.5158371,5.5788358 C8.70406,2.5785354 12.953874,2.2665696 13.516375,5.5788358 13.516336,5.5789569 8.5158371,5.5788358 8.5158371,5.5788358 z" Fill="#FF000000" Height="3.368" Margin="7.848,1.999,6.152,0" Stretch="Fill" Stroke="Gray" VerticalAlignment="Top"/>
+                                        <Path Data="M2.125937,7.8129757 L2.063,17.3125 10.242812,17.313 10.117937,7.8124759 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="2.062,7.812,8.75,1.688" Stretch="Fill" Stroke="Gray" Width="Auto"/>
+                                    </Grid>
+                                </Viewbox>
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SelectToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <StackPanel Orientation="Horizontal">
+
+                                <Viewbox Stretch="Fill">
+                                    <Path Data="M6.625,5.875 L6.625,16.000293 9.5003826,14.708333 10.95891,17.333333 12.250749,16.666981 13.500915,16.000293 11.834027,13.291667 14.501048,11.916667 z" Fill="#FFF4F4F5" HorizontalAlignment="Stretch" Margin="5.625,2.875,5.5,4.667" Stretch="Fill" Stroke="Transparent" Width="Auto"/>
+                                </Viewbox>
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,4,0"/>
+                            </StackPanel>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HandMoveToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Path Data="M6.570795,16.969384 L6.570795,15.219541 2.3965851,8.6348886 C2.3965851,8.6348886 2.5844238,6.5097127 4.1497003,7.3847296 4.2125845,7.4472201 6.0699299,10.218949 6.0699299,10.218949 5.8163067,9.1526706 4.0940656,4.6750564 4.0664693,4.4686066 3.9829918,2.6351266 6.5081392,3.3225531 6.8212276,4.135027 7.0082899,4.6204593 8.344677,8.0522797 8.4073005,8.3022733 8.469924,8.5522669 8.2403455,4.584289 8.2403455,4.2183689 8.2403455,2.4680223 10.879988,3.1868693 10.911292,4.2808047 10.932744,5.0304372 10.99477,8.6353681&#xD;&#xA;10.99477,8.6353681 11.139887,7.8659742 11.921644,5.0627112 11.944327,4.8739936 12.038239,4.0926442 14.168532,4.3277764 14.167627,5.4675792 14.176023,6.4464595 13.499095,9.3854281 13.499095,9.3854281 13.622687,8.880877 15.079304,7.0437793 15.138117,6.7179781 15.889076,5.592835 17.173326,7.1554925 16.922841,7.9679422 16.770896,8.8249355 15.336386,11.051723 15.336386,11.051723 15.336386,11.051723 14.709988,14.719572 14.083772,15.219541 14.083772,15.782006&#xD;&#xA;14.02115,16.803012 14.083772,16.803012 14.146394,16.803012 6.570795,16.969384 6.570795,16.969384 z" Fill="#FFF4F4F5" HorizontalAlignment="Stretch" Margin="1.833,2.945,2.634,2.25" Stretch="Fill" Stroke="Transparent" Width="Auto"/>
+                                </Viewbox>
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,4,0"/>
+                            </StackPanel>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CanvasZoomOutControlBtnStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="Transparent" SnapsToDevicePixels="true">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Canvas Width="52" Height="52">
+                                        <Ellipse Name="zoomCircle" Fill="Transparent" Height="37.25" Stroke="White" StrokeThickness="3" Width="37.25" Canvas.Top="0.25" Canvas.Left="4"/>
+                                        <Path Name="zoomStrike" Data="M28,34.5 L35.25,44.5 38,42 30.75,32.25 z" Fill="White" Height="12.25" Canvas.Left="32" Stretch="Fill" Stroke="Gray" StrokeThickness="0" Canvas.Top="32.5" Width="10"/>
+                                        <Path Name="zoomHandler" Data="M36.333175,44.500604 C36.333175,44.500604 33.999727,45.333878 35.416684,47.584028 36.180665,48.797242 41.082453,55.251236 41.082453,55.251236 41.082453,55.251236 42.83251,57.001608 45.415543,55.251382 47.998576,53.501156 47.99816,53.334298 47.99816,53.334298 47.99816,53.334298 49.914405,52.168005 47.998023,49.501047 46.081641,46.834089 43.998657,44.500604 43.998657,44.500604 43.998657,44.500604 41.915654,40.334061 38.91613,42.416994 35.761001,44.607983 36.333175,44.500604&#xD;&#xA;36.333175,44.500604 z" Fill="White" Height="14.195" Canvas.Left="34.964" Stretch="Fill" Stroke="Gray" StrokeThickness="0" Canvas.Top="37.5" Width="13.892"/>
+                                        <Rectangle Name="verticalCross" Fill="White" Height="15" Canvas.Left="20" Stroke="Gray" StrokeThickness="0" Canvas.Top="11.5" Width="5"/>
+                                        <Rectangle Name="horizontialCross" Fill="White" Height="5" Canvas.Left="15" Stroke="Gray" StrokeThickness="0" Canvas.Top="16.5" Width="15"/>
+
+                                    </Canvas>
+                                </Viewbox>
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CanvasZoomInControlBtnStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="Transparent" SnapsToDevicePixels="true">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Canvas Width="52" Height="52">
+                                        <Ellipse Name="zoomCircle" Fill="Transparent" Height="37.25" Stroke="White" StrokeThickness="3" Width="37.25" Canvas.Top="0.25" Canvas.Left="4"/>
+                                        <Path Name="zoomStrike" Data="M28,34.5 L35.25,44.5 38,42 30.75,32.25 z" Fill="White" Height="12.25" Canvas.Left="32" Stretch="Fill" Stroke="Gray" StrokeThickness="0" Canvas.Top="32.5" Width="10"/>
+                                        <Path Name="zoomHandler" Data="M36.333175,44.500604 C36.333175,44.500604 33.999727,45.333878 35.416684,47.584028 36.180665,48.797242 41.082453,55.251236 41.082453,55.251236 41.082453,55.251236 42.83251,57.001608 45.415543,55.251382 47.998576,53.501156 47.99816,53.334298 47.99816,53.334298 47.99816,53.334298 49.914405,52.168005 47.998023,49.501047 46.081641,46.834089 43.998657,44.500604 43.998657,44.500604 43.998657,44.500604 41.915654,40.334061 38.91613,42.416994 35.761001,44.607983 36.333175,44.500604&#xD;&#xA;36.333175,44.500604 z" Fill="White" Height="14.195" Canvas.Left="34.964" Stretch="Fill" Stroke="Gray" StrokeThickness="0" Canvas.Top="37.5" Width="13.892"/>
+
+                                        <Rectangle Name="horizontialCross" Fill="White" Height="5" Canvas.Left="15" Stroke="Gray" StrokeThickness="0" Canvas.Top="16.5" Width="15"/>
+
+                                    </Canvas>
+                                </Viewbox>
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CanvasZoomBackControlBtnStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="Transparent" SnapsToDevicePixels="true">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Stretch="Fill">
+                                    <Canvas Width="52" Height="52">
+                                        <Ellipse Name="zoomCircle" Fill="Transparent" Height="37.25" Stroke="White" StrokeThickness="3" Width="37.25" Canvas.Top="0.25" Canvas.Left="4"/>
+                                        <Path Name="zoomStrike" Data="M28,34.5 L35.25,44.5 38,42 30.75,32.25 z" Fill="White" Height="12.25" Canvas.Left="32" Stretch="Fill" Stroke="Gray" StrokeThickness="0" Canvas.Top="32.5" Width="10"/>
+                                        <Path Name="zoomHandler" Data="M36.333175,44.500604 C36.333175,44.500604 33.999727,45.333878 35.416684,47.584028 36.180665,48.797242 41.082453,55.251236 41.082453,55.251236 41.082453,55.251236 42.83251,57.001608 45.415543,55.251382 47.998576,53.501156 47.99816,53.334298 47.99816,53.334298 47.99816,53.334298 49.914405,52.168005 47.998023,49.501047 46.081641,46.834089 43.998657,44.500604 43.998657,44.500604 43.998657,44.500604 41.915654,40.334061 38.91613,42.416994 35.761001,44.607983 36.333175,44.500604&#xD;&#xA;36.333175,44.500604 z" Fill="White" Height="14.195" Canvas.Left="34.964" Stretch="Fill" Stroke="Gray" StrokeThickness="0" Canvas.Top="37.5" Width="13.892"/>
+
+
+
+                                        <Path Name="backCircle" Stroke="White" StrokeThickness="3">
+                                            <Path.Data>
+                                                <PathGeometry>
+                                                    <PathFigure IsClosed="False" StartPoint="24,26" >
+                                                        <ArcSegment Point="16,18" Size="8,8" IsLargeArc="True" SweepDirection="Counterclockwise"></ArcSegment>
+                                                        <LineSegment Point="15,18" ></LineSegment>
+                                                        <LineSegment Point="17,21" ></LineSegment>
+                                                        <LineSegment Point="19,18" ></LineSegment>
+                                                        <LineSegment Point="16,18" ></LineSegment>
+
+                                                    </PathFigure>
+                                                </PathGeometry>
+
+                                            </Path.Data>
+                                        </Path>
+
+                                    </Canvas>
+                                </Viewbox>
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF3E3E40"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FF007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <DockPanel>
+            <StackPanel  DockPanel.Dock="Top" >
+                <WrapPanel >
+                    <TextBlock Text="字体" VerticalAlignment="Center" Margin="6,0,2,0"></TextBlock>
+                    <ComboBox ItemsSource="{Binding Path=AllFonts}" Focusable="False" DisplayMemberPath="FontName" SelectedValuePath="FontFamilyEntity" SelectedItem="{Binding Path=SelectedFontFamily}"></ComboBox>
+                    <TextBlock Text="大小" VerticalAlignment="Center" Margin="6,0,2,0"></TextBlock>
+                    <ComboBox ItemsSource="{Binding Path=FontSizeList}" Focusable="False" DisplayMemberPath="." SelectedValuePath="." SelectedItem="{Binding Path=SelectedFontSize}"></ComboBox>
+                    <TextBlock Text="颜色" VerticalAlignment="Center" Margin="6,0,2,0"></TextBlock>
+                    <ComboBox ItemsSource="{Binding Path=Foregrounds}" Focusable="False" SelectedItem="{Binding Path=SelectedColor}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Rectangle Fill="{Binding .}" Margin="1 3" Height="10" Width="10"></Rectangle>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Text="线条颜色" VerticalAlignment="Center" Margin="6,0,2,0"></TextBlock>
+                    <ComboBox ItemsSource="{Binding Path=LineBrushes}" SelectedItem="{Binding Path=SelectedLineBrush}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Rectangle Fill="{Binding .}" Margin="1 3" Height="4" Width="40"></Rectangle>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </WrapPanel>
+                <ToolBarTray>
+                    <ToolBar>
+                        <Button  Style="{DynamicResource OpenButtonStyle}" Name="graphicImportButton"  Click="GraphicImportButton_Clicked">
+                            <TextBlock Text="打开" Foreground="White"></TextBlock>
+                        </Button>
+                        <Button Style="{DynamicResource SaveButtonStyle}" Name="graphicExportButton" Click="GraphicExportButton_Click" Margin="0,0,10,0">
+                            <TextBlock Text="保存" Foreground="White"></TextBlock>
+                        </Button>
+                    </ToolBar>
+                    <ToolBar  Name="controlToolBar">
+                        <WrapPanel >
+                            <RadioButton Name="ItemSelect" Style="{DynamicResource ResourceKey=SelectToggleButtonStyle}" Checked="ElementSelectTool_Checked">
+                                <TextBlock Text="选择" Foreground="White"></TextBlock>
+                            </RadioButton>
+                            <Button Style="{DynamicResource CanvasZoomOutControlBtnStyle}" Name="ZoomOut"  Click="SendCommandToChild_Clicked" Width="Auto" Height="18" Margin="10,0,10,0">
+                                <TextBlock Text="放大" Foreground="White"></TextBlock>
+                            </Button>
+                            <Button Style="{DynamicResource CanvasZoomInControlBtnStyle}" Name="ZoomIn" Click="SendCommandToChild_Clicked" Margin="10,0,10,0" Width="Auto" Height="18">
+                                <TextBlock Text="缩小" Foreground="White"></TextBlock>
+                            </Button>
+                            <Button Style="{DynamicResource CanvasZoomBackControlBtnStyle}" Name="ZoomRestore"  Click="SendCommandToChild_Clicked" Width="Auto" Height="18">
+                                <TextBlock Text="还原" Foreground="White"></TextBlock>
+                            </Button>
+                            <RadioButton  Name="CanvasMove" Style="{DynamicResource ResourceKey=HandMoveToggleButtonStyle}"  Checked="CanvasMoveTool_Checked" Margin="10,0,10,0">
+                                <TextBlock Text="移动" Foreground="White"></TextBlock>
+                            </RadioButton>
+                        </WrapPanel>
+
+                    </ToolBar>
+                    <ToolBar>
+                        <Button Style="{DynamicResource CopyButtonStyle}" Name="Copy"  Click="SendCommandToChild_Clicked" Margin="0,0,10,0">
+                            <TextBlock Text="复制" Foreground="White"></TextBlock>
+                        </Button>
+                        <Button Style="{DynamicResource PasteButtonStyle}" Name="Paste" Click="SendCommandToChild_Clicked" Margin="0,0,10,0">
+                            <TextBlock Text="粘贴" Foreground="White"></TextBlock>
+                        </Button>
+                        <Button Style="{DynamicResource DeleteButtonStyle}" Name="Delete" Click="SendCommandToChild_Clicked">
+                            <TextBlock Text="删除" Foreground="White"></TextBlock>
+                        </Button>
+                    </ToolBar>
+
+                    <ToolBar>
+                        <Button Style="{DynamicResource RotateButtonStyle}" Name="Rotate"  Click="SendCommandToChild_Clicked" Margin="0,0,10,0">
+                            <TextBlock Text="旋转" Foreground="White"></TextBlock>
+                        </Button>
+                        <WrapPanel>
+                            <TextBlock Text="画布大小" VerticalAlignment="Center" Margin="0,0,4,0"></TextBlock>
+                            <ComboBox Name="ResizeCanvas" SelectionChanged="ResizeCanvas_SelectionChanged" SelectedItem="{Binding Path=SelectedCanvasSize}" ItemsSource="{Binding Path=CnavasSizeList}" DisplayMemberPath="RatioText" SelectedValuePath="RatioValue"/>
+
+                            <Button Style="{DynamicResource VerticalCenterAlignButtonStyle}" Name="VerticalCenterAlignment" Width="Auto" Height="22" Click="SendCommandToChild_Clicked" Margin="0,0,10,0">
+                                <TextBlock Text="垂直居中" Foreground="White"></TextBlock>
+                            </Button>
+                            <Button Style="{DynamicResource HorizontialCenterAlignButtonStyle}" Name="HorizontialCenterAlignment"  Click="SendCommandToChild_Clicked" Margin="0,0,10,0">
+                                <TextBlock Text="水平居中" Foreground="White"></TextBlock>
+                            </Button>
+                        </WrapPanel>
+                    </ToolBar>
+                </ToolBarTray>
+
+
+            </StackPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <StackPanel Name="ToolWindow" DockPanel.Dock="Left"  Background="#FF2D2D30" >
+                    <Button Name="toolBoxShowButton" Width="26" Height="50" Click="ShowToolBoxButton_Clicked">
+                        <TextBlock   Foreground="White">
+                           <Run Text="工"></Run>
+                            <LineBreak/>
+                            <Run Text="具"></Run>
+                            <LineBreak/>
+                            <Run Text="箱"></Run>
+
+                        </TextBlock>
+
+                    </Button>
+
+                </StackPanel>
+                <DockPanel DockPanel.Dock="Left" Name="workAreaPanel">
+                    <StackPanel Name="toolBoxPanel"  DockPanel.Dock="Left" Visibility="Collapsed">
+                        <DockPanel LastChildFill="False" VerticalAlignment="Center" Background="#FF444444">
+                            <TextBlock Text="工具箱" DockPanel.Dock="Left" Width="Auto" VerticalAlignment="Center" Margin="8,0,0,0"></TextBlock>
+                            <Button DockPanel.Dock="Right" Click="CloseToolBoxButton_Clicked" Style="{StaticResource CloseButtonStyle}" Width="22" Height="22"></Button>
+                        </DockPanel>
+                        <ListBox Name="toolBox" DockPanel.Dock="Left" Width="80" SelectionChanged="ToolBox_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListBoxItem Name="Text" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderThickness="1" BorderBrush="White" Width="16" Height="16">
+                                        <TextBlock Text="A" FontWeight="Bold" FontSize="12" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                                    </Border>
+                                    <TextBlock Text="文本" Margin="6,0,0,0"></TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Name="StraightLine" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderThickness="0,1,0,0" BorderBrush="White" Width="16" Height="1">
+                                    </Border>
+                                    <TextBlock Text="直连线" Margin="6,0,0,0"></TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Name="LShapeLine">
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderThickness="1,0,0,1" BorderBrush="White" Width="16" Height="16">
+
+                                    </Border>
+                                    <TextBlock Text="折线" Margin="6,0,0,0"></TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>
+                            
+                           
+                            <ListBoxItem Name="ElectricConfirm">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Width="16" Height="16">
+
+                                    </Grid>
+                                    <TextBlock Text="验电" Margin="8,0,0,0"></TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>
+                            
+                            <ListBoxItem Name="ObliqueLine" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Width="16" Height="16">
+                                        <Viewbox Stretch="Fill" Width="12" Height="12">
+                                            <Path Stroke="White" StrokeThickness="1" Data="M0,0 L12,12"/>
+                                        </Viewbox>
+                                    </Grid>
+                                    <TextBlock Text="斜线" Margin="8,0,0,0"></TextBlock>
+                                </StackPanel>
+                            </ListBoxItem>    
+                           
+                        </ListBox>
+                    </StackPanel>
+
+                    <TabControl Name="tabControl">
+
+                    </TabControl>
+                </DockPanel>
+            </DockPanel>
+
+        </DockPanel>
+    </Grid>
+</UserControl>
