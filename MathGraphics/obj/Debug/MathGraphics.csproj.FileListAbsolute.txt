@@ -66,3 +66,41 @@ D:\Git Projects\MathSpace\MathGraphics\obj\Debug\MathGraphics.Properties.Resourc
 D:\Git Projects\MathSpace\MathGraphics\obj\Debug\MathGraphics.csproj.GenerateResource.Cache
 D:\Git Projects\MathSpace\MathGraphics\obj\Debug\MathGraphics.dll
 D:\Git Projects\MathSpace\MathGraphics\obj\Debug\MathGraphics.pdb
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\MathGraphics.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\MathGraphics.pdb
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\FrameWorkExtension.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\Microsoft.WindowsAPICodePack.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\Themes.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\FrameWorkExtension.pdb
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\Themes.pdb
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\GalaSoft.MvvmLight.pdb
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\GalaSoft.MvvmLight.xml
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\de\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\en\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\es\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\it\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics.csprojAssemblyReference.cache
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\DrawBoard.g.cs
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\GraphicPanelControl.g.cs
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics_MarkupCompile.cache
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics_MarkupCompile.lref
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\DrawBoard.baml
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\GraphicPanelControl.baml
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics.g.resources
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics.Properties.Resources.resources
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics.csproj.GenerateResource.cache
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics.csproj.CoreCompileInputs.cache
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics.csproj.CopyComplete
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics.dll
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\MathGraphics.pdb

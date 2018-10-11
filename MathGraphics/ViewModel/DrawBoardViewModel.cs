@@ -150,7 +150,11 @@ namespace MathGraphics
                     else
                     {
                         var enLanguageItem = System.Windows.Markup.XmlLanguage.GetLanguage("en-us");
-                        name = item.FamilyNames[enLanguageItem];
+                        if (item.FamilyNames.Keys.Contains(enLanguageItem))
+                        {
+                            name = item.FamilyNames[enLanguageItem];
+                        }
+                        
                     }
                     var myFontItem = new MyFontFamily() { FontFamilyEntity = item, FontName = name };
 

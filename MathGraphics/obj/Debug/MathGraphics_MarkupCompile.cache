@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\Git Projects\MathSpace\MathGraphics\obj\Debug\
+D:\Git\MathSpace\.git\MathSpace\MathGraphics\obj\Debug\
 MathGraphics
 none
 false
@@ -13,7 +13,7 @@ DEBUG;TRACE
 2-1365378913
 21808732302
 10-1320431404
-73503170747
+73-1007939243
 DrawBoard.xaml;GraphicPanelControl.xaml;
 
 False
